@@ -9,7 +9,7 @@
 	    	function success()
 	    	{
 	    		alert("Register Success");
-	    		 window.location.replace("../WEB-INF/index.html");
+	    		 window.location.replace("/registration_form.html");
 	    	}
 	    </script>
 			<?php

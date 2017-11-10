@@ -2,7 +2,7 @@
     function failed()
     {
         alert("Login failed due to incorrect password or email");
-         window.location.replace("../WEB-INF/index.html");
+         window.location.replace("../index.html");
     }
 </script>
 
@@ -47,19 +47,20 @@
                 $_SESSION["Login"] = "YES";
                 $_SESSION['USER'] = $username;
                 $_SESSION['LEVEL'] =$level;
+                $_SESSION['ID']=$userID;
                 $expire = time()+60*60*24*30;
                 setcookie("userID", $userID, $expire);
                 if($_SESSION["LEVEL"] == "admin")
                 {
-                        header("Location: ../WEB-INF/admin-main.php");
+                        header("Location: ../index.html");
                 }    
                 else if($_SESSION["LEVEL"] == "user")
                 {
-                        header("Location: ../WEB-INF/cust-main.php");
+                        header("Location: ../index.html");
                 }
                 else if($_SESSION["LEVEL"] == "RentalMaster")
                 {
-                        header("Location:../WEB-INF/rentalMaster-main.php");
+                        header("Location:../dashboard/rentalMaster-main.html");
                 }
                 
          }           

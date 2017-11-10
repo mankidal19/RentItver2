@@ -5,7 +5,7 @@
 
 $sql = "CREATE TABLE rentalmaster
         (
-		userID int(11) NOT NULL AUTO_INCREMENT,
+		userID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 		username varchar(30) NOT NULL,
  		firstName varchar(100) NOT NULL,
  		lastName varchar(100) NOT NULL,
@@ -26,8 +26,8 @@ $sql = "CREATE TABLE rentalmaster
  		establishDate date NOT NULL,
  		level varchar(15) NOT NULL default'RentalMaster',
  		valid int(4) NOT NULL default '1',
- 		token varchar(40),
-		PRIMARY KEY (userID)
+ 		businessId varchar(30) NOT NULL default '0',
+ 		token varchar(40)
         )AUTO_INCREMENT=20000";
 
 $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");

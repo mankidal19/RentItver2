@@ -21,7 +21,7 @@
 					function repeat()
 					{
 						alert("User Email has register");
-						window.location.replace("../WEB-INF/registration_form.html");;
+						window.location.replace("registration_form.html");
 					}
 				    window.onLoad=repeat();
 				 </script>	
@@ -38,7 +38,7 @@
 			    		function success()
 						{
 							alert("Register Success");
-							window.location.replace("../WEB-INF/index.html");;
+							window.location.replace("index.html");;
 						}
 			    		window.onload=success();
 			   		</script>
