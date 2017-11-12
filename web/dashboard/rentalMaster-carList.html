@@ -234,15 +234,15 @@ desired effect
                   <td>make 1</td>
                   <td>model 1</td>
                   <td>num 1</td>
-                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs">Edit</button></td>
-                  <td><button type="button" class="btn btn-block btn-danger btn-xs">Delete</button></td>
+                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
+                  <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
                 </tr><tr role="row" class="even">
                   <td class="sorting_1">id2</td>
                   <td>make 2</td>
                   <td>model 2</td>
                   <td>num 2</td>
-                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs">Edit</button></td>
-                  <td><button type="button" class="btn btn-block btn-danger btn-xs">Delete</button></td>
+                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
+                  <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
                 <tfoot>
                 <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Car ID: activate to sort column descending" style="width: 10%;">Car ID</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 25%;">Car Make</th>
@@ -315,6 +315,97 @@ desired effect
 
           
 
+        </div> 
+        
+        <!--delete booking modal-->   
+     <div class="modal modal-warning fade" id="modal-delete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete Booking</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete car #carid?<br>Car details will be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     
+     <!--edit booking modal-->   
+     <div class="modal modal-info fade" id="modal-edit">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <form role="form" action="" method="POST" enctype="multipart/form-data" id="editCarDetails">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Car Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                
+                  <div class="form-group">
+                      <label for="carID">Car ID</label>
+                      <input type="text" disabled value="">
+                  </div>  
+                  
+                <div class="form-group">
+                  <label for="carDetails">Car Details: </label>
+                  <select name="car-years" id="car-years"></select>  
+                    <select name="car-makes" id="car-makes"></select> 
+                    <select name="car-models" id="car-models"></select>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="hourlyRate">Hourly Rate (RM): </label>
+                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
+                </div>
+                  
+                <div class="form-group">
+                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
+                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="carDesc">Car Description: </label>
+                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="addedPhotos">Car's photo:</label>
+                  <img alt="uploaded image here">
+                  </div>
+                  
+                <div class="form-group">
+                <label for="exampleInputFile">Add new car's photo:</label>
+                  <input type="file" id="carPhoto" name="carFile">
+                </div> 
+                
+              </div>
+              <!-- /.box-body -->
+
+              
+            
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Update</button>
+              </div>
+             </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
         </div> 
     </section>
     <!-- /.content -->
