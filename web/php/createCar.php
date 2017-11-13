@@ -10,6 +10,7 @@ $sql = "CREATE TABLE car
 	 		year int(5) NOT NULL,
 	 		makes varchar(20) NOT NULL,
 	 		models varchar(20) NOT NULL,
+	 		maxPassenger int(10) NOT NULL,
 	 		hourlyRate varchar(20) NOT NULL,
 	 		description varchar(200) NOT NULL,
 	 		ownerID int(11) NOT NULL, 

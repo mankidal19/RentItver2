@@ -36,12 +36,13 @@
 			$makes=$_POST['car-makes'];
 			$models=$_POST['car-models'];
 			$hourlyRate=$_POST['hourlyRate'];
+			$maxPassenger=$_POST['maxPassenger'];
 			$description=$_POST['carDesc'];
 			$ownerID=$_SESSION['ID'];
 
 			if($_SESSION['LEVEL']=='RentalMaster')
 			{
-				$sql="insert into car(year,makes,models,hourlyRate,description,ownerID) values('$years','$makes','$models','$hourlyRate','$description','$ownerID')";
+				$sql="insert into car(year,makes,models,hourlyRate,maxPassenger,description,ownerID) values('$years','$makes','$models','$hourlyRate','$maxPassenger','$description','$ownerID')";
 				$result=mysqli_query($conn,$sql) or trigger_error($con->error."[$sql]");
 				if($result)
 				{

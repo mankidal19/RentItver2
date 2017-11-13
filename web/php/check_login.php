@@ -44,7 +44,7 @@
 
         if($count==1)
         {
-                $_SESSION["Login"] = "YES";
+                $_SESSION["LOGIN"] = "YES";
                 $_SESSION['USER'] = $username;
                 $_SESSION['LEVEL'] =$level;
                 $_SESSION['ID']=$userID;
@@ -60,13 +60,13 @@
                 }
                 else if($_SESSION["LEVEL"] == "RentalMaster")
                 {
-                        header("Location:../dashboard/rentalMaster-main.html");
+                        header("Location:../dashboard/rentalMaster-main.php");
                 }
                 
          }           
         else
         {
-            $_SESSION["Login"] = "NO";
+            $_SESSION["LOGIN"] = "NO";
             ?>
             <script>window.onload=failed()</script>
             <?php
