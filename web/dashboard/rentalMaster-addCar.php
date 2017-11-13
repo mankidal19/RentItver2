@@ -188,7 +188,7 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="rentalMaster-carList.html">View Car List</a></li>
+            <li><a href="rentalMaster-carList.php">View Car List</a></li>
             <li class="active"><a href="#">Add New Car</a></li>
           </ul>
         </li>

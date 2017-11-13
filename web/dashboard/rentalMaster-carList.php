@@ -255,7 +255,7 @@ desired effect
                         <td><?php echo("{$row['makes']}") ?></td>
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
+                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
                         <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
                       </tr>
                     <?php }
@@ -397,10 +397,10 @@ desired effect
               <div class="modal-body">
                 <!-- form start -->
               <div class="box-body">
-                
+                <?php $carID=$_GET['carID']; ?>
                   <div class="form-group">
-                      <label for="carID"><?php echo("{$_SESSION['ID']}") ?></label>
-                      <input type="text" disabled value="">
+                      <label for="carID">Car ID</label>
+                      <input type="text" disabled value=<?php echo("{$carID}") ?>>
                   </div>  
                   
                 <div class="form-group">
