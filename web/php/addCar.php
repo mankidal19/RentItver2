@@ -4,22 +4,22 @@
 			function notAllowed()
 			{
 				alert("Only jpg, jpeg and png is allowed to uploaded");
-				window.location.replace('../dashboard/rentalMaster-addCar.html');
+				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function error()
 			{
 				alert("Error when uploading file");
-				window.location.replace('../dashboard/rentalMaster-addCar.html');
+				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function sizeBig()
 			{
 				alert("Your file was too big");
-				window.location.replace('../dashboard/rentalMaster-addCar.html');
+				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function success()
 			{
 				alert("Upload Success");
-				window.location.replace('../dashboard/rentalMaster-main.html');
+				window.location.replace('../dashboard/rentalMaster-main.php');
 			}
 			function notRentalMaster()
 			{
