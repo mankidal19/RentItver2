@@ -28,3 +28,13 @@ function addClass(div,i,classname,j,k){
     var node3 = document.getElementById(div).getElementsByTagName("li")[k];
     node3.setAttribute("class", "");
 }
+
+//triggered when modal is about to be shown
+$('#modal-edit').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carID"]').val(carId);
+});
