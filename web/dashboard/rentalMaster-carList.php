@@ -255,7 +255,7 @@ desired effect
                         <td><?php echo("{$row['makes']}") ?></td>
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
+                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
                         <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
                       </tr>
                     <?php }
@@ -323,7 +323,7 @@ desired effect
           <!-- /.modal-dialog -->
         </div> 
      
-     <!--edit booking modal-->   
+     <!--edit car modal-->   
      <div class="modal modal-info fade" id="modal-edit">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -340,7 +340,7 @@ desired effect
                 <?php $carID=$_GET['carID']; ?>
                   <div class="form-group">
                       <label for="carID">Car ID</label>
-                      <input type="text" disabled value=<?php echo("{$carID}") ?>>
+                      <input type="text" name="carID" disabled value=<?php echo("{$carID}") ?>>
                   </div>  
                   
                 <div class="form-group">
@@ -503,6 +503,8 @@ desired effect
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script src="dist/js/extra.js"></script>
 <!-- page script -->
 <script>
   $(function () {
