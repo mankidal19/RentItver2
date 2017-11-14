@@ -240,25 +240,42 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 25%;">Action</th></tr>
                 </thead>
                 <tbody>
-                
+                  <script>
+                    function carid(var temp){
+                      document.getElementsById(temp).onclick = function(){
+                        document.getElementsById(temp).value;
+                        document.forms.myform.submit();
+                      }
+                    }
+                  </script>
                 <?php
-                  include('../php/config.php');                
+                  include('../php/config.php');    
                   $ownerID=$_SESSION['ID'];
+                  // function carID()
+                  // {
+                  //   $_SESSION['CARID']=
+                  // }
                   $sql="select * from car where ownerID='$ownerID'";
                   $result=mysqli_query($conn,$sql);
+                  $_SESSION['COUNT']=0;
                   if($result->num_rows> 0)
                   {
                     while($row=mysqli_fetch_array($result))
-                    {?>
-                     <tr role="row" class="odd">
+                    {
+                      $_SESSION['COUNT']=1; 
+                      $count=$_SESSION['COUNT'];?>
+                      <form method='POST' action=''>
+                      <tr role="row" class="odd">
                         <td class="sorting_1"><?php echo("{$row['carID']}") ?></td>
                         <td><?php echo("{$row['makes']}") ?></td>
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
-                        <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
-                      </tr>
-                    <?php }
+                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" values=<?php echo("{$row['carID']}") ?> id=<?php echo('carID[$count]'); ?> data-toggle="modal" data-target="#modal-edit" name=<?php echo('carID[$count]'); ?> onclick="carid(<?php echo('carID[$count]'); ?>);">Edit</button></td>
+                        <td><button type="button" class="btn btn-block btn-danger btn-xs"  data-toggle="modal" data-target="#modal-delete">Delete</button></td>
+                     </tr>
+                     </form>
+                     <?php $_SESSION['COUNT']+=1; 
+                    }
                   }
                   else
                   { ?>
@@ -270,23 +287,6 @@ desired effect
                   <?php } 
               ?>
 
-                  
-
-                
-<!--                  <tr role="row" class="odd">
-                   <td class="sorting_1">id1</td>
-                   <td>make 1</td>
-                   <td>model 1</td>
-                   <td>num 1</td>
-                   <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
-                   <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
-                 </tr><tr role="row" class="even">
-                   <td class="sorting_1">id2</td>
-                   <td>make 2</td>
-                   <td>model 2</td>
-                   <td>num 2</td>
-                   <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
-                   <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td> -->
                <tfoot>
                 <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Car ID: activate to sort column descending" style="width: 10%;">Car ID</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 25%;">Car Make</th>
@@ -337,10 +337,13 @@ desired effect
               <div class="modal-body">
                 <!-- form start -->
               <div class="box-body">
-                <?php $carID=$_GET['carID']; ?>
                   <div class="form-group">
                       <label for="carID">Car ID</label>
-                      <input type="text" disabled value=<?php echo("{$carID}") ?>>
+                      <?php 
+                      
+                        $_SESSION['CARID']=$_POST["carID"];
+                       ?>
+                      <input type="text" disabled value=<?php echo("{$_SESSION['CARID']}") ?>>
                   </div>  
                   
                 <div class="form-group">
