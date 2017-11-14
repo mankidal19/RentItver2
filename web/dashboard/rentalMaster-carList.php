@@ -225,6 +225,100 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
+        
+           <!--delete booking modal-->   
+     <div class="modal modal-warning fade" id="modal-delete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete Booking</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete car #carid?<br>Car details will be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     
+     <!--edit car modal-->   
+     <div class="modal modal-info fade" id="modal-edit">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+                <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Car Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  <div class="form-group">
+                      <label for="carID">Car ID</label>
+                   
+                    <input type="text" name="carID" disabled value="">
+                  </div>  
+                  
+                <div class="form-group">
+                  <label for="carDetails">Car Details: </label>
+                  <select name="car-years" id="car-years"></select>  
+                    <select name="car-makes" id="car-makes"></select> 
+                    <select name="car-models" id="car-models"></select>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="hourlyRate">Hourly Rate (RM): </label>
+                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
+                </div>
+                  
+                <div class="form-group">
+                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
+                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="carDesc">Car Description: </label>
+                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="addedPhotos">Car's photo:</label>
+                  <img src="" alt="uploaded image here">
+                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width: 100px;">Delete Photo</button>
+                  </div>
+                  
+                <div class="form-group">
+                <label for="exampleInputFile">Add new car's photo:</label>
+                  <input type="file" id="carPhoto" name="carFile">
+                </div> 
+                
+              </div>
+              <!-- /.box-body -->
+
+              
+            
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Update</button>
+              </div>
+            </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+        
        <div class="box">
             <div class="box-header">
               <h3 class="box-title">My Cars List</h3>
@@ -297,103 +391,14 @@ desired effect
             <!-- /.box-body -->
           </div>
         
-        
-        
-        <!--delete booking modal-->   
-     <div class="modal modal-warning fade" id="modal-delete">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Delete Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Delete car #carid?<br>Car details will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
      
-     <!--edit car modal-->   
-     <div class="modal modal-info fade" id="modal-edit">
-          <div class="modal-dialog">
-            <div class="modal-content">
-                <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
-            
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Edit Car Details</h4>
-              </div>
-              <div class="modal-body">
-                <!-- form start -->
-              <div class="box-body">
-                  <div class="form-group">
-                      <label for="carID">Car ID</label>
-                   <!--   <?php 
-                      
-                        $_SESSION['CARID']=$_POST["carID"];
-                       ?>
-                      <input type="text" name="carID" disabled value=<?php echo("{$_SESSION['CARID']}") ?>>-->
-                    <input type="text" name="carID" disabled value=>
-                  </div>  
-                  
-                <div class="form-group">
-                  <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years"></select>  
-                    <select name="car-makes" id="car-makes"></select> 
-                    <select name="car-models" id="car-models"></select>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
-                </div>
-                  
-                <div class="form-group">
-                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="addedPhotos">Car's photo:</label>
-                  <img src="" alt="uploaded image here">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width: 100px;">Delete Photo</button>
-                  </div>
-                  
-                <div class="form-group">
-                <label for="exampleInputFile">Add new car's photo:</label>
-                  <input type="file" id="carPhoto" name="carFile">
-                </div> 
-                
-              </div>
-              <!-- /.box-body -->
-
-              
-            
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline">Update</button>
-              </div>
-             </form>   
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
+       
+        
+     
+     
+     
+     
+     
     </section>
     <!-- /.content -->
   </div>
