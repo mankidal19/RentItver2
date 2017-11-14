@@ -255,67 +255,7 @@ desired effect
             <!-- /.box-body -->
           </div>
         
-        <div class="col-md-12">
-          <!-- general form elements -->
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Edit Car Details</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" action="" method="POST" enctype="multipart/form-data" id="editCarDetails">
-              <div class="box-body">
-                
-                  <div class="form-group">
-                      <label for="carID">Car ID</label>
-                      <input type="text" disabled value="">
-                  </div>  
-                  
-                <div class="form-group">
-                  <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years"></select>  
-                    <select name="car-makes" id="car-makes"></select> 
-                    <select name="car-models" id="car-models"></select>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
-                </div>
-                  
-                <div class="form-group">
-                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="addedPhotos">Car's photo:</label>
-                  <img alt="uploaded image here">
-                  </div>
-                  
-                <div class="form-group">
-                <label for="exampleInputFile">Add new car's photo:</label>
-                  <input type="file" id="carPhoto" name="carFile">
-                </div> 
-                
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-success">Update</button>
-              </div>
-            </form>
-          </div>
-          <!-- /.box -->
-
-          
-
-        </div> 
+        
         
         <!--delete booking modal-->   
      <div class="modal modal-warning fade" id="modal-delete">
@@ -339,7 +279,7 @@ desired effect
           <!-- /.modal-dialog -->
         </div> 
      
-     <!--edit booking modal-->   
+     <!--edit car modal-->   
      <div class="modal modal-info fade" id="modal-edit">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -383,7 +323,8 @@ desired effect
                   
                 <div class="form-group">
                   <label for="addedPhotos">Car's photo:</label>
-                  <img alt="uploaded image here">
+                  <img src="" alt="uploaded image here">
+                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width: 100px;">Delete Photo</button>
                   </div>
                   
                 <div class="form-group">
