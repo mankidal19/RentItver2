@@ -234,7 +234,7 @@ desired effect
                   <td>make 1</td>
                   <td>model 1</td>
                   <td>num 1</td>
-                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
+                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-car-id="011" data-toggle="modal" href="#modal-edit">Edit</button></td>
                   <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
                 </tr><tr role="row" class="even">
                   <td class="sorting_1">id2</td>
@@ -296,7 +296,7 @@ desired effect
                 
                   <div class="form-group">
                       <label for="carID">Car ID</label>
-                      <input type="text" disabled value="">
+                      <input type="text" name="carID" disabled value="">
                   </div>  
                   
                 <div class="form-group">
@@ -459,6 +459,8 @@ desired effect
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script src="dist/js/extra.js"></script>
 <!-- page script -->
 <script>
   $(function () {
