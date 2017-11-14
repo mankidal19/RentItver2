@@ -337,11 +337,12 @@ desired effect
               <div class="box-body">
                   <div class="form-group">
                       <label for="carID">Car ID</label>
-                      <?php 
+                   <!--   <?php 
                       
                         $_SESSION['CARID']=$_POST["carID"];
                        ?>
-                      <input type="text" disabled value=<?php echo("{$_SESSION['CARID']}") ?>>
+                      <input type="text" name="carID" disabled value=<?php echo("{$_SESSION['CARID']}") ?>>-->
+                    <input type="text" name="carID" disabled value=>
                   </div>  
                   
                 <div class="form-group">
