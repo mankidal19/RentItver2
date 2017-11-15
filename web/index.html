@@ -1,556 +1,332 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>RentIt &mdash; Rent a car, as a piece of cake.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pratt - Free Bootstrap 3 Theme">
+    <meta name="author" content="Alvarez.is - BlackTie.co">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>Welcome to RentIt</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/smoothscroll.js"></script>
     
 
-    <!--
-        Oxygen by gettemplates.co
-        Twitter: http://twitter.com/gettemplateco
-        URL: http://gettemplates.co
-    -->
+  </head>
 
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
+  <body data-spy="scroll" data-offset="0" data-target="#navigation">
 
-    <!-- <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'> -->
-    
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="css/icomoon.css">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Modernizr JS -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-
-    </head>
-    <body>
-        
-    <div class="gtco-loader"></div>
-    
-    <div id="page">
-    <nav class="gtco-nav" role="navigation">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-xs-2">
-                    <div id="gtco-logo"><a href="index.html">RentIt</a></div>
-                </div>
-                <div class="col-xs-8 text-center menu-1">
-                    <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li class="has-dropdown">
-                            <a href="about.html">About</a>
-                            <ul class="dropdown">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Our Team</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="#">Services</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Car Rental Mediator</a></li>
-                                <li><a href="#">Advertise Your Car</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-2 text-right hidden-xs menu-2">
-                    <ul>
+    <!-- Fixed navbar -->
+	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand" href="#"><b>Pratt</b></a>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="#home" class="smothscroll">Home</a></li>
+	            <li><a href="#desc" class="smothscroll">Description</a></li>
+	            <li><a href="#showcase" class="smothScroll">Showcase</a></li>
+	            <li><a href="#contact" class="smothScroll">Contact</a></li>
+	          </ul>
+	          
+	          <ul class="nav navbar-nav navbar-right">
+	          			<li class="btn-cta">
+	          				<a href="#modal_login" role="button" data-toggle="modal" data-target="#modal_login"><span>LOGIN </span></a>
+	          			</li>
                         <li class="btn-cta">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>LOGIN/REGISTER </span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>REGISTER </span></a>
                                 <ul class="dropdown-menu">
-                                     <li><a href="login.html" id="loginLink">Log in</a></li>
-                                     <li><a href="registration_form.html" id="registerLink"></i> Register</a></li>
+                                     <li><a id="loginLink">As Car Renter</a></li>
+                                     <li><a href="registration_form.html" id="registerLink"></i> As Advertiser</a></li>
                                 </ul>
                         </li>
                     </ul>
-                </div>
-            </div>
-            
-        </div>
-    </nav>
-
-    <header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(images/img_bg_1.jpg);">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="display-t">
-                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <h1>RentIt</h1>
-                            <h2>Rent a car. Anywhere. Anytime.</h2>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <div id="gtco-features">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <span class="icon">
-                            <i class="icon-eye"></i>
-                        </span>
-                        <h3>Retina Ready</h3>
-                        <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-                        <p><a href="#" class="btn btn-primary">Learn More</a></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <span class="icon">
-                            <i class="icon-command"></i>
-                        </span>
-                        <h3>Fully Responsive</h3>
-                        <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-                        <p><a href="#" class="btn btn-primary">Learn More</a></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-center animate-box" data-animate-effect="fadeIn">
-                        <span class="icon">
-                            <i class="icon-power"></i>
-                        </span>
-                        <h3>Web Starter</h3>
-                        <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-                        <p><a href="#" class="btn btn-primary">Learn More</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="gtco-features-2">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                    <h2>Why Choose Us</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-                        <span class="icon">
-                            <i class="icon-check"></i>
-                        </span>
-                        <div class="feature-copy">
-                            <h3>Retina Ready</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-                        <span class="icon">
-                            <i class="icon-check"></i>
-                        </span>
-                        <div class="feature-copy">
-                            <h3>Fully Responsive</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-                        <span class="icon">
-                            <i class="icon-check"></i>
-                        </span>
-                        <div class="feature-copy">
-                            <h3>Ready To Use</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-                    <div class="gtco-video gtco-bg" style="background-image: url(images/img_1.jpg); ">
-                        <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
-                        <div class="overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="gtco-counter" class="gtco-bg gtco-counter" style="background-image:url(images/img_bg_2.jpg);">
-        <div class="gtco-container">
-            <div class="row">
-                <div class="display-t">
-                    <div class="display-tc">
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-                                <span class="icon">
-                                    <i class="icon-eye"></i>
-                                </span>
-
-                                <span class="counter js-counter" data-from="0" data-to="22070" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Creativity Fuel</span>
-
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-                                <span class="icon">
-                                    <i class="icon-anchor"></i>
-                                </span>
-
-                                <span class="counter js-counter" data-from="0" data-to="97" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Happy Clients</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-                                <span class="icon">
-                                    <i class="icon-briefcase"></i>
-                                </span>
-                                <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Projects Done</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-                                <span class="icon">
-                                    <i class="icon-clock"></i>
-                                </span>
-
-                                <span class="counter js-counter" data-from="0" data-to="212023" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Hours Spent</span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="gtco-testimonial">
-        <div class="gtco-container">
-            <!-- <div class="row"> -->
-                <div class="row animate-box">
-                    <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                        <h2>Testimonial</h2>
-                    </div>
-                </div>
-                <div class="row animate-box">
-                    
-                
-                    <div class="owl-carousel owl-carousel-fullwidth ">
-                        <div class="item">
-                            <div class="testimony-slide active text-center">
-                                <figure>
-                                    <img src="images/person_1.jpg" alt="user">
-                                </figure>
-                                <span>Jean Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                <blockquote>
-                                    <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-slide active text-center">
-                                <figure>
-                                    <img src="images/person_2.jpg" alt="user">
-                                </figure>
-                                <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                <blockquote>
-                                    <p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-slide active text-center">
-                                <figure>
-                                    <img src="images/person_3.jpg" alt="user">
-                                </figure>
-                                <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                <blockquote>
-                                    <p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- </div> -->
-        </div>
-    </div>
-
-    <div id="gtco-services">
-        <div class="gtco-container">
-            
-            <div class="row animate-box">
-                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                    <h2>What We Offer</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-                </div>
-            </div>
-
-            <div class="row animate-box">
-                
-                <div class="gtco-tabs">
-                    <ul class="gtco-tab-nav">
-                        <li class="active"><a href="#" data-tab="1"><span class="icon visible-xs"><i class="icon-command"></i></span><span class="hidden-xs">Web Design</span></a></li>
-                        <li><a href="#" data-tab="2"><span class="icon visible-xs"><i class="icon-bar-graph"></i></span><span class="hidden-xs">Online Marketing</span></a></li>
-                        <li><a href="#" data-tab="3"><span class="icon visible-xs"><i class="icon-bag"></i></span><span class="hidden-xs">E-Commerce</span></a></li>
-                        <li><a href="#" data-tab="4"><span class="icon visible-xs"><i class="icon-box"></i></span><span class="hidden-xs">Logo &amp; Branding</span></a></li>
-                    </ul>
-
-                    <!-- Tabs -->
-                    <div class="gtco-tab-content-wrap">
-
-                        <div class="gtco-tab-content tab-content active" data-tab-content="1">
-                            <div class="col-md-6">
-                                <div class="icon icon-xlg">
-                                    <i class="icon-command"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>Web Design</h2>
-                                <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
-
-                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">Keep it simple</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">Less is more</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="gtco-tab-content tab-content" data-tab-content="2">
-                            <div class="col-md-6">
-                                <div class="icon icon-xlg">
-                                    <i class="icon-bar-graph"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>Online Marketing</h2>
-                                <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
-
-                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">Ready to use</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">100% Satisfaction</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="gtco-tab-content tab-content" data-tab-content="3">
-                            <div class="col-md-6">
-                                <div class="icon icon-xlg">
-                                    <i class="icon-bag"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>e-Commerce</h2>
-                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
-
-                                <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">Easy to shop</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">No credit card required</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div class="gtco-tab-content tab-content" data-tab-content="4">
-                            <div class="col-md-6">
-                                <div class="icon icon-xlg">
-                                    <i class="icon-box"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>Logo &amp; Branding</h2>
-                                <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
-
-                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">Pixel perfect</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h2 class="uppercase">User Interface Expert</h2>
-                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </div>
 
 
-    <div id="gtco-started">
-        <div class="gtco-container">
-            <div class="row animate-box">
-                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-                    <h2>Get Started</h2>
-                </div>
-            </div>
-            <div class="row animate-box">
-                <div class="col-md-12">
-                    <form class="form-inline">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="password" class="sr-only">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button type="submit" class="btn btn-default btn-block">Sign Up</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<section id="home" name="home"></section>
+	<div id="headerwrap">
+	    <div class="container">
+	    	<div class="row centered">
+	    		<div class="col-lg-12">
+					<h1>Welcome To <b>RentIt</b></h1>
 
-    <footer id="gtco-footer" role="contentinfo">
-        <div class="gtco-container">
-            <div class="row row-pb-md">
-                <div class="col-md-4 gtco-widget">
-                    <h3>The Company</h3>
-                    <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                    <p><a href="#">Learn More</a></p>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-                    <ul class="gtco-footer-links">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Meetups</a></li>
-                    </ul>
-                </div>
+					<br>
+	    		</div>
+	    		
+	    		<div class="col-lg-2">
+	    			<h5>Rent a Car</h5>
+	    			<p>Rent a car, anywhere, anytime.</p>
+	    			<img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow1.png">
+	    		</div>
+	    		<div class="col-lg-8">
+	    			<img class="img-responsive" src="assets/img/newlogowhite.png" alt="" align="center">
+	    		</div>
+	    		<div class="col-lg-2">
+	    			<br>
+	    			<img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow2.png">
+	    			<h5>Rent Out Your Car</h5>
+	    			<p>Advertise your car in our website.</p>
+	    		</div>
+	    	</div>
+	    </div> <!--/ .container -->
+	</div><!--/ #headerwrap -->
 
-                <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-                    <ul class="gtco-footer-links">
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Handbook</a></li>
-                        <li><a href="#">Held Desk</a></li>
-                    </ul>
-                </div>
 
-                <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-                    <ul class="gtco-footer-links">
-                        <li><a href="#">Find Designers</a></li>
-                        <li><a href="#">Find Deelopers</a></li>
-                        <li><a href="#">Teams</a></li>
-                        <li><a href="#">Advertise</a></li>
-                        <li><a href="#">API</a></li>
-                    </ul>
-                </div>
-            </div>
+	<section id="desc" name="desc"></section>
+	<!-- INTRO WRAP -->
+	<div id="intro">
+		<div class="container">
+			<div class="row centered">
+				<h1>Designed To Excel</h1>
+				<br>
+				<br>
+				<div class="col-lg-4">
+					<img src="assets/img/intro01.png" alt="">
+					<h3>Community</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+				<div class="col-lg-4">
+					<img src="assets/img/intro02.png" alt="">
+					<h3>Schedule</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+				<div class="col-lg-4">
+					<img src="assets/img/intro03.png" alt="">
+					<h3>Monitoring</h3>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			<br>
+			<hr>
+	    </div> <!--/ .container -->
+	</div><!--/ #introwrap -->
+	
+	<!-- FEATURES WRAP -->
+	<div id="features">
+		<div class="container">
+			<div class="row">
+				<h1 class="centered">What's New?</h1>
+				<br>
+				<br>
+				<div class="col-lg-6 centered">
+					<img class="centered" src="assets/img/mobile.png" alt="">
+				</div>
+				
+				<div class="col-lg-6">
+					<h3>Some Features</h3>
+					<br>
+				<!-- ACCORDION -->
+		            <div class="accordion ac" id="accordion2">
+		                <div class="accordion-group">
+		                    <div class="accordion-heading">
+		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+		                        First Class Design
+		                        </a>
+		                    </div><!-- /accordion-heading -->
+		                    <div id="collapseOne" class="accordion-body collapse in">
+		                        <div class="accordion-inner">
+								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								</div><!-- /accordion-inner -->
+		                    </div><!-- /collapse -->
+		                </div><!-- /accordion-group -->
+		                <br>
+		
+		                <div class="accordion-group">
+		                    <div class="accordion-heading">
+		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+		                        Retina Ready Theme
+		                        </a>
+		                    </div>
+		                    <div id="collapseTwo" class="accordion-body collapse">
+		                        <div class="accordion-inner">
+								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								</div><!-- /accordion-inner -->
+		                    </div><!-- /collapse -->
+		                </div><!-- /accordion-group -->
+		                <br>
+		
+		                 <div class="accordion-group">
+		                    <div class="accordion-heading">
+		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+		                        Awesome Support
+		                        </a>
+		                    </div>
+		                    <div id="collapseThree" class="accordion-body collapse">
+		                        <div class="accordion-inner">
+								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								</div><!-- /accordion-inner -->
+		                    </div><!-- /collapse -->
+		                </div><!-- /accordion-group -->
+		                <br>
+		                
+		                 <div class="accordion-group">
+		                    <div class="accordion-heading">
+		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+		                        Responsive Design
+		                        </a>
+		                    </div>
+		                    <div id="collapseFour" class="accordion-body collapse">
+		                        <div class="accordion-inner">
+								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+								</div><!-- /accordion-inner -->
+		                    </div><!-- /collapse -->
+		                </div><!-- /accordion-group -->
+		                <br>			
+					</div><!-- Accordion -->
+				</div>
+			</div>
+		</div><!--/ .container -->
+	</div><!--/ #features -->
+	
+	
+	<section id="showcase" name="showcase"></section>
+	<div id="showcase">
+		<div class="container">
+			<div class="row">
+				<h1 class="centered">Some Screenshots</h1>
+				<br>
+				<div class="col-lg-8 col-lg-offset-2">
+					<div id="carousel-example-generic" class="carousel slide">
+					  <!-- Indicators -->
+					  <ol class="carousel-indicators">
+					    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					  </ol>
+					
+					  <!-- Wrapper for slides -->
+					  <div class="carousel-inner">
+					    <div class="item active">
+					      <img src="assets/img/item-01.png" alt="">
+					    </div>
+					    <div class="item">
+					      <img src="assets/img/item-02.png" alt="">
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>	
+		</div><!-- /container -->
+	</div>	
 
-            <div class="row copyright">
-                <div class="col-md-12">
-                    <p class="pull-left">
-                        <small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
-                        <small class="block">Designed by <a href="http://gettemplates.co/" target="_blank">GetTemplates.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
-                    </p>
-                    <p class="pull-right">
-                        <ul class="gtco-social-icons pull-right">
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
 
-        </div>
-    </footer>
-    </div>
-
-    <div class="gototop js-top">
-        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-    </div>
-    
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <!-- jQuery Easing -->
-    <script src="js/jquery.easing.1.3.js"></script>
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Waypoints -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <!-- Carousel -->
-    <script src="js/owl.carousel.min.js"></script>
-    <!-- countTo -->
-    <script src="js/jquery.countTo.js"></script>
-    <!-- Magnific Popup -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/magnific-popup-options.js"></script>
-    <!-- Main -->
-    <script src="js/main.js"></script>
-
-    </body>
+	<section id="contact" name="contact"></section>
+	<div id="footerwrap">
+		<div class="container">
+			<div class="col-lg-5">
+				<h3>Address</h3>
+				<p>
+				Av. Greenville 987,<br/>
+				New York,<br/>
+				90873<br/>
+				United States
+				</p>
+			</div>
+			
+			<div class="col-lg-7">
+				<h3>Drop Us A Line</h3>
+				<br>
+				<form role="form" action="#" method="post" enctype="plain"> 
+				  <div class="form-group">
+				    <label for="name1">Your Name</label>
+				    <input type="name" name="Name" class="form-control" id="name1" placeholder="Your Name">
+				  </div>
+				  <div class="form-group">
+				    <label for="email1">Email address</label>
+				    <input type="email" name="Mail" class="form-control" id="email1" placeholder="Enter email">
+				  </div>
+				  <div class="form-group">
+				  	<label>Your Text</label>
+				  	<textarea class="form-control" name="Message" rows="3"></textarea>
+				  </div>
+				  <br>
+				  <button type="submit" class="btn btn-large btn-success">SUBMIT</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="c">
+		<div class="container">
+			<p>Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
+		
+		</div>
+	</div>
+	<div class="modal fade" id="modal_login">
+	<div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login RentIt</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div >
+                      <div class="well">
+                          <form id="loginForm" novalidate="novalidate" role="form" method="POST" action="php/check_login.php" onsubmit="return validate();" >
+                              <div class="form-group">
+                                  <label for="emailInput" class="control-label">Username</label>
+                                  <input type="text" class="form-control"  id="emailInput" name="emailInput"  value="" required="" title="Please enter you username" placeholder="example@gmail.com">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Password</label>
+                                  <input type="password" class="form-control" id="passwordInput" name='passwordInput'  value="" required="" title="Please enter your password">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group select"><p>
+                              	<label for="usertype" class="control-label">Login As:<br></label>
+                                    <input type="radio" name="usertype" value="RentalMaster" checked>Rental Master<br>
+                                    <input type="radio" name="usertype" value="Customer"> Customer<br>
+                                    <input type="radio" name="usertype" value="Admin"> Admin
+                                </p></div>
+                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember login
+                                  </label>
+                                  <p class="help-block">(if this is a private computer)</p>
+                              </div>
+                              <button type="submit" class="btn btn-success btn-block">Login</button>
+                              <a href="/forgot/" class="btn btn-default btn-block">Forget Password</a>
+                          </form>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+  </div>	
+	</div>
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap.js"></script>
+	<script>
+	$('.carousel').carousel({
+	  interval: 3500
+	})
+	</script>
+  </body>
 </html>
-
