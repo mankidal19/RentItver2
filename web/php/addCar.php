@@ -43,7 +43,7 @@
 			if($_SESSION['LEVEL']=='RentalMaster')
 			{
 				$sql="insert into car(year,makes,models,hourlyRate,maxPassenger,description,ownerID) values('$years','$makes','$models','$hourlyRate','$maxPassenger','$description','$ownerID')";
-				$result=mysqli_query($conn,$sql) or trigger_error($con->error."[$sql]");
+				$result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
 				if($result)
 				{
 					$file = $_FILES['carFile'];
@@ -104,7 +104,7 @@
 				<script>window.onload=notRentalMaster();</script>
 				<?php
 			}
-
+		mysqli_close($conn);
 		?>
 	</body>
 
