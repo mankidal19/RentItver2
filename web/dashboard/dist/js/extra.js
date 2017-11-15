@@ -1,3 +1,9 @@
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
 function hideDiv(select){
     if(select==1){
          document.getElementById("form1").style.display="block";
