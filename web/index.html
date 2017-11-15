@@ -1,332 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pratt - Free Bootstrap 3 Theme">
-    <meta name="author" content="Alvarez.is - BlackTie.co">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Pratt - Free Bootstrap 3 Theme">
+        <meta name="author" content="Alvarez.is - BlackTie.co">
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
 
-    <title>Welcome to RentIt</title>
+        <title>Welcome to RentIt</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/smoothscroll.js"></script>
-    
+        <!-- Custom styles for this template -->
+        <link href="assets/css/main.css" rel="stylesheet">
 
-  </head>
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
-  <body data-spy="scroll" data-offset="0" data-target="#navigation">
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/smoothscroll.js"></script>
 
-    <!-- Fixed navbar -->
-	    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="navbar-brand" href="#"><b>Pratt</b></a>
-	        </div>
-	        <div class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="#home" class="smothscroll">Home</a></li>
-	            <li><a href="#desc" class="smothscroll">Description</a></li>
-	            <li><a href="#showcase" class="smothScroll">Showcase</a></li>
-	            <li><a href="#contact" class="smothScroll">Contact</a></li>
-	          </ul>
-	          
-	          <ul class="nav navbar-nav navbar-right">
-	          			<li class="btn-cta">
-	          				<a href="#modal_login" role="button" data-toggle="modal" data-target="#modal_login"><span>LOGIN </span></a>
-	          			</li>
+
+    </head>
+
+    <body data-spy="scroll" data-offset="0" data-target="#navigation">
+        
+        <!--modal login-->
+        <div class="modal fade" id="modal_login">
+            <div id="login-overlay" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Login RentIt</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div >
+                                <div class="well">
+                                    <form id="loginForm" novalidate="novalidate" role="form" method="POST" action="php/check_login.php" onsubmit="return validate();" >
+                                        <div class="form-group">
+                                            <label for="emailInput" class="control-label">Username</label>
+                                            <input type="text" class="form-control"  id="emailInput" name="emailInput"  value="" required="" title="Please enter you username" placeholder="example@gmail.com">
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="control-label">Password</label>
+                                            <input type="password" class="form-control" id="passwordInput" name='passwordInput'  value="" required="" title="Please enter your password">
+                                            <span class="help-block"></span>
+                                        </div>
+                                        <div class="form-group select"><p>
+                                                <label for="usertype" class="control-label">Login As:</label><br>
+                                                <input type="radio" name="usertype" value="RentalMaster" checked>Rental Master<br>
+                                                <input type="radio" name="usertype" value="Customer"> Customer<br>
+                                                <input type="radio" name="usertype" value="Admin"> Admin
+                                            </p></div>
+                                        <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="remember" id="remember"> Remember login
+                                            </label>
+                                            <p class="help-block">(if this is a private computer)</p>
+                                        </div>
+                                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                                        <a href="/forgot/" class="btn btn-default btn-block">Forget Password</a>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+        
+        <!--modal customer reg-->
+        <div class="modal fade" id="modal_cust_reg">
+            <div id="login-overlay" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Register as a Customer</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div >
+                                <div class="well">
+                                    <form name='customer' id='form1' action='php/insertUser.php' method='POST'>
+                                            <h3>User Information</h3>
+
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='EMail_div1'>* E-mail:</label>
+                                                    <input type="text" id="EMail_div1" name="EMail_div1" class='form-control' placeholder="johndoe@mail.com" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class="btn-group form-group" data-toggle="buttons">
+                                                <label for='gender_div1'>* Gender:</label><br>
+                                                <label class="btn btn-primary active">
+                                                    <input type="radio" name="gender_div1" id='gender_div1' value="Male" class='form-control'>Male
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="gender_div1" id='gender_div1' value="Female" class='form-control'>Female
+                                                </label>
+
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='birthDate_div1'>* Date of Birth:</label>
+                                                    <input type="date" id="birthDate_div1" name="birthDate_div1" class='form-control' required/>
+                                                </p>
+                                            </div>
+
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='Phone_div1'>Contact Number:</label>
+                                                    <input type="text" id="Phone_div1" name="Phone_div1" class='form-control' placeholder="0123456789" required/>
+                                                </p>
+                                            </div>
+
+                                            <h3>Security Verification</h3>
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='password_div1'>Password</label>
+                                                    <input type="password" id="password_div1" name="password_div1" class='form-control' required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='confirm_password_div1'>Re-enter Password</label>
+                                                    <input type="password" id="confirm_password_div1" name="confirm_password_div1" class='form-control' required onkeyup="check(1);"/>
+                                                    <label id="message_div1"></label>
+                                                </p>
+                                            </div>
+
+                                            <!--wants to add captcha features here-->
+
+                                            <br><br><div class='checkbox'>
+                                                <input type='checkbox' name='agree' value='yes' checked class='form-control'>
+                                                <center>I agree to the terms of service.</center>
+                                                <br><br></div>
+                                            <center><button type="submit" id='registerButton_div1' class="btn btn-default">Register</button></center>
+                                        </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+        
+        <!--modal master reg-->
+        <div class="modal fade" id="modal_master_reg">
+            <div id="login-overlay" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Register as a Rental Master</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div >
+                                <div class="well">
+                                    <form name='rentalMaster' id='form2' action='php/insertRentalMaster' method='POST'>
+
+                                            <h3>Company Information</h3>
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='companyName' style='color:red;'>* Company Name:</label>
+                                                    <input type="text" id="companyName_div2" name="companyName_div2" class='form-control' placeholder="Car Rental SDN BHD" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='companyRegNum' style='color:red;'>* Company Registration Number:</label>
+                                                    <input type="text" id="companyRegNum_div2" name="companyRegNum_div2" class='form-control' placeholder="Enter Company Registration Number" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='establishDate' style='color:red;'>* Date of Establishment:</label>
+                                                    <input type="date" id="establishDate_div2" name="establishDate_div2" class='form-control' required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='address1' style='color:red;'>Address (line 1):</label>
+                                                    <input type="text" id="address1_div2" name="address1_div2" class='form-control' placeholder="123, Street ABC" required/>
+
+                                                    <label for='address2'>Address (line 2):</label>
+                                                    <input type="text" id="address2_div2" name="address2_div2" class='form-control' placeholder="off Petaling Street"/>
+
+                                                    <label for='postcode' style='color:red;'>* Postcode</label>
+                                                    <input type="text" id="postcode_div2" name="postcode_div2" class='form-control' placeholder="08100" required/>
+
+                                                    <input type="hidden" name="country_div2" id="countryId" value="MY"/>
+                                                    <label for='state' style='color:red;'>* State</label>
+                                                    <select name="state" class="states order-alpha form-control" id="stateId" required>
+                                                        <option style="background-color: black;" value="">Select State</option>
+                                                    </select>
+
+                                                    <label for='city' style='color:red;'>* City</label>
+                                                    <select name="city_div2" class="cities order-alpha form-control" id="cityId" required>
+                                                        <option value="">Select City</option>
+                                                    </select>
+
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='EMail' style='color:red;'>* Company E-mail:</label>
+                                                    <input type="text" id="EMail_div2" name="EMail_div2" class='form-control' placeholder="rentacar@mail.com" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='Phone' style='color:red;'>* Company Contact Number:</label>
+                                                    <input type="text" id="Phone_div2" name="Phone_div2" class='form-control' placeholder="0123456789" required/>
+                                                </p>
+                                            </div>
+
+                                            <h3>Person in-Charge Information</h3>
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='title' style='color:red;'>* Title:</label>
+                                                    <select id="title_div2" name="title_div2" class='form-control'>
+                                                        <option selected>Please select one </option>
+                                                        <option value="Mr">Mr</option>
+                                                        <option value="Mrs">Mrs</option>
+                                                        <option value="Ms">Ms</option>
+                                                        <option value="Miss">Miss</option>
+                                                        <option value="Mrs">Mrs</option>
+                                                        <option value="Sir">Sir</option>
+                                                        <option value="Madam">Madam</option>
+                                                        <option value="Dr">Dr</option>
+                                                        <option value="Dato">Dato</option>
+                                                        <option value="Datuk">Datuk</option>
+                                                        <option value="Datin">Datin</option>
+                                                        <option value="Professor">Professor</option>
+
+                                                    </select>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='firstName' style='color:red;'>* First Name:</label>
+                                                    <input type="text" id="firstName_div2" name="firstName_div2" class='form-control' placeholder="John" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='lastName' style='color:red;'>* Last Name:</label>
+                                                    <input type="text" id="lastName_div2" name="lastName_div2" class='form-control' placeholder="Doe" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class="btn-group form-group" data-toggle="buttons">
+                                                <label for='gender_div2'>* Gender:</label><br>
+                                                <label class="btn btn-primary active">
+                                                    <input type="radio" name="gender_div2" id='gender_div2' value="Male" class='form-control'>Male
+                                                </label>
+                                                <label class="btn btn-primary">
+                                                    <input type="radio" name="gender_div2" id='gender_div2' value="Female" class='form-control'>Female
+                                                </label>
+
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='position' style='color:red;'>* Position:</label>
+                                                    <input type="text" id="position_div2" name="position_div2" class='form-control' placeholder="Marketing Officer" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='EMail' style='color:red;'>* E-mail:</label>
+                                                    <input type="text" id="privateEMail_div2" name="privateEMail_div2" class='form-control' placeholder="johndoe@mail.com" required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='Phone'>Contact Number:</label>
+                                                    <input type="text" id="privatePhone_div2" name="privatePhone_div2" class='form-control' placeholder="0123456789" required/>
+                                                </p>
+                                            </div>
+
+                                            <h3>Security Verification</h3>
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='password'>Password</label>
+                                                    <input type="password" id="password_div2" name="password_div2" class='form-control' required/>
+                                                </p>
+                                            </div>
+
+                                            <div class='form-group'>
+                                                <p>
+                                                    <label for='confirm_password'>Re-enter Password</label>
+                                                    <input type="password" id="confirm_password_div2" name="confirm_password_div2" class='form-control' required onkeyup='check(2);'/>
+                                                    <label id="message_div2"></label>
+                                                </p>
+                                            </div>
+
+                                            <!--wants to add captcha features here-->
+
+                                            <br><br><div class='checkbox'>
+                                                <input type='checkbox' name='agree' value='yes' checked class='form-control'><center>I agree to the terms of service.</center>
+                                                <br><br></div>
+                                            <center><button type="submit" id='registerButton_div2' class="btn btn-default">Register</button></center>
+                                        </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+        
+        <!-- Fixed navbar -->
+        <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><b>RentIt</b></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#home" class="smothscroll">Home</a></li>
+                        <li><a href="#desc" class="smothscroll">Description</a></li>
+                        <li><a href="#showcase" class="smothScroll">Showcase</a></li>
+                        <li><a href="#contact" class="smothScroll">Contact</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-cta">
+                            <a href="#modal_login" role="button" data-toggle="modal" data-target="#modal_login"><span>LOGIN </span></a>
+                        </li>
                         <li class="btn-cta">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span>REGISTER </span></a>
-                                <ul class="dropdown-menu">
-                                     <li><a id="loginLink">As Car Renter</a></li>
-                                     <li><a href="registration_form.html" id="registerLink"></i> As Advertiser</a></li>
-                                </ul>
+                            <ul class="dropdown-menu">
+                                <li><a id="registerLink1" role="button" data-toggle="modal" data-target="#modal_cust_reg" >As a Customer</a></li>
+                                <li><a id="registerLink2" role="button" data-toggle="modal" data-target="#modal_master_reg" > As an Advertiser (Rental Master)</a></li>
+                            </ul>
                         </li>
                     </ul>
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
 
 
-	<section id="home" name="home"></section>
-	<div id="headerwrap">
-	    <div class="container">
-	    	<div class="row centered">
-	    		<div class="col-lg-12">
-					<h1>Welcome To <b>RentIt</b></h1>
+        <section id="home" name="home"></section>
+        <div id="headerwrap">
+            <div class="container">
+                <div class="row centered">
+                    <div class="col-lg-12">
+                        <h1>Welcome To <b>RentIt</b></h1>
 
-					<br>
-	    		</div>
-	    		
-	    		<div class="col-lg-2">
-	    			<h5>Rent a Car</h5>
-	    			<p>Rent a car, anywhere, anytime.</p>
-	    			<img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow1.png">
-	    		</div>
-	    		<div class="col-lg-8">
-	    			<img class="img-responsive" src="assets/img/newlogowhite.png" alt="" align="center">
-	    		</div>
-	    		<div class="col-lg-2">
-	    			<br>
-	    			<img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow2.png">
-	    			<h5>Rent Out Your Car</h5>
-	    			<p>Advertise your car in our website.</p>
-	    		</div>
-	    	</div>
-	    </div> <!--/ .container -->
-	</div><!--/ #headerwrap -->
+                        <br>
+                    </div>
 
-
-	<section id="desc" name="desc"></section>
-	<!-- INTRO WRAP -->
-	<div id="intro">
-		<div class="container">
-			<div class="row centered">
-				<h1>Designed To Excel</h1>
-				<br>
-				<br>
-				<div class="col-lg-4">
-					<img src="assets/img/intro01.png" alt="">
-					<h3>Community</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				</div>
-				<div class="col-lg-4">
-					<img src="assets/img/intro02.png" alt="">
-					<h3>Schedule</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				</div>
-				<div class="col-lg-4">
-					<img src="assets/img/intro03.png" alt="">
-					<h3>Monitoring</h3>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				</div>
-			</div>
-			<br>
-			<hr>
-	    </div> <!--/ .container -->
-	</div><!--/ #introwrap -->
-	
-	<!-- FEATURES WRAP -->
-	<div id="features">
-		<div class="container">
-			<div class="row">
-				<h1 class="centered">What's New?</h1>
-				<br>
-				<br>
-				<div class="col-lg-6 centered">
-					<img class="centered" src="assets/img/mobile.png" alt="">
-				</div>
-				
-				<div class="col-lg-6">
-					<h3>Some Features</h3>
-					<br>
-				<!-- ACCORDION -->
-		            <div class="accordion ac" id="accordion2">
-		                <div class="accordion-group">
-		                    <div class="accordion-heading">
-		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-		                        First Class Design
-		                        </a>
-		                    </div><!-- /accordion-heading -->
-		                    <div id="collapseOne" class="accordion-body collapse in">
-		                        <div class="accordion-inner">
-								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-								</div><!-- /accordion-inner -->
-		                    </div><!-- /collapse -->
-		                </div><!-- /accordion-group -->
-		                <br>
-		
-		                <div class="accordion-group">
-		                    <div class="accordion-heading">
-		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-		                        Retina Ready Theme
-		                        </a>
-		                    </div>
-		                    <div id="collapseTwo" class="accordion-body collapse">
-		                        <div class="accordion-inner">
-								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-								</div><!-- /accordion-inner -->
-		                    </div><!-- /collapse -->
-		                </div><!-- /accordion-group -->
-		                <br>
-		
-		                 <div class="accordion-group">
-		                    <div class="accordion-heading">
-		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-		                        Awesome Support
-		                        </a>
-		                    </div>
-		                    <div id="collapseThree" class="accordion-body collapse">
-		                        <div class="accordion-inner">
-								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-								</div><!-- /accordion-inner -->
-		                    </div><!-- /collapse -->
-		                </div><!-- /accordion-group -->
-		                <br>
-		                
-		                 <div class="accordion-group">
-		                    <div class="accordion-heading">
-		                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-		                        Responsive Design
-		                        </a>
-		                    </div>
-		                    <div id="collapseFour" class="accordion-body collapse">
-		                        <div class="accordion-inner">
-								<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-								</div><!-- /accordion-inner -->
-		                    </div><!-- /collapse -->
-		                </div><!-- /accordion-group -->
-		                <br>			
-					</div><!-- Accordion -->
-				</div>
-			</div>
-		</div><!--/ .container -->
-	</div><!--/ #features -->
-	
-	
-	<section id="showcase" name="showcase"></section>
-	<div id="showcase">
-		<div class="container">
-			<div class="row">
-				<h1 class="centered">Some Screenshots</h1>
-				<br>
-				<div class="col-lg-8 col-lg-offset-2">
-					<div id="carousel-example-generic" class="carousel slide">
-					  <!-- Indicators -->
-					  <ol class="carousel-indicators">
-					    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					  </ol>
-					
-					  <!-- Wrapper for slides -->
-					  <div class="carousel-inner">
-					    <div class="item active">
-					      <img src="assets/img/item-01.png" alt="">
-					    </div>
-					    <div class="item">
-					      <img src="assets/img/item-02.png" alt="">
-					    </div>
-					  </div>
-					</div>
-				</div>
-			</div>
-			<br>
-			<br>
-			<br>	
-		</div><!-- /container -->
-	</div>	
+                    <div class="col-lg-2">
+                        <h5>Rent a Car</h5>
+                        <p>Rent a car, anywhere, anytime.</p>
+                        <img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow1.png">
+                    </div>
+                    <div class="col-lg-8">
+                        <img class="img-responsive" src="assets/img/newlogowhite.png" alt=""  style="width: 650px; margin-left: auto; margin-right: auto;">
+                    </div>
+                    <div class="col-lg-2">
+                        <br>
+                        <img class="hidden-xs hidden-sm hidden-md" src="assets/img/arrow2.png">
+                        <h5>Rent Out Your Car</h5>
+                        <p>Advertise your car in our website.</p>
+                    </div>
+                </div>
+            </div> <!--/ .container -->
+        </div><!--/ #headerwrap -->
 
 
-	<section id="contact" name="contact"></section>
-	<div id="footerwrap">
-		<div class="container">
-			<div class="col-lg-5">
-				<h3>Address</h3>
-				<p>
-				Av. Greenville 987,<br/>
-				New York,<br/>
-				90873<br/>
-				United States
-				</p>
-			</div>
-			
-			<div class="col-lg-7">
-				<h3>Drop Us A Line</h3>
-				<br>
-				<form role="form" action="#" method="post" enctype="plain"> 
-				  <div class="form-group">
-				    <label for="name1">Your Name</label>
-				    <input type="name" name="Name" class="form-control" id="name1" placeholder="Your Name">
-				  </div>
-				  <div class="form-group">
-				    <label for="email1">Email address</label>
-				    <input type="email" name="Mail" class="form-control" id="email1" placeholder="Enter email">
-				  </div>
-				  <div class="form-group">
-				  	<label>Your Text</label>
-				  	<textarea class="form-control" name="Message" rows="3"></textarea>
-				  </div>
-				  <br>
-				  <button type="submit" class="btn btn-large btn-success">SUBMIT</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div id="c">
-		<div class="container">
-			<p>Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
-		
-		</div>
-	</div>
-	<div class="modal fade" id="modal_login">
-	<div id="login-overlay" class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Login RentIt</h4>
-          </div>
-          <div class="modal-body">
-              <div class="row">
-                  <div >
-                      <div class="well">
-                          <form id="loginForm" novalidate="novalidate" role="form" method="POST" action="php/check_login.php" onsubmit="return validate();" >
-                              <div class="form-group">
-                                  <label for="emailInput" class="control-label">Username</label>
-                                  <input type="text" class="form-control"  id="emailInput" name="emailInput"  value="" required="" title="Please enter you username" placeholder="example@gmail.com">
-                                  <span class="help-block"></span>
-                              </div>
-                              <div class="form-group">
-                                  <label for="password" class="control-label">Password</label>
-                                  <input type="password" class="form-control" id="passwordInput" name='passwordInput'  value="" required="" title="Please enter your password">
-                                  <span class="help-block"></span>
-                              </div>
-                              <div class="form-group select"><p>
-                              	<label for="usertype" class="control-label">Login As:<br></label>
-                                    <input type="radio" name="usertype" value="RentalMaster" checked>Rental Master<br>
-                                    <input type="radio" name="usertype" value="Customer"> Customer<br>
-                                    <input type="radio" name="usertype" value="Admin"> Admin
-                                </p></div>
-                              <div id="loginErrorMsg" class="alert alert-error hide">Wrong username og password</div>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" name="remember" id="remember"> Remember login
-                                  </label>
-                                  <p class="help-block">(if this is a private computer)</p>
-                              </div>
-                              <button type="submit" class="btn btn-success btn-block">Login</button>
-                              <a href="/forgot/" class="btn btn-default btn-block">Forget Password</a>
-                          </form>
-                      </div>
-                  </div>
-                  
-              </div>
-          </div>
-      </div>
-  </div>	
-	</div>
-	
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/bootstrap.js"></script>
-	<script>
-	$('.carousel').carousel({
-	  interval: 3500
-	})
-	</script>
-  </body>
+        <section id="desc" name="desc"></section>
+        
+        <!--SEARCH WRAP-->
+        <div id="searchCar">
+            <div class="container">
+                <div class="row centered">
+                    <h1>Find a Car</h1>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- INTRO WRAP -->
+        <div id="intro">
+            <div class="container">
+                <div class="row centered">
+                    <h1>Designed To Excel</h1>
+                    <br>
+                    <br>
+                    <div class="col-lg-4">
+                        <img src="assets/img/intro01.png" alt="">
+                        <h3>Community</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="assets/img/intro02.png" alt="">
+                        <h3>Schedule</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="assets/img/intro03.png" alt="">
+                        <h3>Monitoring</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </div>
+                <br>
+                <hr>
+            </div> <!--/ .container -->
+        </div><!--/ #introwrap -->
+
+        <!-- FEATURES WRAP -->
+        <div id="features">
+            <div class="container">
+                <div class="row">
+                    <h1 class="centered">What's New?</h1>
+                    <br>
+                    <br>
+                    <div class="col-lg-6 centered">
+                        <img class="centered" src="assets/img/mobile.png" alt="">
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h3>Some Features</h3>
+                        <br>
+                        <!-- ACCORDION -->
+                        <div class="accordion ac" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                        First Class Design
+                                    </a>
+                                </div><!-- /accordion-heading -->
+                                <div id="collapseOne" class="accordion-body collapse in">
+                                    <div class="accordion-inner">
+                                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    </div><!-- /accordion-inner -->
+                                </div><!-- /collapse -->
+                            </div><!-- /accordion-group -->
+                            <br>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                        Retina Ready Theme
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    </div><!-- /accordion-inner -->
+                                </div><!-- /collapse -->
+                            </div><!-- /accordion-group -->
+                            <br>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                        Awesome Support
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    </div><!-- /accordion-inner -->
+                                </div><!-- /collapse -->
+                            </div><!-- /accordion-group -->
+                            <br>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                                        Responsive Design
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    </div><!-- /accordion-inner -->
+                                </div><!-- /collapse -->
+                            </div><!-- /accordion-group -->
+                            <br>			
+                        </div><!-- Accordion -->
+                    </div>
+                </div>
+            </div><!--/ .container -->
+        </div><!--/ #features -->
+
+
+        <section id="showcase" name="showcase"></section>
+        <div id="showcase">
+            <div class="container">
+                <div class="row">
+                    <h1 class="centered">Some Screenshots</h1>
+                    <br>
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div id="carousel-example-generic" class="carousel slide">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="assets/img/item-01.png" alt="">
+                                </div>
+                                <div class="item">
+                                    <img src="assets/img/item-02.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>	
+            </div><!-- /container -->
+        </div>	
+
+
+
+        <div id="c">
+            <div class="container">
+                <p>Template by <a href="http://www.blacktie.co">BLACKTIE.CO</a><br>
+                    <strong>Copyright &copy; 2017 <a href="#">by Encoderz Inc</a>.</strong> For Application Development Project.</p>
+
+            </div>
+        </div>
+        
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="assets/js/bootstrap.js"></script>
+        <script src="assets/js/statecity.js"></script>
+        <script src="js/formValidation.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+        <script src="jquery.geocomplete.js"></script>
+        <script>
+                              $('.carousel').carousel({
+                                  interval: 3500
+                              })
+        </script>
+    </body>
 </html>
