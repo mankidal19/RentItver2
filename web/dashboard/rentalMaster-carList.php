@@ -227,6 +227,7 @@ desired effect
         -------------------------->
         
            <!--delete booking modal-->   
+      <form action="../php/deleteCar.php" method="POST">
      <div class="modal modal-warning fade" id="modal-delete">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -236,24 +237,25 @@ desired effect
                 <h4 class="modal-title">Delete Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Delete car #carid?<br>Car details will be DELETED from the system.</p>
+                <p>Delete car  <input style="color: #C0C0C0;" type="text" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="submit" class="btn btn-outline">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
-     
+     </form>
      <!--edit car modal-->   
      <div class="modal modal-info fade" id="modal-edit">
           <div class="modal-dialog">
               
             <div class="modal-content">
-                <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+              
+              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -265,37 +267,31 @@ desired effect
               <div class="box-body">
                   <div class="form-group">
                       <label for="carID">Car ID</label>
-                   
-                    <input type="text" name="carID" disabled value="">
+                
+                    <input type="text" name="carID" readonly="">
                   </div>  
                   
                 <div class="form-group">
                   <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years"></select>  
-                    <select name="car-makes" id="car-makes"></select> 
-                    <select name="car-models" id="car-models"></select>
+                  <select name="car-years" id="car-years" required></select>  
+                    <select name="car-makes" id="car-makes" required></select> 
+                    <select name="car-models" id="car-models" required></select>
                 </div>
                   
                 <div class="form-group">
                   <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
+                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
                 </div>
                   
                 <div class="form-group">
                   <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
+                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
                 </div>  
                   
                 <div class="form-group">
                   <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
+                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
                 </div>  
-                  
-                <div class="form-group">
-                  <label for="addedPhotos">Car's photo:</label>
-                  <img src="" alt="uploaded image here">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width: 100px;">Delete Photo</button>
-                  </div>
                   
                 <div class="form-group">
                 <label for="exampleInputFile">Add new car's photo:</label>
@@ -305,8 +301,6 @@ desired effect
               </div>
               <!-- /.box-body -->
 
-              
-            
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -334,38 +328,25 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 25%;">Action</th></tr>
                 </thead>
                 <tbody>
-                  <script>
-                    function carid(var temp){
-                      document.getElementsById(temp).onclick = function(){
-                        document.getElementsById(temp).value;
-                        document.forms.myform.submit();
-                      }
-                    }
-                  </script>
                 <?php
                   include('../php/config.php');    
                   $ownerID=$_SESSION['ID'];
-                  // function carID()
-                  // {
-                  //   $_SESSION['CARID']=
-                  // }
                   $sql="select * from car where ownerID='$ownerID'";
                   $result=mysqli_query($conn,$sql);
                   $_SESSION['COUNT']=0;
                   if($result->num_rows> 0)
                   {
                     while($row=mysqli_fetch_array($result))
-                    {
-                      $_SESSION['COUNT']=1; 
-                      $count=$_SESSION['COUNT'];?>
+                    { ?>
                       <form method='POST' action=''>
                       <tr role="row" class="odd">
                         <td class="sorting_1"><?php echo("{$row['carID']}") ?></td>
                         <td><?php echo("{$row['makes']}") ?></td>
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
-                        <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
+                        <td style="width: 12.5%;">
+                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
+                        <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID'])?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
                       </tr>
                     <?php }
                   }
