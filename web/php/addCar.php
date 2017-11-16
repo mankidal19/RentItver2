@@ -3,17 +3,17 @@
 		<script>
 			function notAllowed()
 			{
-				alert("Only jpg, jpeg and png is allowed to uploaded");
+				alert("Only jpg is allowed to uploaded\nTry Upload your photo later");
 				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function error()
 			{
-				alert("Error when uploading file");
+				alert("Error when uploading file\nTry Upload your photo later");
 				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function sizeBig()
 			{
-				alert("Your file was too big");
+				alert("Your file was too big\nTry Upload your photo later");
 				window.location.replace('../dashboard/rentalMaster-addCar.php');
 			}
 			function success()
@@ -55,15 +55,17 @@
 
 					$fileExt = explode('.',$fileName);
 					$fileActualExt= strtolower(end($fileExt));
-					$allowed = array('jpg','jpeg','png');
+					// $allowed = array('jpg','jpeg','png');
+					$allowed = array('jpg');
 					echo($fileActualExt);
+
 
 				}
 				if(in_array($fileActualExt,$allowed))
 					{
 						if($fileError==0)
 						{
-							if($fileSize<1000000)
+							if($fileSize<10000000)
 							{
 								$sql1="select carID from car where ownerID='$ownerID'";
 								$result1=mysqli_query($conn,$sql1) or trigger_error($conn->error."[$sql1]");

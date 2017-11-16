@@ -3,4 +3,5 @@
 	require 'createUser.php';
 	require 'createCar.php';
 	require 'insertTestUser.php';
+	require 'createBookList.php';
 ?>

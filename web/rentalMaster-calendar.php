@@ -1,4 +1,6 @@
-<?php session_start() ?> <!--
+<?php session_start() ?>
+<!DOCTYPE html>
+<!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
@@ -15,8 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   
-  
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- fullCalendar -->
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
   
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
@@ -35,11 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
-    <script type="text/javascript" src="dist/js/carquery.js"></script>
-    <script type="text/javascript" src="dist/js/checkLogin.js"></script>
-    <script type="text/javascript" src="dist/js/checkLogin.js"></script>
+   <script type="text/javascript" src="dist/js/checkLogin.js"></script>
 
 <?php 
   if($_SESSION['LOGIN']!="YES")
@@ -51,8 +50,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     ?><script>window.onload=notRentalMaster();</script><?php
   }
 ?>
-
-
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -186,7 +183,7 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <li><a href="rentalMaster-main.php"><i class="fa fa-link"></i> <span>Overview</span></a></li>
         <li><a href="rentalMaster-profile.php"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
-       <li><a href="rentalMaster-calendar.php"><i class="fa fa-link"></i> <span>Booking Calendar</span></a></li>
+       <li class="active"><a href="rentalMaster-calendar.php"><i class="fa fa-link"></i> <span>Booking Calendar</span></a></li>
        
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>My Cars</span>
@@ -195,8 +192,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="rentalMaster-carList.php">View Car List</a></li>
-            <li><a href="rentalMaster-addCar.php">Add New Car</a></li>
+            <li><a href="rentalMaster-carList.php">View Car List</a></li>
+            <li ><a href="rentalMaster-addCar.php">Add New Car</a></li>
           </ul>
         </li>
       </ul>
@@ -210,8 +207,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        My Cars
-        <small>Manage your cars here</small>
+        Booking Calendar
+        <small>Keep track your car rentals' statuses</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -225,161 +222,85 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-        
-           <!--delete booking modal-->   
-      <form action="../php/deleteCar.php" method="POST">
-     <div class="modal modal-warning fade" id="modal-delete">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Delete Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Delete car   <input type="text" style="background-color:black;" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline">Confirm</button>
-              </div>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h4 class="box-title">Draggable Events</h4>
             </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-     </form>
-     <!--edit car modal-->   
-     <div class="modal modal-info fade" id="modal-edit">
-          <div class="modal-dialog">
-              
-            <div class="modal-content">
-              
-              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
-            
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Edit Car Details</h4>
-              </div>
-              <div class="modal-body">
-                <!-- form start -->
-              <div class="box-body">
-                  <div class="form-group">
-                      <label for="carID">Car ID</label>
-                
-                    <input type="text" name="carID" readonly="">
-                  </div>  
-                  
-                <div class="form-group">
-                  <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years" required></select>  
-                    <select name="car-makes" id="car-makes" required></select> 
-                    <select name="car-models" id="car-models" required></select>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
-                </div>  
-                  
-                <div class="form-group">
-                <label for="exampleInputFile">Add new car's photo:</label>
-                  <input type="file" id="carPhoto" name="carFile">
-                </div> 
-                
-              </div>
-              <!-- /.box-body -->
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline">Update</button>
-              </div>
-            </form>   
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-        
-       <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">My Cars List</h3>
-            </div>
-            <!-- /.box-header -->
             <div class="box-body">
-              <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                <thead>
-                <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Car ID: activate to sort column descending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 25%;">Car Make</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Model: activate to sort column ascending" style="width: 25%;">Car Model</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Max Passengers: activate to sort column ascending" style="width: 15%;">Max Passenger</th>
-                    <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 25%;">Action</th></tr>
-                </thead>
-                <tbody>
-                <?php
-                  include('../php/config.php');    
-                  $ownerID=$_SESSION['ID'];
-                  $sql="select * from car where ownerID='$ownerID'";
-                  $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
-                  if($result->num_rows> 0)
-                  {
-                    while($row=mysqli_fetch_array($result))
-                    { ?>
-                      <form method='POST' action=''>
-                      <tr role="row" class="odd">
-                        <td class="sorting_1"><?php echo("{$row['carID']}") ?></td>
-                        <td><?php echo("{$row['makes']}") ?></td>
-                        <td><?php echo("{$row['models']}") ?></td>
-                        <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;">
-                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
-                        <td>
-                        <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
-                      </tr>
-                    <?php }
-                  }
-                  else
-                  { ?>
-                    <tr role="row" class="odd">
-                      <td class="sorting_1"><?php echo("none") ?></td>
-                      <td><?php echo("none") ?></td>
-                      <td><?php echo("none") ?></td>
-                      <td><?php echo("none")?></td>
-                  <?php } 
-              ?>
-
-               <tfoot>
-                <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Car ID: activate to sort column descending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 25%;">Car Make</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Model: activate to sort column ascending" style="width: 25%;">Car Model</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Max Passengers: activate to sort column ascending" style="width: 15%;">Max Passenger</th>
-                    <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 25%;">Action</th></tr>
-                </tfoot>
-              </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
+              <!-- the events -->
+              <div id="external-events">
+                <div class="external-event bg-green">Lunch</div>
+                <div class="external-event bg-yellow">Go home</div>
+                <div class="external-event bg-aqua">Do homework</div>
+                <div class="external-event bg-light-blue">Work on UI design</div>
+                <div class="external-event bg-red">Sleep tight</div>
+                <div class="checkbox">
+                  <label for="drop-remove">
+                    <input type="checkbox" id="drop-remove">
+                    remove after drop
+                  </label>
+                </div>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
+          <!-- /. box -->
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Create Event</h3>
+            </div>
+            <div class="box-body">
+              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                <ul class="fc-color-picker" id="color-chooser">
+                  <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->
+              <div class="input-group">
+                <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                <div class="input-group-btn">
+                  <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
+                </div>
+                <!-- /btn-group -->
+              </div>
+              <!-- /input-group -->
+            </div>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
         
-     
-       
-        
-     
-     
-     
-     
-     
     </section>
     <!-- /.content -->
   </div>
@@ -480,10 +401,9 @@ desired effect
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Slimscroll -->
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
@@ -491,30 +411,173 @@ desired effect
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
-<script src="dist/js/extra.js"></script>
-<!-- page script -->
+<!-- fullCalendar -->
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<!-- Page specific script -->
 <script>
   $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
+
+    /* initialize the external events
+     -----------------------------------------------------------------*/
+    function init_events(ele) {
+      ele.each(function () {
+
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+        // it doesn't need to have a start or end
+        var eventObject = {
+          title: $.trim($(this).text()) // use the element's text as the event title
+        };
+
+        // store the Event Object in the DOM element so we can get to it later
+        $(this).data('eventObject', eventObject);
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+          zIndex        : 1070,
+          revert        : true, // will cause the event to go back to its
+          revertDuration: 0  //  original position after the drag
+        });
+
+      });
+    }
+
+    init_events($('#external-events div.external-event'));
+
+    /* initialize the calendar
+     -----------------------------------------------------------------*/
+    //Date for the calendar events (dummy data)
+    var date = new Date();
+    var d    = date.getDate(),
+        m    = date.getMonth(),
+        y    = date.getFullYear();
+    $('#calendar').fullCalendar({
+      header    : {
+        left  : 'prev,next today',
+        center: 'title',
+        right : 'month,agendaWeek,agendaDay'
+      },
+      buttonText: {
+        today: 'today',
+        month: 'month',
+        week : 'week',
+        day  : 'day'
+      },
+      //Random default events
+      events    : [
+        {
+          title          : 'All Day Event',
+          start          : new Date(y, m, 1),
+          backgroundColor: '#f56954', //red
+          borderColor    : '#f56954' //red
+        },
+        {
+          title          : 'Long Event',
+          start          : new Date(y, m, d - 5),
+          end            : new Date(y, m, d - 2),
+          backgroundColor: '#f39c12', //yellow
+          borderColor    : '#f39c12' //yellow
+        },
+        {
+          title          : 'Meeting',
+          start          : new Date(y, m, d, 10, 30),
+          allDay         : false,
+          backgroundColor: '#0073b7', //Blue
+          borderColor    : '#0073b7' //Blue
+        },
+        {
+          title          : 'Lunch',
+          start          : new Date(y, m, d, 12, 0),
+          end            : new Date(y, m, d, 14, 0),
+          allDay         : false,
+          backgroundColor: '#00c0ef', //Info (aqua)
+          borderColor    : '#00c0ef' //Info (aqua)
+        },
+        {
+          title          : 'Birthday Party',
+          start          : new Date(y, m, d + 1, 19, 0),
+          end            : new Date(y, m, d + 1, 22, 30),
+          allDay         : false,
+          backgroundColor: '#00a65a', //Success (green)
+          borderColor    : '#00a65a' //Success (green)
+        },
+        {
+          title          : 'Click for Google',
+          start          : new Date(y, m, 28),
+          end            : new Date(y, m, 29),
+          url            : 'http://google.com/',
+          backgroundColor: '#3c8dbc', //Primary (light-blue)
+          borderColor    : '#3c8dbc' //Primary (light-blue)
+        }
+      ],
+      editable  : true,
+      droppable : true, // this allows things to be dropped onto the calendar !!!
+      drop      : function (date, allDay) { // this function is called when something is dropped
+
+        // retrieve the dropped element's stored Event Object
+        var originalEventObject = $(this).data('eventObject')
+
+        // we need to copy it, so that multiple events don't have a reference to the same object
+        var copiedEventObject = $.extend({}, originalEventObject)
+
+        // assign it the date that was reported
+        copiedEventObject.start           = date
+        copiedEventObject.allDay          = allDay
+        copiedEventObject.backgroundColor = $(this).css('background-color')
+        copiedEventObject.borderColor     = $(this).css('border-color')
+
+        // render the event on the calendar
+        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true)
+
+        // is the "remove after drop" checkbox checked?
+        if ($('#drop-remove').is(':checked')) {
+          // if so, remove the element from the "Draggable Events" list
+          $(this).remove()
+        }
+
+      }
+    })
+
+    /* ADDING EVENTS */
+    var currColor = '#3c8dbc' //Red by default
+    //Color chooser button
+    var colorChooser = $('#color-chooser-btn')
+    $('#color-chooser > li > a').click(function (e) {
+      e.preventDefault()
+      //Save color
+      currColor = $(this).css('color')
+      //Add color effect to button
+      $('#add-new-event').css({ 'background-color': currColor, 'border-color': currColor })
+    })
+    $('#add-new-event').click(function (e) {
+      e.preventDefault()
+      //Get value and make sure it is not null
+      var val = $('#new-event').val()
+      if (val.length == 0) {
+        return
+      }
+
+      //Create events
+      var event = $('<div />')
+      event.css({
+        'background-color': currColor,
+        'border-color'    : currColor,
+        'color'           : '#fff'
+      }).addClass('external-event')
+      event.html(val)
+      $('#external-events').prepend(event)
+
+      //Add draggable funtionality
+      init_events(event)
+
+      //Remove event from text input
+      $('#new-event').val('')
     })
   })
-  $('#modal-delete').on('show.bs.modal', function(e) {
-
-    //get data-id attribute of the clicked element
-    var carId = $(e.relatedTarget).data('car-id');
-    //populate the textbox
-    $(e.currentTarget).find('input[name="carID"]').val(carId);
-});
 </script>
 
+<script src="dist/js/extra.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

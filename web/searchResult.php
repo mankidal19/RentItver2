@@ -1,3 +1,7 @@
+<?php 
+    session_start(); 
+    include("php/config.php");
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -390,7 +394,7 @@
                     <div class="panel-heading">
                     </div>
                     <div class="panel-body">
-                        <form name="searchCarForm" id="searchCarForm" action="searchResult.php">
+                        <form name="searchCarForm" id="searchCarForm" method="POST" action="">
 
                             <!--<input id="find" type="button" value="find" />-->
 
@@ -405,7 +409,7 @@
                                 <div class="form-group col-md-3 col-md-offset-2">
                                     <i class="fa fa-users fa-lg"></i>
                                     <label for="passNum" class="control-label" >Number of Passengers</label>
-                                    <select class="form-control" id="passNum" >
+                                    <select class="form-control" id="passNum" name='passNum'>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -426,62 +430,62 @@
                                 <div class="form-group col-md-3 col-md-offset-3">
                                     <i class="fa fa-calendar fa-lg"></i>
                                     <label for="pickupDate" class="control-label" >Pickup Date</label>
-                                    <input style="margin: auto;" type="date" class="form-control" id="pickupDate" size="90" >
+                                    <input style="margin: auto;" type="date" class="form-control" id="pickupDate" name="pickupDate" size="90" >
                                     <span class="help-block"></span>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <i class="fa fa-clock-o fa-lg"></i>
                                     <label for="pickupTime" class="control-label" >Pickup Time</label>
-                                    <select class="form-control" id="pickupTime" >
-                                        <option value="1200AM">12.00AM</option>
-                                        <option value="1230AM">12.30AM</option>
-                                        <option value="100AM">1.00AM</option>
-                                        <option value="130AM">1.30AM</option>
-                                        <option value="200AM">2.00AM</option>
-                                        <option value="230AM">2.30AM</option>
-                                        <option value="300AM">3.00AM</option>
-                                        <option value="330AM">3.30AM</option>
-                                        <option value="400AM">4.00AM</option>
-                                        <option value="430AM">4.30AM</option>
-                                        <option value="500AM">5.00AM</option>
-                                        <option value="530AM">5.30AM</option>
-                                        <option value="600AM">6.00AM</option>
-                                        <option value="630AM">6.30AM</option>
-                                        <option value="700AM">7.00AM</option>
-                                        <option value="730AM">7.30AM</option>
-                                        <option value="800AM">8.00AM</option>
-                                        <option value="830AM">8.30AM</option>
-                                        <option value="900AM">9.00AM</option>
-                                        <option value="930AM">9.30AM</option>
-                                        <option value="1000AM">10.00AM</option>
-                                        <option value="1030AM">10.30AM</option>
-                                        <option value="1100AM">11.00AM</option>
-                                        <option value="1130AM">11.30AM</option>
-                                        <option value="1200PM">12.00PM</option>
-                                        <option value="1230PM">12.30PM</option>
-                                        <option value="100PM">1.00PM</option>
-                                        <option value="130PM">1.30PM</option>
-                                        <option value="200PM">2.00PM</option>
-                                        <option value="230PM">2.30PM</option>
-                                        <option value="300PM">3.00PM</option>
-                                        <option value="330PM">3.30PM</option>
-                                        <option value="400PM">4.00PM</option>
-                                        <option value="430PM">4.30PM</option>
-                                        <option value="500PM">5.00PM</option>
-                                        <option value="530PM">5.30PM</option>
-                                        <option value="600PM">6.00PM</option>
-                                        <option value="630PM">6.30PM</option>
-                                        <option value="700PM">7.00PM</option>
-                                        <option value="730PM">7.30PM</option>
-                                        <option value="800PM">8.00PM</option>
-                                        <option value="830PM">8.30PM</option>
-                                        <option value="900PM">9.00PM</option>
-                                        <option value="930PM">9.30PM</option>
-                                        <option value="1000PM">10.00PM</option>
-                                        <option value="1030PM">10.30PM</option>
-                                        <option value="1100PM">11.00PM</option>
-                                        <option value="1130PM">11.30PM</option>
+                                    <select class="form-control" id="pickupTime " name="pickupTime" >
+                                        <option value="00:00:00">12.00AM</option>
+                                        <option value="00:30:00">12.30AM</option>
+                                        <option value="01:00:00">1.00AM</option>
+                                        <option value="01:30:00">1.30AM</option>
+                                        <option value="02:00:00">2.00AM</option>
+                                        <option value="02:30:00">2.30AM</option>
+                                        <option value="03:00:00">3.00AM</option>
+                                        <option value="03:30:00">3.30AM</option>
+                                        <option value="04:00:00">4.00AM</option>
+                                        <option value="04:30:00">4.30AM</option>
+                                        <option value="05:00:00">5.00AM</option>
+                                        <option value="05:30:00">5.30AM</option>
+                                        <option value="06:00:00">6.00AM</option>
+                                        <option value="06:30:00">6.30AM</option>
+                                        <option value="07:00:00">7.00AM</option>
+                                        <option value="07:30:00">7.30AM</option>
+                                        <option value="08:00:00">8.00AM</option>
+                                        <option value="08:30:00">8.30AM</option>
+                                        <option value="09:00:00">9.00AM</option>
+                                        <option value="09:30:00">9.30AM</option>
+                                        <option value="10:00:00">10.30AM</option>
+                                        <option value="10:30:00">10.30AM</option>
+                                        <option value="11:00:00">11.00AM</option>
+                                        <option value="11:30:00">11.30AM</option>
+                                        <option value="12:00:00">12.00PM</option>
+                                        <option value="12:30:00">12.30PM</option>
+                                        <option value="13:00:00">1.00PM</option>
+                                        <option value="13:30:00">1.30PM</option>
+                                        <option value="14:00:00">2.00PM</option>
+                                        <option value="14:30:00">2.30PM</option>
+                                        <option value="15:00:00">3.00PM</option>
+                                        <option value="15:30:00">3.30PM</option>
+                                        <option value="16:00:00">4.00PM</option>
+                                        <option value="16:30:00">4.30PM</option>
+                                        <option value="17:00:00">5.00PM</option>
+                                        <option value="17:30:00">5.30PM</option>
+                                        <option value="18:00:00">6.00PM</option>
+                                        <option value="18:30:00">6.30PM</option>
+                                        <option value="19:00:00">7.00PM</option>
+                                        <option value="19:30:00">7.30PM</option>
+                                        <option value="20:00:00">8.00PM</option>
+                                        <option value="20:30:00">8.30PM</option>
+                                        <option value="21:00:00">9.00PM</option>
+                                        <option value="21:30:00">9.30PM</option>
+                                        <option value="22:00:00">10.00PM</option>
+                                        <option value="22:30:00">10.30PM</option>
+                                        <option value="23:00:00">11.00PM</option>
+                                        <option value="23:30:00">11.30PM</option>
 
                                     </select>
                                 </div>
@@ -493,62 +497,62 @@
                                 <div class="form-group col-md-3 col-md-offset-3">
                                     <i class="fa fa-calendar fa-lg"></i>
                                     <label for="returnDate" class="control-label" >Return Date</label>
-                                    <input type="date" style="margin: auto;" class="form-control" id="returnDate" size="90" >
+                                    <input type="date" style="margin: auto;" class="form-control" id="returnDate" name="returnDate" size="90" >
                                     <span class="help-block"></span>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <i class="fa fa-clock-o fa-lg"></i>
                                     <label for="returnTime" class="control-label" >Return Time</label>
-                                    <select class="form-control" id="pickupTime" >
-                                        <option value="1200AM">12.00AM</option>
-                                        <option value="1230AM">12.30AM</option>
-                                        <option value="100AM">1.00AM</option>
-                                        <option value="130AM">1.30AM</option>
-                                        <option value="200AM">2.00AM</option>
-                                        <option value="230AM">2.30AM</option>
-                                        <option value="300AM">3.00AM</option>
-                                        <option value="330AM">3.30AM</option>
-                                        <option value="400AM">4.00AM</option>
-                                        <option value="430AM">4.30AM</option>
-                                        <option value="500AM">5.00AM</option>
-                                        <option value="530AM">5.30AM</option>
-                                        <option value="600AM">6.00AM</option>
-                                        <option value="630AM">6.30AM</option>
-                                        <option value="700AM">7.00AM</option>
-                                        <option value="730AM">7.30AM</option>
-                                        <option value="800AM">8.00AM</option>
-                                        <option value="830AM">8.30AM</option>
-                                        <option value="900AM">9.00AM</option>
-                                        <option value="930AM">9.30AM</option>
-                                        <option value="1000AM">10.00AM</option>
-                                        <option value="1030AM">10.30AM</option>
-                                        <option value="1100AM">11.00AM</option>
-                                        <option value="1130AM">11.30AM</option>
-                                        <option value="1200PM">12.00PM</option>
-                                        <option value="1230PM">12.30PM</option>
-                                        <option value="100PM">1.00PM</option>
-                                        <option value="130PM">1.30PM</option>
-                                        <option value="200PM">2.00PM</option>
-                                        <option value="230PM">2.30PM</option>
-                                        <option value="300PM">3.00PM</option>
-                                        <option value="330PM">3.30PM</option>
-                                        <option value="400PM">4.00PM</option>
-                                        <option value="430PM">4.30PM</option>
-                                        <option value="500PM">5.00PM</option>
-                                        <option value="530PM">5.30PM</option>
-                                        <option value="600PM">6.00PM</option>
-                                        <option value="630PM">6.30PM</option>
-                                        <option value="700PM">7.00PM</option>
-                                        <option value="730PM">7.30PM</option>
-                                        <option value="800PM">8.00PM</option>
-                                        <option value="830PM">8.30PM</option>
-                                        <option value="900PM">9.00PM</option>
-                                        <option value="930PM">9.30PM</option>
-                                        <option value="1000PM">10.00PM</option>
-                                        <option value="1030PM">10.30PM</option>
-                                        <option value="1100PM">11.00PM</option>
-                                        <option value="1130PM">11.30PM</option>
+                                    <select class="form-control" id="returnTime" name="returnTime" >
+                                        <option value="00:00:00">12.00AM</option>
+                                        <option value="00:30:00">12.30AM</option>
+                                        <option value="01:00:00">1.00AM</option>
+                                        <option value="01:30:00">1.30AM</option>
+                                        <option value="02:00:00">2.00AM</option>
+                                        <option value="02:30:00">2.30AM</option>
+                                        <option value="03:00:00">3.00AM</option>
+                                        <option value="03:30:00">3.30AM</option>
+                                        <option value="04:00:00">4.00AM</option>
+                                        <option value="04:30:00">4.30AM</option>
+                                        <option value="05:00:00">5.00AM</option>
+                                        <option value="05:30:00">5.30AM</option>
+                                        <option value="06:00:00">6.00AM</option>
+                                        <option value="06:30:00">6.30AM</option>
+                                        <option value="07:00:00">7.00AM</option>
+                                        <option value="07:30:00">7.30AM</option>
+                                        <option value="08:00:00">8.00AM</option>
+                                        <option value="08:30:00">8.30AM</option>
+                                        <option value="09:00:00">9.00AM</option>
+                                        <option value="09:30:00">9.30AM</option>
+                                        <option value="10:00:00">10.30AM</option>
+                                        <option value="10:30:00">10.30AM</option>
+                                        <option value="11:00:00">11.00AM</option>
+                                        <option value="11:30:00">11.30AM</option>
+                                        <option value="12:00:00">12.00PM</option>
+                                        <option value="12:30:00">12.30PM</option>
+                                        <option value="13:00:00">1.00PM</option>
+                                        <option value="13:30:00">1.30PM</option>
+                                        <option value="14:00:00">2.00PM</option>
+                                        <option value="14:30:00">2.30PM</option>
+                                        <option value="15:00:00">3.00PM</option>
+                                        <option value="15:30:00">3.30PM</option>
+                                        <option value="16:00:00">4.00PM</option>
+                                        <option value="16:30:00">4.30PM</option>
+                                        <option value="17:00:00">5.00PM</option>
+                                        <option value="17:30:00">5.30PM</option>
+                                        <option value="18:00:00">6.00PM</option>
+                                        <option value="18:30:00">6.30PM</option>
+                                        <option value="19:00:00">7.00PM</option>
+                                        <option value="19:30:00">7.30PM</option>
+                                        <option value="20:00:00">8.00PM</option>
+                                        <option value="20:30:00">8.30PM</option>
+                                        <option value="21:00:00">9.00PM</option>
+                                        <option value="21:30:00">9.30PM</option>
+                                        <option value="22:00:00">10.00PM</option>
+                                        <option value="22:30:00">10.30PM</option>
+                                        <option value="23:00:00">11.00PM</option>
+                                        <option value="23:30:00">11.30PM</option>
 
                                     </select>
                                 </div>
@@ -672,17 +676,53 @@
                 </tr>   
                 </thead>
                 <tbody>
+
+                <?php 
+                    if(isset($_POST['passNum']))
+                    {
+                        $postal_code=$_POST['postal_code'];
+                        $locality=$_POST['locality'];
+
+                        $pickupDate=$_POST['pickupDate'];
+                        $pickupTime=$_POST['pickupTime'];
+                        $returnDate=$_POST['returnDate'];
+                        $returnTime=$_POST['returnTime'];
+
+                        $pickup=("$pickupDate"." $pickupTime");
+                        $return=("$returnDate"." $returnTime");
+                        $diff=round((strtotime($return)-strtotime($pickup))/3600,1);
+                        
+
+                        $sql="select userID from rentalmaster where postcode='$postal_code' or city='$locality'";
+                        $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
+                        $row=mysqli_fetch_array($result);
+                        $ownerID=$row['userID'];
+                        $maxPassenger=$_POST['passNum'];
+                        //$sql="select* from car where maxPassenger='$maxPassenger'";
+                        $sql="select* from car where maxPassenger='$maxPassenger' and ownerID='$ownerID'";
+                        $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
+                        while($row=mysqli_fetch_array($result))
+                        {?>
+                            <tr role="row" class="odd clickable-row" data-href='url://'>
+                            <?php 
+                                $carID="{$row['carID']}";
+                                $et="jpg";
+                                $carPhoto= "profile".$carID.".".$et;
+                                $path="images/uploadCar/".$carPhoto;
+                            ?>
+                                <td class="sorting_1"><?php echo("<img src='$path' height='130' width='220'>"); ?></td>
+                                <td><?php echo("{$row['makes']}"); ?></td>
+                                <td><?php echo("{$row['models']}"); ?></td>
+                                <td><?php echo("{$row['description']}"); ?></td>
+                                <td><?php echo("{$row['hourlyRate']}"); ?></td>
+                                <td><?php 
+                                        $total=$row['hourlyRate']*$diff;
+                                        echo("$total"); ?></td>
+                            </tr><?php
+                        }
+                    }
+                ?>
                 
-                
-                <tr role="row" class="odd clickable-row" data-href='url://'>
-                  <td class="sorting_1">img1</td>
-                  <td>make 1</td>
-                  <td>model 1</td>
-                  <td>desc1</td>
-                  <td>rate1</td>
-                  <td>total1</td>
-                
-                </tr>
                 <tfoot style="background-color: #b8ceef;">
                 <tr role="row"><th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car image" style="width: 20%;">Image</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 15%;">Car Make</th>

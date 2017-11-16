@@ -1,4 +1,5 @@
-<?php session_start() ?> <!--
+<!DOCTYPE html>
+<!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
@@ -38,20 +39,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
     <script type="text/javascript" src="dist/js/carquery.js"></script>
-    <script type="text/javascript" src="dist/js/checkLogin.js"></script>
-    <script type="text/javascript" src="dist/js/checkLogin.js"></script>
-
-<?php 
-  if($_SESSION['LOGIN']!="YES")
-  {
-    ?><script>window.onload=haventLogin();</script><?php
-  }
-  if($_SESSION['LEVEL']!="RentalMaster")
-  {
-    ?><script>window.onload=notRentalMaster();</script><?php
-  }
-?>
-
 
 </head>
 <!--
@@ -81,7 +68,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="rentalMaster-main.php" class="logo">
+    <a href="rentalMaster-main.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -147,7 +134,7 @@ desired effect
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../php/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -184,9 +171,9 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="rentalMaster-main.php"><i class="fa fa-link"></i> <span>Overview</span></a></li>
-        <li><a href="rentalMaster-profile.php"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
-       <li><a href="rentalMaster-calendar.php"><i class="fa fa-link"></i> <span>Booking Calendar</span></a></li>
+        <li><a href="rentalMaster-main.html"><i class="fa fa-link"></i> <span>Overview</span></a></li>
+        <li><a href="rentalMaster-profile.html"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
+       <li><a href="rentalMaster-calendar.html"><i class="fa fa-link"></i> <span>Booking Calendar</span></a></li>
        
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>My Cars</span>
@@ -195,8 +182,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="rentalMaster-carList.php">View Car List</a></li>
-            <li><a href="rentalMaster-addCar.php">Add New Car</a></li>
+            <li class="active"><a href="rentalMaster-carList.html">View Car List</a></li>
+            <li><a href="rentalMaster-addCar.html">Add New Car</a></li>
           </ul>
         </li>
       </ul>
@@ -225,94 +212,6 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-        
-           <!--delete booking modal-->   
-      <form action="../php/deleteCar.php" method="POST">
-     <div class="modal modal-warning fade" id="modal-delete">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Delete Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Delete car   <input type="text" style="background-color:black;" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-     </form>
-     <!--edit car modal-->   
-     <div class="modal modal-info fade" id="modal-edit">
-          <div class="modal-dialog">
-              
-            <div class="modal-content">
-              
-              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
-            
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Edit Car Details</h4>
-              </div>
-              <div class="modal-body">
-                <!-- form start -->
-              <div class="box-body">
-                  <div class="form-group">
-                      <label for="carID">Car ID</label>
-                
-                    <input type="text" name="carID" readonly="">
-                  </div>  
-                  
-                <div class="form-group">
-                  <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years" required></select>  
-                    <select name="car-makes" id="car-makes" required></select> 
-                    <select name="car-models" id="car-models" required></select>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
-                </div>
-                  
-                <div class="form-group">
-                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
-                </div>  
-                  
-                <div class="form-group">
-                  <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
-                </div>  
-                  
-                <div class="form-group">
-                <label for="exampleInputFile">Add new car's photo:</label>
-                  <input type="file" id="carPhoto" name="carFile">
-                </div> 
-                
-              </div>
-              <!-- /.box-body -->
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline">Update</button>
-              </div>
-            </form>   
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-        
        <div class="box">
             <div class="box-header">
               <h3 class="box-title">My Cars List</h3>
@@ -328,39 +227,23 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 25%;">Action</th></tr>
                 </thead>
                 <tbody>
-                <?php
-                  include('../php/config.php');    
-                  $ownerID=$_SESSION['ID'];
-                  $sql="select * from car where ownerID='$ownerID'";
-                  $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
-                  if($result->num_rows> 0)
-                  {
-                    while($row=mysqli_fetch_array($result))
-                    { ?>
-                      <form method='POST' action=''>
-                      <tr role="row" class="odd">
-                        <td class="sorting_1"><?php echo("{$row['carID']}") ?></td>
-                        <td><?php echo("{$row['makes']}") ?></td>
-                        <td><?php echo("{$row['models']}") ?></td>
-                        <td><?php echo("{$row['maxPassenger']}")?></td>
-                        <td style="width: 12.5%;">
-                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
-                        <td>
-                        <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
-                      </tr>
-                    <?php }
-                  }
-                  else
-                  { ?>
-                    <tr role="row" class="odd">
-                      <td class="sorting_1"><?php echo("none") ?></td>
-                      <td><?php echo("none") ?></td>
-                      <td><?php echo("none") ?></td>
-                      <td><?php echo("none")?></td>
-                  <?php } 
-              ?>
-
-               <tfoot>
+                
+                
+                <tr role="row" class="odd">
+                  <td class="sorting_1">id1</td>
+                  <td>make 1</td>
+                  <td>model 1</td>
+                  <td>num 1</td>
+                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-car-id="011" data-toggle="modal" href="#modal-edit">Edit</button></td>
+                  <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
+                </tr><tr role="row" class="even">
+                  <td class="sorting_1">id2</td>
+                  <td>make 2</td>
+                  <td>model 2</td>
+                  <td>num 2</td>
+                  <td style="width: 12.5%;"><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button></td>
+                  <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button></td>
+                <tfoot>
                 <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Car ID: activate to sort column descending" style="width: 10%;">Car ID</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 25%;">Car Make</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Model: activate to sort column ascending" style="width: 25%;">Car Model</th>
@@ -372,14 +255,99 @@ desired effect
             <!-- /.box-body -->
           </div>
         
-     
-       
         
+        
+        <!--delete booking modal-->   
+     <div class="modal modal-warning fade" id="modal-delete">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete Booking</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete car #carid?<br>Car details will be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
      
-     
-     
-     
-     
+     <!--edit car modal-->   
+     <div class="modal modal-info fade" id="modal-edit">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <form role="form" action="" method="POST" enctype="multipart/form-data" id="editCarDetails">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Car Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                
+                  <div class="form-group">
+                      <label for="carID">Car ID</label>
+                      <input type="text" name="carID" disabled value="">
+                  </div>  
+                  
+                <div class="form-group">
+                  <label for="carDetails">Car Details: </label>
+                  <select name="car-years" id="car-years"></select>  
+                    <select name="car-makes" id="car-makes"></select> 
+                    <select name="car-models" id="car-models"></select>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="hourlyRate">Hourly Rate (RM): </label>
+                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate">
+                </div>
+                  
+                <div class="form-group">
+                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
+                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed">
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="carDesc">Car Description: </label>
+                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental"></textarea>
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="addedPhotos">Car's photo:</label>
+                  <img src="" alt="uploaded image here">
+                  <button type="button" class="btn btn-block btn-danger btn-xs" style="width: 100px;">Delete Photo</button>
+                  </div>
+                  
+                <div class="form-group">
+                <label for="exampleInputFile">Add new car's photo:</label>
+                  <input type="file" id="carPhoto" name="carFile">
+                </div> 
+                
+              </div>
+              <!-- /.box-body -->
+
+              
+            
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Update</button>
+              </div>
+             </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
     </section>
     <!-- /.content -->
   </div>
@@ -506,13 +474,6 @@ desired effect
       'autoWidth'   : false
     })
   })
-  $('#modal-delete').on('show.bs.modal', function(e) {
-
-    //get data-id attribute of the clicked element
-    var carId = $(e.relatedTarget).data('car-id');
-    //populate the textbox
-    $(e.currentTarget).find('input[name="carID"]').val(carId);
-});
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
