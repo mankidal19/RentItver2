@@ -237,7 +237,7 @@ desired effect
                 <h4 class="modal-title">Delete Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Delete car  <input style="color: #C0C0C0;" type="text" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
+                <p>Delete car   <input type="text" style="background-color:black;" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -332,8 +332,7 @@ desired effect
                   include('../php/config.php');    
                   $ownerID=$_SESSION['ID'];
                   $sql="select * from car where ownerID='$ownerID'";
-                  $result=mysqli_query($conn,$sql);
-                  $_SESSION['COUNT']=0;
+                  $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                   if($result->num_rows> 0)
                   {
                     while($row=mysqli_fetch_array($result))
@@ -346,7 +345,8 @@ desired effect
                         <td><?php echo("{$row['maxPassenger']}")?></td>
                         <td style="width: 12.5%;">
                         <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
-                        <td><button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID'])?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
+                        <td>
+                        <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
                       </tr>
                     <?php }
                   }
@@ -506,6 +506,13 @@ desired effect
       'autoWidth'   : false
     })
   })
+  $('#modal-delete').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carID"]').val(carId);
+});
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
