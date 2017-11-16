@@ -513,6 +513,15 @@ desired effect
     //populate the textbox
     $(e.currentTarget).find('input[name="carID"]').val(carId);
 });
+//triggered when modal is about to be shown
+$('#modal-edit').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carID"]').val(carId);
+});
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

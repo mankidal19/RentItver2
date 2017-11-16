@@ -24,6 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  
+    <link rel="stylesheet" href="dist/css/mycss.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,9 +85,9 @@ desired effect
     <!-- Logo -->
     <a href="rentalMaster-main.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>R</b>It</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Rent</b>It</span>
     </a>
 
     <!-- Header Navbar -->
@@ -268,7 +270,7 @@ desired effect
                   <div class="form-group">
                       <label for="carID">Car ID</label>
                 
-                    <input type="text" name="carID" readonly="">
+                      <input type="text" name="carID" readonly="" style="color: black;">
                   </div>  
                   
                 <div class="form-group">

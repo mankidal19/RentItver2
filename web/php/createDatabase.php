@@ -2,6 +2,6 @@
 	require 'createRentalMaster.php';
 	require 'createUser.php';
 	require 'createCar.php';
-	require 'insertTestUser.php';
+	require 'insertUser.php';
 	require 'createBookList.php';
 ?>
