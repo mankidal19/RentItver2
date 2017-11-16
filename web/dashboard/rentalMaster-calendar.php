@@ -125,15 +125,21 @@ desired effect
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php
+                  
+                  echo ($_SESSION['username']);
+              ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo ($_SESSION['username']);?>
+                  <br>
+                  Person incharge:<br>
+                  <?php echo ($_SESSION['picName']);?>
+                  <small>Member since Nov. 2017</small>
                 </p>
               </li>
               <!-- Menu Body -->

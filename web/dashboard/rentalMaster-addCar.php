@@ -76,9 +76,9 @@ desired effect
     <!-- Logo -->
     <a href="rentalMaster-main.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>R</b>It</span>
+      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Rent</b>It</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
 
     <!-- Header Navbar -->
@@ -121,15 +121,21 @@ desired effect
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php
+                  
+                  echo ($_SESSION['username']);
+              ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo ($_SESSION['username']);?>
+                  <br>
+                  Person incharge:<br>
+                  <?php echo ($_SESSION['picName']);?>
+                  <small>Member since Nov. 2017</small>
                 </p>
               </li>
               <!-- Menu Body -->
