@@ -1,3 +1,10 @@
+$('#sandbox-container .input-group.date').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "new Date();",
+    maxViewMode: 2,
+    todayHighlight: true
+});
+
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
