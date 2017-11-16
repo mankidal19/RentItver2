@@ -24,7 +24,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
- 
   <link rel="stylesheet" href="dist/css/style.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -238,7 +237,8 @@ desired effect
                 <h4 class="modal-title">Delete Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Delete car   <input type="text" style="background-color:black;" name="carID" readonly=""><br>Car details will be DELETED from the system.</p>
+                <p>Delete car with ID:  <input type="text" style="color:black; background: transparent; border: none;" name="carID" readonly="">
+                  <br>Car details will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -345,7 +345,7 @@ desired effect
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
                         <td style="width: 12.5%;">
-                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
+                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?>  data-car-makes=<?php echo($row['makes']) ?> data-car-model=<?php echo($row['models']) ?> data-car-max=<?php echo($row['maxPassenger']) ?>  data-car-desc=<?php echo($row['description']) ?>   data-car-rate=<?php echo($row['hourlyRate']) ?>     name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
                         <td>
                         <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
                       </tr>
@@ -514,14 +514,22 @@ desired effect
     //populate the textbox
     $(e.currentTarget).find('input[name="carID"]').val(carId);
 });
-//triggered when modal is about to be shown
+  //triggered when modal is about to be shown
 $('#modal-edit').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
     var carId = $(e.relatedTarget).data('car-id');
+    var carMake = $(e.relatedTarget).data('car-makes');
+    var carModel =$(e.relatedTarget).data('car-models');
+    var carMax =$(e.relatedTarget).data('car-max');
+    var carDesc =$(e.relatedTarget).data('car-desc');
+    var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
 
     //populate the textbox
     $(e.currentTarget).find('input[name="carID"]').val(carId);
+    $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+    $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+    $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
 });
 </script>
 
