@@ -4,21 +4,18 @@
 	  session_start();
 
 
-$sql = "CREATE TABLE car
+$sql = "CREATE TABLE booklist
         (
-			carID int(15) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	 		year int(5) NOT NULL,
-	 		makes varchar(20) NOT NULL,
-	 		models varchar(20) NOT NULL,
-	 		maxPassenger int(10) NOT NULL,
-	 		hourlyRate varchar(20) NOT NULL,
-	 		description varchar(200) NOT NULL,
+			bookID int(15) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 		totalPay varchar(200) NOT NULL,
+	 		carID int(15) NOT NULL,
 	 		ownerID int(11) NOT NULL, 
-	 		status boolean NOT NULL DEFAULT 0,
-	 		borrorID int(11),
+	 		status boolean NOT NULL DEFAULT '0',
+	 		borrorID int(11) NOT NULL,
 	 		FOREIGN KEY (ownerID) references rentalmaster(userID) on delete cascade on update cascade,
+	 		FOREIGN KEY (carID) references car(carID) on delete cascade on update cascade,
 	 		FOREIGN KEY (borrorID) references user(userID) on delete cascade on update cascade
-        )AUTO_INCREMENT=2000000";
+        )AUTO_INCREMENT=21453215";
 
 $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
 

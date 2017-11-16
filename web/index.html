@@ -412,7 +412,7 @@
                         <div class="panel-heading">
                         </div>
                         <div class="panel-body">
-                            <form name="searchCarForm" id="searchCarForm" action="searchResult.php">
+                            <form name="searchCarForm" id="searchCarForm" method="POST" action="searchResult.php">
 
                                 <!--<input id="find" type="button" value="find" />-->
 
@@ -427,7 +427,7 @@
                                     <div class="form-group col-md-3 col-md-offset-2">
                                         <i class="fa fa-users fa-lg"></i>
                                         <label for="passNum" class="control-label" >Number of Passengers</label>
-                                        <select class="form-control" id="passNum" >
+                                        <select class="form-control" id="passNum" name="passNum" >
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
