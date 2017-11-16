@@ -506,7 +506,7 @@ desired effect
       'info'        : true,
       'autoWidth'   : false
     })
-  })
+  });
   $('#modal-delete').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
