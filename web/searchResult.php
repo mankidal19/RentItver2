@@ -19,6 +19,8 @@
     <link href="assets/css/main.css" rel="stylesheet">
 
     <link href="assets/css/styles.css" rel="stylesheet">
+     <link rel="stylesheet" href="dashboard/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" type="text/css"/>
+
 
     <link rel="stylesheet" href="dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
@@ -428,10 +430,14 @@
 
 
                                 <div class="form-group col-md-3 col-md-offset-3">
-                                    <i class="fa fa-calendar fa-lg"></i>
                                     <label for="pickupDate" class="control-label" >Pickup Date</label>
-                                    <input style="margin: auto;" type="date" class="form-control" id="pickupDate" name="pickupDate" size="90" >
-                                    <span class="help-block"></span>
+                                        <div class="input-group date" data-provide="datepicker" id="pickupDateGroup" data-date-format="dd/mm/yyyy" data-date-start-date="new Date()">
+                                        
+                                        <input style="margin: auto;" type="text" class="form-control" id="pickupDate" name="pickupDate" size="90">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                        </div>
                                 </div>
 
                                 <div class="form-group col-md-3">
@@ -495,10 +501,14 @@
 
                             <div class="row">
                                 <div class="form-group col-md-3 col-md-offset-3">
-                                    <i class="fa fa-calendar fa-lg"></i>
                                     <label for="returnDate" class="control-label" >Return Date</label>
-                                    <input type="date" style="margin: auto;" class="form-control" id="returnDate" name="returnDate" size="90" >
-                                    <span class="help-block"></span>
+                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy" id="returnDateGroup" data-date-start-date="$('#pickupDateGroup').val()">
+                                        
+                                        <input style="margin: auto;" type="text" class="form-control" id="returnDate" name="returnDate" size="90" >
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                        </div>
                                 </div>
 
                                 <div class="form-group col-md-3">
@@ -748,6 +758,13 @@
     <script src="js/formValidation.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7CsNY-Lx-oqoJFePf2hBS9DFpLuMpH2k&sensor=false&libraries=places"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script src="dashboard/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        
+        
+        <script src="dashboard/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        
+    
     <script src="assets/js/jquery.geocomplete.js"></script>
     <script src="assets/js/logger.js"></script>
     <script src="dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
