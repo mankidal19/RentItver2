@@ -38,7 +38,7 @@
 			    		function success()
 						{
 							alert("Register Success");
-							window.location.replace("../index.html");;
+							window.location.replace("index.html");;
 						}
 			    		window.onload=success();
 			   		</script>
