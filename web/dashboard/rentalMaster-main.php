@@ -335,10 +335,10 @@ desired effect
                   <td>totalprice1</td>
                   <td>remarks1</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button>
+                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
                   </td>
                   
                 </tr><tr role="row" class="even">
@@ -352,10 +352,10 @@ desired effect
                   <td>totalprice2</td>
                   <td>remarks2</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button>
+                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete">Delete</button>
+                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
                   </td>
                 <tfoot>
                 <tr role="row">
@@ -415,13 +415,13 @@ desired effect
                   <td>totalpass1</td>
                   <td>totalprice1</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button>
+                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel">Cancel</button>
+                  <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete">Complete</button>
+                  <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
                   </td>
                 </tr><tr role="row" class="even">
                    <td class="">booking_id2</td>
@@ -434,13 +434,13 @@ desired effect
                   <td>totalpass2</td>
                   <td>totalprice2</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit">Edit</button>
+                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel">Cancel</button>
+                  <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete">Complete</button>
+                  <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
                   </td>
                 <tfoot>
                 <tr role="row">
@@ -503,11 +503,10 @@ desired effect
                   <td>totalpass1</td>
                   <td>totalprice1</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve">Approve</button>
+                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject">Reject</button>
-                  </td>
+                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button></td>
                 </tr><tr role="row" class="even">
                   <td class="">booking_id2</td>
                   <td>car_id2</td>
@@ -520,11 +519,10 @@ desired effect
                   <td>totalpass2</td>
                   <td>totalprice2</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve">Approve</button>
+                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject">Reject</button>
-                  </td>
+                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button></td>
                 <tfoot>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -562,7 +560,9 @@ desired effect
                 <h4 class="modal-title">Approve Booking</h4>
               </div>
               <div class="modal-body">
-                  <p>Approve booking #bookingid?<br>Booking will be moved to CONFIRMED BOOKING LISTS.</p>
+                  <p>Approve booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                    <br>
+                   Booking will be moved to CONFIRMED BOOKING LISTS.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -584,7 +584,8 @@ desired effect
                 <h4 class="modal-title">Reject Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Reject booking #bookingid?<br>Booking will be DELETED from the system.</p>
+                <p>Reject booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                  <br>Booking will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -606,7 +607,10 @@ desired effect
                 <h4 class="modal-title">Delete Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Delete booking #bookingid?<br>Booking will be DELETED from the system.</p>
+                <p>Delete booking <p>Approve booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly=""><br>
+                  
+                  <br>
+                Booking will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -650,7 +654,8 @@ desired effect
                 <h4 class="modal-title">Cancel Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Cancel booking #bookingid?<br>Booking will be DELETED from the system.</p>
+                <p>Cancel booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                  <br>Booking will be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -672,11 +677,12 @@ desired effect
                 <h4 class="modal-title">Complete Booking</h4>
               </div>
               <div class="modal-body">
-                 <p>Complete booking #bookingid?<br>Booking will be moved to COMPLETED BOOKING LISTS.</p>
+                 <p>Complete booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                  <br>Booking will be moved to COMPLETED BOOKING LISTS.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal"  data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
+                <button type="button" class="btn btn-outline"  data-book-id=<?php echo($row['bookID']) ?>>Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->

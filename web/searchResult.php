@@ -32,6 +32,78 @@
 
 </head>
 <body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+<!--modal view chosen car details-->
+<div class="modal modal-info fade" id="modal-details">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+              
+              <form role="form" action="" method="POST" enctype="multipart/form-data" id="viewRentalInfo" class="form-horizontal">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">View Rental Info</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  <div class="form-group">
+                      <label for="carMake" class="col-sm-3">Car Make:    </label>
+                
+                    <input style="border:none;" class="col-sm-8" type="text" name="carMake" readonly="">
+                  </div>  
+               
+                  <div class="form-group">
+                      <label for="carModel" class="col-sm-3">Car Model:  </label>
+                
+                    <input style="border:none;" type="text" name="carModel" readonly="" class="col-sm-8">
+                  </div> 
+
+                  <div class="form-group">
+                      <label for="companyName" class="col-sm-3">Company Name:    </label>
+                
+                    <input style="border:none;" type="text" name="companyName" readonly="" class="col-sm-8">
+                  </div> 
+
+                <br><hr>
+                <h3>Payment Details:</h3>
+                <br>
+                <div class="form-group">
+                      <label for="hourlyRate" class="col-sm-4">Hourly Rate(RM):  </label>
+                
+                    <input style="border:none;" type="number" step="0.01" name="hourlyRate" readonly="" class="col-sm-8">
+                  </div> 
+
+                <div class="form-group">
+                      <label for="hoursRent" class="col-sm-4">Hour(s) Rent:  </label>
+                
+                    <input style="border:none;" type="text" name="hoursRent" readonly="" class="col-sm-8">
+                  </div> 
+                  <br><br>
+                <div class="form-group">
+                      <label for="totalRate" class="h3">Total Rate(RM): </label>
+                
+                    <input style="border:none;" type="number" step="0.01" name="totalRate" readonly="" class="h3">
+                  </div> 
+
+                
+              </div>
+              <!-- /.box-body -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">CONFIRM</button>
+              </div>
+            </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+
     <!--modal login-->
     <div class="modal fade" id="modal_login">
         <div id="login-overlay" class="modal-dialog">
@@ -77,7 +149,7 @@
                     </div>
                 </div>
             </div>
-        </div>	
+        </div>  
     </div>
 
     <!--modal customer reg-->
@@ -159,7 +231,7 @@
                     </div>
                 </div>
             </div>
-        </div>	
+        </div>  
     </div>
 
     <!--modal master reg-->
@@ -335,7 +407,7 @@
                     </div>
                 </div>
             </div>
-        </div>	
+        </div>  
     </div>
 
     <!-- Fixed navbar -->
@@ -431,7 +503,7 @@
 
                                 <div class="form-group col-md-3 col-md-offset-3">
                                     <label for="pickupDate" class="control-label" >Pickup Date</label>
-                                        <div class="input-group date" data-provide="datepicker" id="pickupDateGroup" data-date-format="dd/mm/yyyy" data-date-start-date="new Date()">
+                                        <div class="input-group date" data-provide="datepicker" id="pickupDateGroup" data-date-format="dd-mm-yyyy" data-date-start-date="new Date()">
                                         
                                         <input style="margin: auto;" type="text" class="form-control" id="pickupDate" name="pickupDate" size="90">
                                         <div class="input-group-addon">
@@ -502,7 +574,7 @@
                             <div class="row">
                                 <div class="form-group col-md-3 col-md-offset-3">
                                     <label for="returnDate" class="control-label" >Return Date</label>
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy" id="returnDateGroup" data-date-start-date="$('#pickupDateGroup').val()">
+                                        <div class="input-group date" data-provide="datepicker" data-date-format="dd-mm-yyyy" id="returnDateGroup" data-date-start-date="$('#pickupDateGroup').val()">
                                         
                                         <input style="margin: auto;" type="text" class="form-control" id="returnDate" name="returnDate" size="90" >
                                         <div class="input-group-addon">
@@ -680,9 +752,11 @@
                 <tr role="row"><th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car image" style="width: 20%;">Image</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 15%;">Car Make</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Model: activate to sort column ascending" style="width: 15%;">Car Model</th>
-                    <th class="" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description" style="width: 25%;">Description</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Hourly Rate: activate to sort column ascending" style="width: 12.5%;">Hourly Rate(RM)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Rate: activate to sort column ascending" style="width: 12.5%;">Total Rate(RM)</th>
+                    <th class="" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description" style="width: 20%;">Description</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Hourly Rate: activate to sort column ascending" style="width: 10%;">Hourly Rate(RM)</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Rate: activate to sort column ascending" style="width: 10%;">Total Rate(RM)</th>
+                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  style="width: 10%;">Action</th>
+
                 </tr>   
                 </thead>
                 <tbody>
@@ -692,28 +766,30 @@
                     {
                         $postal_code=$_POST['postal_code'];
                         $locality=$_POST['locality'];
-
                         $pickupDate=$_POST['pickupDate'];
                         $pickupTime=$_POST['pickupTime'];
                         $returnDate=$_POST['returnDate'];
                         $returnTime=$_POST['returnTime'];
-
-                        $pickup=("$pickupDate"." $pickupTime");
-                        $return=("$returnDate"." $returnTime");
+                        echo $pickup=("$pickupDate"." $pickupTime");
+                        echo $return=("$returnDate"." $returnTime");
                         $diff=round((strtotime($return)-strtotime($pickup))/3600,1);
                         
-
-                        $sql="select userID from rentalmaster where postcode='$postal_code' or city='$locality'";
+                        $sql="select * from rentalmaster where postcode='$postal_code' or city='$locality'";
                         $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                         $row=mysqli_fetch_array($result);
                         $ownerID=$row['userID'];
+                        $ownerName=$row['username'];
+                        $strOwner = str_replace(' ', '&nbsp;', $ownerName);
+
                         $maxPassenger=$_POST['passNum'];
                         //$sql="select* from car where maxPassenger='$maxPassenger'";
                         $sql="select* from car where maxPassenger='$maxPassenger' and ownerID='$ownerID'";
                         $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                         while($row=mysqli_fetch_array($result))
-                        {?>
-                            <tr role="row" class="odd clickable-row" data-href='url://'>
+                        {
+                            $total=$row['hourlyRate']*$diff;
+                            ?>
+                            <tr role="row" class="odd" >
                             <?php 
                                 $carID="{$row['carID']}";
                                 $et="jpg";
@@ -728,18 +804,25 @@
                                 <td><?php 
                                         $total=$row['hourlyRate']*$diff;
                                         echo("$total"); ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" href="#modal-details" data-car-id=<?php echo($row['carID']); ?>  data-car-makes=<?php echo($row['makes']); ?> data-car-models=<?php echo($row['models']); ?> data-owner-name=<?php echo($strOwner);?> data-total-price=<?php echo($total);?>  data-total-hours=<?php echo($diff);?> data-hourly-rate=<?php echo("{$row['hourlyRate']}");?>>Select</button>
+                                </td>
                             </tr><?php
                         }
                     }
                 ?>
+
+
                 
                 <tfoot style="background-color: #b8ceef;">
                 <tr role="row"><th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car image" style="width: 20%;">Image</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Make: activate to sort column ascending" style="width: 15%;">Car Make</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car Model: activate to sort column ascending" style="width: 15%;">Car Model</th>
-                    <th class="" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description" style="width: 25%;">Description</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Hourly Rate: activate to sort column ascending" style="width: 12.5%;">Hourly Rate(RM)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Rate: activate to sort column ascending" style="width: 12.5%;">Total Rate(RM)</th>
+                    <th class="" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Description" style="width: 20%;">Description</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Hourly Rate: activate to sort column ascending" style="width: 10%;">Hourly Rate(RM)</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Rate: activate to sort column ascending" style="width: 120%;">Total Rate(RM)</th>
+                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  style="width: 10%;">Action</th>
+
                 </tr>   </tfoot>
               </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite"></div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                           <ul class="pagination">
@@ -759,7 +842,13 @@
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7CsNY-Lx-oqoJFePf2hBS9DFpLuMpH2k&sensor=false&libraries=places"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-    <script src="dashboard/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+
+<!-- jQuery 3 -->
+<script src="dashboard/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="dashboard/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="dashboard/dashboard/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
         
         
         <script src="dashboard/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -769,6 +858,8 @@
     <script src="assets/js/logger.js"></script>
     <script src="dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="dashboard/dist/js/extra.js"></script>
+    <!-- AdminLTE App -->
+<script src="dashboard/dist/js/adminlte.min.js"></script>
     <!-- DataTables -->
     <script src="dashboard/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="dashboard/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -784,26 +875,19 @@
     <script>
         $(function () {
             var center = new google.maps.LatLng(1.4927, 103.7414);
-
             $("#geocomplete").geocomplete({
                 map: ".map_canvas",
                 types: ['establishment'],
                 country: 'my',
                 details: "form"
             });
-
             var map = $("#geocomplete").geocomplete("map")
-
             map.setCenter(center);
             map.setZoom(10);
         });
-
-
-
         $("#find").click(function () {
             $("#geocomplete").trigger("geocode");
         });
-
     </script>
     <script>
   $(function () {
@@ -817,6 +901,33 @@
       'autoWidth'   : false
     })
   })
+</script>
+<script>
+      //triggered when modal is about to be shown
+$('#modal-details').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+    var carMake = $(e.relatedTarget).data('car-makes');
+    var carModel =$(e.relatedTarget).data('car-models');
+    var ownerName =$(e.relatedTarget).data('owner-name'); 
+
+
+    var hourlyRate =parseFloat($(e.relatedTarget).data('hourly-rate')).toFixed(2);
+    var totalPrice =parseFloat($(e.relatedTarget).data('total-price')).toFixed(2);
+    var totalHours =parseFloat($(e.relatedTarget).data('total-hours'));
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carMake"]').val(carMake);
+    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
+    $(e.currentTarget).find('input[name="companyName"]').val(ownerName);
+    
+    $(e.currentTarget).find('input[name="hourlyRate"]').val(hourlyRate);
+    $(e.currentTarget).find('input[name="hoursRent"]').val(totalHours);
+    $(e.currentTarget).find('input[name="totalRate"]').val(totalPrice);
+});
+
+
 </script>
 </body>
 
