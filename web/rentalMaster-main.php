@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="dist/css/style.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -491,10 +492,10 @@ desired effect
                   <td>totalpass1</td>
                   <td>totalprice1</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve">Approve</button>
+                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject">Reject</button>
+                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
                   </td>
                 </tr><tr role="row" class="even">
                   <td class="">booking_id2</td>
@@ -508,10 +509,10 @@ desired effect
                   <td>totalpass2</td>
                   <td>totalprice2</td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve">Approve</button>
+                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve"  data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
                   </td>
                   <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject">Reject</button>
+                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
                   </td>
                 <tfoot>
                 <tr role="row">
@@ -550,7 +551,8 @@ desired effect
                 <h4 class="modal-title">Approve Booking</h4>
               </div>
               <div class="modal-body">
-                  <p>Approve booking #bookingid?<br>Booking will be moved to CONFIRMED BOOKING LISTS.</p>
+                  <p>Approve booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly=""><br>
+                  Booking will be moved to CONFIRMED BOOKING LISTS.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
