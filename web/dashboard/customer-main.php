@@ -1,4 +1,14 @@
-<?php session_start() ?>
+<?php session_start(); ?>
+<?php 
+  if($_SESSION['LOGIN']!="YES")
+  {
+    ?><script>window.onload=haventLogin();</script><?php
+  }
+  if($_SESSION['LEVEL']!="user")
+  {
+    ?><script>window.onload=notUser();</script><?php
+  }
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -36,18 +46,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script type="text/javascript" src="dist/js/checkLogin.js"></script>
+  <script>
+    function haventLogin()
+    {
+      alert('U are not currently Log in');
+      window.location.replace('../login.html');
+    }
+    function notUser()
+    {
+      alert("You are not user");
+      window.location.replace("../index.html");
+    }
+  </script>
+  <?php 
+    if($_SESSION['LOGIN']!="YES")
+    {
+      ?><script>window.onload=haventLogin();</script><?php
+    }
+    if($_SESSION['LEVEL']!="user")
+    {
+      ?><script>window.onload=notUser();</script><?php
+    }
+  ?>
 
-<?php 
-
-  if($_SESSION['LOGIN']!="YES")
-  {
-    ?><script>window.onload=haventLogin();</script><?php
-  }
-  if($_SESSION['LEVEL']!="RentalMaster")
-  {
-    ?><script>window.onload=notRentalMaster();</script><?php
-  }
-?>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -76,7 +97,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="rentalMaster-main.php" class="logo">
+    <a href="../index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -299,29 +320,43 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
                 </thead>
                 <tbody>
-                
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startDT1</td>
-                  <td class="">endDT1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  
-                  
-                </tr><tr role="row" class="even">
-                   <td class="">booking_id2</td>
-                  <td>car_id2</td>
-                  <td>username2</td>
-                  <td>startDT2</td>
-                  <td class="">endDT2</td>
-                  <td>totalhrs2</td>
-                  <td>totalpass2</td>
-                  <td>totalprice2</td>
-                  
+                  <?php
+                  $userID=$_SESSION['ID']; 
+                  $sql="select * from booklist where borrorID='$userID' and status=3";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  $count = mysqli_num_rows($result);
+                  $count = 0;
+                  while($row=mysqli_fetch_array($result))
+                  {
+                    $ownerID=$row['ownerID'];
+                    $sql2="select * from rentalmaster where userID='$ownerID'";
+                    $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                    $row2=mysqli_fetch_array($result2);
+                    $companyName=$row2['username'];
+                    $companyContact=$row2['phone'];
+                    $carID=$row['carID'];
+                    $sql3="select * from car where carID='$carID'";
+                    $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
+                    $row3=mysqli_fetch_array($result3);
+                    $maxPassenger=$row3['maxPassenger'];
+                    if($count%2!=0)
+                    {
+                        ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                        ?><tr role='row' class='even'><?php
+                    }?>
+                    <td><?php echo($row['bookID']); ?></td>
+                    <td><?php echo($companyName) ?></td>
+                    <td><?php echo($companyContact); ?></td>
+                    <td><?php echo($row['startDate'].' '.$row['startTime']) ?></td>
+                    <td><?php echo($row['returnDate'].' '.$row['returnTime']) ?></td>
+                    <td><?php echo($row['hoursRent']); ?></td>
+                    <td><?php echo($maxPassenger); ?></td>
+                    <td><?php echo($row['totalPay']) ?></td>
+                  </tr><?php
+                } ?>
                 <tfoot>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -369,34 +404,61 @@ desired effect
                 </thead>
                 <tbody>
                 
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startDT1</td>
-                  <td class="">endDT1</td>
-                  <td>approve1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  <td style="width: 10%;">
-                  <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?>>CONTACT COMPANY</button>
-                  </td>
-                </tr><tr role="row" class="even">
-                   <td class="">booking_id2</td>
-                  <td>car_id2</td>
-                  <td>username2</td>
-                  <td>startDT2</td>
-                  <td class="">endDT2</td>
-                  <td>approve2</td>
-                  <td>totalhrs2</td>
-                  <td>totalpass2</td>
-                  <td>totalprice2</td>
-                  
-                  <td style="width: 10%;">
-                  <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?>>CONTACT COMPANY</button>
-                  </td>
+                <?php
+                  $userID=$_SESSION['ID']; 
+                  $sql="select * from booklist where borrorID='$userID' and status!=3";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  $count = mysqli_num_rows($result);
+                  $count = 0;
+                  while($row=mysqli_fetch_array($result))
+                  {
+                    $ownerID=$row['ownerID'];
+                    $sql2="select * from rentalmaster where userID='$ownerID'";
+                    $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                    $row2=mysqli_fetch_array($result2);
+                    $companyName=$row2['username'];
+                    $companyContact=$row2['phone'];
+                    $carID=$row['carID'];
+                    $sql3="select * from car where carID='$carID'";
+                    $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
+                    $row3=mysqli_fetch_array($result3);
+                    $maxPassenger=$row3['maxPassenger'];
+                    if($count%2!=0)
+                    {
+                        ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                        ?><tr role='row' class='even'><?php
+                    }?>
+                    <td><?php echo($row['bookID']); ?></td>
+                    <td><?php echo($companyName) ?></td>
+                    <td><?php echo($companyContact); ?></td>
+                    <td><?php echo($row['startDate']) ?></td>
+                    <td><?php echo($row['returnDate']) ?></td>
+                    <td><?php 
+                      if($row['status']==0)
+                      {
+                        echo("Processing");
+                      }
+                      else if($row['status']==2)
+                      {
+                        echo('Approved');
+                      }
+                      else
+                      {
+                        echo("Not Approved");
+                      }
+                    ?></td>
+                    <td><?php echo($row['hoursRent']); ?></td>
+                    <td><?php echo($maxPassenger); ?></td>
+                    <td><?php echo($row['totalPay']) ?></td>
+                    <td style="width: 10%;">
+                    <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?>>CONTACT COMPANY</button>
+                    </td>
+                  </tr><?php
+                } ?>
+
                 <tfoot>
                 <tr role="row">
                      <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -437,7 +499,7 @@ desired effect
                 <h4 class="modal-title">Complete Booking</h4>
               </div>
               <div class="modal-body">
-                 <p>Contact company <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                 <p>Contact company <input style="color: #000000;" type="text" name="bookingID" readonly="" data-book-id=<?php echo($row['bookID']) ?>>
                   <br>REDIRECT TO COMPANY'S CONTACT FOR FURTHER COMMUNICATION.</p>
               </div>
               <div class="modal-footer">

@@ -322,41 +322,54 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr>
                 </thead>
                 <tbody>
-                
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startDT1</td>
-                  <td class="">endDT1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  <td>remarks1</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
-                  </td>
-                  
-                </tr><tr role="row" class="even">
-                   <td class="">booking_id2</td>
-                  <td>car_id2</td>
-                  <td>username2</td>
-                  <td>startDT2</td>
-                  <td class="">endDT2</td>
-                  <td>totalhrs2</td>
-                  <td>totalpass2</td>
-                  <td>totalprice2</td>
-                  <td>remarks2</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
-                  </td>
+                <?php 
+                  $userID=$_SESSION['ID'];
+                  $sql="select* from booklist where ownerID='$userID' and status=3";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  $count=0;
+                  while($row=mysqli_fetch_array($result))
+                  { 
+                    if($count%2!=0)
+                    {
+                      ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                      ?><tr role="row" class="even"><?php
+                    }?>
+                      <td class=""><?php echo($row['bookID']) ?></td>
+                      <td><?php echo($row['carID']); ?></td>
+                      <?php 
+                        $userID=$row['borrorID'];
+                        $sql2="select * from user where userID='$userID'";
+                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                        $row2=mysqli_fetch_array($result2);
+                        $customerName=$row2['username'];
+                      ?>
+                      <td><?php echo($customerName) ?></td>
+                      <td><?php echo($row['startDate'].' '.$row['startTime']); ?></td>
+                      <td><?php echo($row['returnDate'].' '.$row['returnTime']); ?></td>
+                      <td><?php echo($row['hoursRent']); ?></td>
+                      <?php
+                        $carID=$row['carID'];
+                        $sql3="select * from car where carID='$carID'";
+                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
+                        $row3=mysqli_fetch_array($result3);
+                        $maxPassenger=$row3['maxPassenger'];
+                      ?>
+                      <td><?php echo($maxPassenger) ?></td>
+                      <td><?php echo($row['totalPay']) ?></td>
+                      <td>remark</td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
+                      </td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
+                      </td>
+                      </tr><?php
+                    $count+=1;
+                  }
+                ?>                
                 <tfoot>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -394,7 +407,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
                     <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Date</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Status</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
@@ -402,29 +415,67 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="3" aria-label="Action" style="width: 15%;">Action</th></tr>
                 </thead>
                 <tbody>
-                
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startDT1</td>
-                  <td class="">endDT1</td>
-                  <td>approve1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
-                  </td>
-                </tr><tr role="row" class="even">
-                   <td class="">booking_id2</td>
+                <?php 
+                  $userID=$_SESSION['ID'];
+                  $sql="select* from booklist where ownerID='$userID' and status!=0 and status!=3";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  $count=0;
+                  while($row=mysqli_fetch_array($result))
+                  { 
+                    if($count%2!=0)
+                    {
+                      ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                      ?><tr role="row" class="even"><?php
+                    }?>
+                      <td class=""><?php echo($row['bookID']) ?></td>
+                      <td><?php echo($row['carID']); ?></td>
+                      <?php 
+                        $userID=$row['borrorID'];
+                        $sql2="select * from user where userID='$userID'";
+                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                        $row2=mysqli_fetch_array($result2);
+                        $customerName=$row2['username'];
+                      ?>
+                      <td><?php echo($customerName) ?></td>
+                      <td><?php echo($row['startDate'].' '.$row['startTime']); ?></td>
+                      <td><?php echo($row['returnDate'].' '.$row['returnTime']); ?></td>
+                      <td>
+                      <?php 
+                      if($row['status']==1)
+                      {
+                        echo('Rejected');
+                      }
+                      else
+                      {
+                        echo("Approve");
+                      }?>
+                      <td><?php echo($row['hoursRent']); ?></td>
+                      <?php
+                        $carID=$row['carID'];
+                        $sql3="select * from car where carID='$carID'";
+                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
+                        $row3=mysqli_fetch_array($result3);
+                        $maxPassenger=$row3['maxPassenger'];
+                      ?>
+                      <td><?php echo($maxPassenger) ?></td>
+                      <td><?php echo($row['totalPay']) ?></td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
+                      </td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
+                      </td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
+                      </td>
+                    </tr><?php
+                    $count+=1;
+                  }
+                ?>><tr role="row" class="even">
+                  <!--  <td class="">booking_id2</td>
                   <td>car_id2</td>
                   <td>username2</td>
                   <td>startDT2</td>
@@ -441,7 +492,7 @@ desired effect
                   </td>
                   <td style="width: 5%;">
                   <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
-                  </td>
+                  </td> -->
                 <tfoot>
                 <tr role="row">
                      <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -449,7 +500,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
                     <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Date</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Status</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
@@ -489,41 +540,46 @@ desired effect
                     <th class=" text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr>
                 </thead>
                 <tbody>
-                
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startdate1</td>
-                  <td class="">starttime1</td>
-                  <td>enddate1</td>
-                  <td>endtime1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button></td>
-                </tr><tr role="row" class="even">
-                  <td class="">booking_id2</td>
-                  <td>car_id2</td>
-                  <td>username2</td>
-                  <td>startdate2</td>
-                  <td class="">starttime2</td>
-                  <td>enddate2</td>
-                  <td>endtime2</td>
-                  <td>totalhrs2</td>
-                  <td>totalpass2</td>
-                  <td>totalprice2</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button></td>
-                <tfoot>
+                <?php 
+                  $userID=$_SESSION['ID'];
+                  $sql="select* from booklist where ownerID='$userID' and status=0";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  while($row=mysqli_fetch_array($result))
+                  { ?>
+                    <tr role="row" class="odd">
+                      <td class=""><?php echo($row['bookID']) ?></td>
+                      <td><?php echo($row['carID']); ?></td>
+                      <?php 
+                        $userID=$row['borrorID'];
+                        $sql2="select * from user where userID='$userID'";
+                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                        $row2=mysqli_fetch_array($result2);
+                        $customerName=$row2['username'];
+                      ?>
+                      <td><?php echo($customerName) ?></td>
+                      <td><?php echo($row['startDate']); ?></td>
+                      <td class=""><?php echo($row['startTime']); ?></td>
+                      <td><?php echo($row['returnDate']); ?></td>
+                      <td><?php echo($row['returnTime']); ?></td>
+                      <td><?php echo($row['hoursRent']) ?></td>
+                      <?php 
+                        $carID=$row['carID'];
+                        $sql3="select * from car where carID='$carID'";
+                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
+                        $row3=mysqli_fetch_array($result3);
+                        $maxPassenger=$row3['maxPassenger'];
+                      ?>
+                      <td><?php echo($maxPassenger) ?></td>
+                      <td><?php echo($row['totalPay']) ?></td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
+                      </td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
+                      </td>
+                    </tr><?php
+                  }
+                ?>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
@@ -550,7 +606,8 @@ desired effect
           <!-- nav-tabs-custom -->
         </div>
         
-     <!--approve booking modal-->   
+     <!--approve booking modal-->
+     <form method="POST">
      <div class="modal modal-success fade" id="modal-approve">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -560,21 +617,23 @@ desired effect
                 <h4 class="modal-title">Approve Booking</h4>
               </div>
               <div class="modal-body">
-                  <p>Approve booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                  <p>Approve booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="" value='adas'>
                     <br>
                    Booking will be moved to CONFIRMED BOOKING LISTS.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="submit" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline" formaction="../php/approve.php">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div>   
+      </form>
      
      <!--reject booking modal-->   
+     <form method="POST">
      <div class="modal modal-danger fade" id="modal-reject">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -589,15 +648,17 @@ desired effect
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="submit" class="btn btn-outline" formaction="../php/reject.php">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
+      </form>
      
       <!--delete booking modal-->   
+    <form method='POST'>
      <div class="modal modal-warning fade" id="modal-delete">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -614,15 +675,17 @@ desired effect
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="submit" class="btn btn-outline" formaction="../php/deleteBooking.php">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
+      </form>
      
-     <!--edit booking modal-->   
+     <!--edit booking modal-->  
+     <form method='POST'> 
      <div class="modal modal-info fade" id="modal-edit">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -636,15 +699,17 @@ desired effect
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Update</button>
+                <button type="submit" class="btn btn-outline">Update</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
+      </form>
      
      <!--cancel booking modal-->   
+     <form method="POST">
      <div class="modal modal-warning fade" id="modal-cancel">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -659,15 +724,16 @@ desired effect
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-outline">Confirm</button>
+                <button type="submit" class="btn btn-outline" formaction="../php/deleteBooking.php">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
-     
+     </form> 
      <!--complete booking modal-->   
+     <form method='POST'>
      <div class="modal modal-success fade" id="modal-complete">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -677,18 +743,19 @@ desired effect
                 <h4 class="modal-title">Complete Booking</h4>
               </div>
               <div class="modal-body">
-                 <p>Complete booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="">
+                 <p>Complete booking <input style="color: #C0C0C0;" type="text" name="bookingID" readonly="" values="asda">
                   <br>Booking will be moved to COMPLETED BOOKING LISTS.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal"  data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
-                <button type="button" class="btn btn-outline"  data-book-id=<?php echo($row['bookID']) ?>>Confirm</button>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
+                <button type="submit" class="btn btn-outline" formaction="../php/completeBooking.php">Confirm</button>
               </div>
             </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
         </div> 
+      </form>
      
     
     </section>
@@ -815,6 +882,89 @@ desired effect
       'autoWidth'   : false
     })
   })
+</script>
+<script>
+  $('#modal-edit').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carID"]').val(carId);
+});
+
+//triggered when approve modal is about to be shown
+$('#modal-approve').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var bookingId = $(e.relatedTarget).data('book-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+});
+
+//triggered when reject modal is about to be shown
+$('#modal-reject').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var bookingId = $(e.relatedTarget).data('book-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+});
+
+//triggered when cancel modal is about to be shown
+$('#modal-cancel').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var bookingId = $(e.relatedTarget).data('book-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+});
+
+
+//triggered when complete modal is about to be shown
+$('#modal-complete').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var bookingId = $(e.relatedTarget).data('book-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+});
+
+//triggered when complete modal is about to be shown
+$('#modal-delete').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var bookingId = $(e.relatedTarget).data('book-id');
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+});
+
+//booking details modal
+$('#modal-details').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var carId = $(e.relatedTarget).data('car-id');
+    var carMake = $(e.relatedTarget).data('car-makes');
+    var carModel =$(e.relatedTarget).data('car-models');
+    var ownerName =$(e.relatedTarget).data('owner-name');
+    var hourlyRate =parseFloat($(e.relatedTarget).data('hourly-rate'));
+    var totalPrice =parseFloat($(e.relatedTarget).data('total-price'));
+    var totalHours =parseInt($(e.relatedTarget).data('total-hours'));
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
+    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
+    $(e.currentTarget).find('input[name="companyName"]').val(ownerName);
+    
+    $(e.currentTarget).find('input[name="hourlyRate"]').val(hourlyRate);
+    $(e.currentTarget).find('textarea[name="hoursRent"]').val(totalHours);
+    $(e.currentTarget).find('input[name="totalRate"]').val(totalPrice);
+});
 </script>
 <script src="dist/js/extra.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
