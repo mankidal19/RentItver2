@@ -56,7 +56,7 @@
                 }    
                 else if($_SESSION["LEVEL"] == "user")
                 {
-                        header("Location: ../index.html");
+                        header("Location: ../dashboard/customer-main.php");
                 }
                 else if($_SESSION["LEVEL"] == "RentalMaster")
                 {
