@@ -28,7 +28,7 @@
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/smoothscroll.js"></script>
-
+    <script type="text/javascript" src="dist/js/checkLogin.js"></script>
 
 </head>
 <body data-spy="scroll" data-offset="0" data-target="#navigation">
@@ -39,7 +39,7 @@
               
             <div class="modal-content">
               
-              <form role="form" action="" method="POST" enctype="multipart/form-data" id="viewRentalInfo" class="form-horizontal">
+              <form role="form" method="POST" action="php/madeBooking.php" enctype="multipart/form-data" id="viewRentalInfo" class="form-horizontal">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,7 +49,14 @@
               <div class="modal-body">
                 <!-- form start -->
               <div class="box-body">
+                    <div class="form-group">
+                    
+                      <label for="carID" class="col-sm-3">Car ID:    </label>
+                
+                    <input style="border:none;" class="col-sm-8" type="text" name="carId" readonly="">
+                  </div>  
                   <div class="form-group">
+
                       <label for="carMake" class="col-sm-3">Car Make:    </label>
                 
                     <input style="border:none;" class="col-sm-8" type="text" name="carMake" readonly="">
@@ -67,6 +74,29 @@
                     <input style="border:none;" type="text" name="companyName" readonly="" class="col-sm-8">
                   </div> 
 
+                    <div class="form-group">
+                        <label for="startDate" class="col-sm-4">Start Date:  </label>
+                
+                        <input style="border:none;" type="text" step="0.01" name="startDate" readonly="" class="col-sm-8">
+                    </div> 
+                    <div class="form-group">
+                      <label for="returnDate" class="col-sm-4">Return Date:  </label>
+                
+                    <input style="border:none;" type="text" step="0.01" name="returnDate" readonly="" class="col-sm-8">
+                  </div>
+                  <div class="form-group">
+                        <label for="startTime" class="col-sm-4">Start Time:  </label>
+                
+                        <input style="border:none;" type="text" step="0.01" name="startTime" readonly="" class="col-sm-8">
+                    </div> 
+                    <div class="form-group">
+                      <label for="returnTime" class="col-sm-4">Return Time:  </label>
+                
+                    <input style="border:none;" type="text" step="0.01" name="returnTime" readonly="" class="col-sm-8">
+                  </div> 
+
+
+
                 <br><hr>
                 <h3>Payment Details:</h3>
                 <br>
@@ -79,7 +109,7 @@
                 <div class="form-group">
                       <label for="hoursRent" class="col-sm-4">Hour(s) Rent:  </label>
                 
-                    <input style="border:none;" type="text" name="hoursRent" readonly="" class="col-sm-8">
+                    <input style="border:none;" type="number" name="hoursRent" readonly="" class="col-sm-8">
                   </div> 
                   <br><br>
                 <div class="form-group">
@@ -189,7 +219,7 @@
                                     <div class='form-group'>
                                         <p>
                                             <label for='birthDate_div1'>* Date of Birth:</label>
-                                            <input type="date" id="birthDate_div1" name="birthDate_div1" class='form-control' required/>
+                                            <input type="input" id="birthDate_div1" name="birthDate_div1" class='form-control' required/>
                                         </p>
                                     </div>
 
@@ -197,7 +227,7 @@
                                     <div class='form-group'>
                                         <p>
                                             <label for='Phone_div1'>Contact Number:</label>
-                                            <input type="text" id="Phone_div1" name="Phone_div1" class='form-control' placeholder="0123456789" required/>
+                                            <input type="input" id="Phone_div1" name="Phone_div1" class='form-control' placeholder="0123456789" required/>
                                         </p>
                                     </div>
 
@@ -516,7 +546,7 @@
                                     <i class="fa fa-clock-o fa-lg"></i>
                                     <label for="pickupTime" class="control-label" >Pickup Time</label>
                                     <select class="form-control" id="pickupTime " name="pickupTime" >
-                                        <option value="00:00:00">12.00AM</option>
+                                        <option value="00:00:01">12.00AM</option>
                                         <option value="00:30:00">12.30AM</option>
                                         <option value="01:00:00">1.00AM</option>
                                         <option value="01:30:00">1.30AM</option>
@@ -587,7 +617,7 @@
                                     <i class="fa fa-clock-o fa-lg"></i>
                                     <label for="returnTime" class="control-label" >Return Time</label>
                                     <select class="form-control" id="returnTime" name="returnTime" >
-                                        <option value="00:00:00">12.00AM</option>
+                                        <option value="00:00:01">12.00AM</option>
                                         <option value="00:30:00">12.30AM</option>
                                         <option value="01:00:00">1.00AM</option>
                                         <option value="01:30:00">1.30AM</option>
@@ -770,9 +800,10 @@
                         $pickupTime=$_POST['pickupTime'];
                         $returnDate=$_POST['returnDate'];
                         $returnTime=$_POST['returnTime'];
-                        echo $pickup=("$pickupDate"." $pickupTime");
-                        echo $return=("$returnDate"." $returnTime");
-                        $diff=round((strtotime($return)-strtotime($pickup))/3600,1);
+                        $pickup=("$pickupDate"." $pickupTime");
+                        $return=("$returnDate"." $returnTime");
+                        // $diff=0;
+                        // $diff=round((strtotime($return)-strtotime($pickup))/3600,1);
                         
                         $sql="select * from rentalmaster where postcode='$postal_code' or city='$locality'";
                         $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
@@ -787,10 +818,13 @@
                         $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                         while($row=mysqli_fetch_array($result))
                         {
-                            $total=$row['hourlyRate']*$diff;
+                            // $total=$row['hourlyRate']*$diff;
                             ?>
                             <tr role="row" class="odd" >
                             <?php 
+                                $diff=0;
+                                $diff=round((strtotime($return)-strtotime($pickup))/3600,1);
+                                $total=$row['hourlyRate']*$diff;
                                 $carID="{$row['carID']}";
                                 $et="jpg";
                                 $carPhoto= "profile".$carID.".".$et;
@@ -805,7 +839,7 @@
                                         $total=$row['hourlyRate']*$diff;
                                         echo("$total"); ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" href="#modal-details" data-car-id=<?php echo($row['carID']); ?>  data-car-makes=<?php echo($row['makes']); ?> data-car-models=<?php echo($row['models']); ?> data-owner-name=<?php echo($strOwner);?> data-total-price=<?php echo($total);?>  data-total-hours=<?php echo($diff);?> data-hourly-rate=<?php echo("{$row['hourlyRate']}");?>>Select</button>
+                                    <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" href="#modal-details" data-car-id=<?php echo($row['carID']); ?> data-start-date=<?php echo($pickupDate); ?> data-start-time=<?php echo($pickupTime); ?> data-return-date=<?php echo($returnDate); ?> data-return-time=<?php echo($returnTime); ?> data-car-makes=<?php echo($row['makes']); ?> data-car-models=<?php echo($row['models']); ?> data-owner-name=<?php echo($strOwner);?> data-total-price=<?php echo($total);?>  data-total-hours=<?php echo($diff);?> data-hourly-rate=<?php echo("{$row['hourlyRate']}");?>>Select</button>
                                 </td>
                             </tr><?php
                         }
@@ -911,17 +945,34 @@ $('#modal-details').on('show.bs.modal', function(e) {
     var carMake = $(e.relatedTarget).data('car-makes');
     var carModel =$(e.relatedTarget).data('car-models');
     var ownerName =$(e.relatedTarget).data('owner-name'); 
-
-
+    var startDate = $(e.relatedTarget).data('start-date');
+    var returnDate = $(e.relatedTarget).data('return-date');
+    var startTime = $(e.relatedTarget).data('start-time');
+    var returnTime = $(e.relatedTarget).data('return-time');
     var hourlyRate =parseFloat($(e.relatedTarget).data('hourly-rate')).toFixed(2);
     var totalPrice =parseFloat($(e.relatedTarget).data('total-price')).toFixed(2);
     var totalHours =parseFloat($(e.relatedTarget).data('total-hours'));
+    // var sD = new Date(startDate);
+    // var startDay = sD.getDate();
+    // var startMonth =  sD.getMonth()+1;  // JavaScript months are 0-11
+    // var startYear = sD.getFullYear();
+    // var startDate2=startYear+"."+startMonth+"."+startDay;
+    // var rD = new Date(returnDate);
+    // var rd = rD.getDate();
+    // var rm =  rD.getMonth();
+    // rm += 1;  // JavaScript months are 0-11
+    // var ry = rD.getFullYear();
+    // var endDate=rd+"."+rm+"."+ry;
 
     //populate the textbox
+    $(e.currentTarget).find('input[name="carId"]').val(carId);
     $(e.currentTarget).find('input[name="carMake"]').val(carMake);
     $(e.currentTarget).find('input[name="carModel"]').val(carModel);
     $(e.currentTarget).find('input[name="companyName"]').val(ownerName);
-    
+    $(e.currentTarget).find('input[name="startDate"]').val(startDate);
+    $(e.currentTarget).find('input[name="returnDate"]').val(returnDate);
+    $(e.currentTarget).find('input[name="startTime"]').val(startTime);
+    $(e.currentTarget).find('input[name="returnTime"]').val(returnTime);
     $(e.currentTarget).find('input[name="hourlyRate"]').val(hourlyRate);
     $(e.currentTarget).find('input[name="hoursRent"]').val(totalHours);
     $(e.currentTarget).find('input[name="totalRate"]').val(totalPrice);

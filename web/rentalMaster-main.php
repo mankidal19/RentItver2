@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+  session_start();
+  include('config.php');
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -479,25 +482,47 @@ desired effect
                 </thead>
                 <tbody>
                 
-                
-                <tr role="row" class="odd">
-                  <td class="">booking_id1</td>
-                  <td>car_id1</td>
-                  <td>username1</td>
-                  <td>startdate1</td>
-                  <td class="">starttime1</td>
-                  <td>enddate1</td>
-                  <td>endtime1</td>
-                  <td>totalhrs1</td>
-                  <td>totalpass1</td>
-                  <td>totalprice1</td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
-                  </td>
-                  <td style="width: 5%;">
-                  <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
-                  </td>
-                </tr><tr role="row" class="even">
+                <?php 
+                  $userID=$_SESSION['ID'];
+                  $sql="select* from booklist where ownerID='$userID'";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                  while($row=mysqli_fetch_array($result))
+                  { ?>
+                    <tr role="row" class="odd">
+                      <td class=""><?php echo($row['bookID']) ?></td>
+                      <td><?php echo($row['carID']); ?></td>
+                      <?php 
+                        $userID=$row['borrorID'];
+                        $sql="select * from user where userID='$userID'";
+                        $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                        $row2=mysqli_fetch_array($result);
+                        $customerName=$row['username'];
+                      ?>
+                      <td><?php echo($customerName) ?></td>
+                      <td><?php echo($row['startDate']); ?></td>
+                      <td class=""><?php echo($row['startTime']); ?></td>
+                      <td><?php echo($row['returnDate']); ?></td>
+                      <td><?php echo($row['returnTime']); ?></td>
+                      <td><?php echo($row['hoursRent']) ?></td>
+                      <?php 
+                        $carID=$row['carID'];
+                        $sql="select * from car where carID='$carID'";
+                        $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
+                        $row3=mysqli_fetch_array($result);
+                        $maxPassenger=$row['maxPassenger'];
+                      ?>
+                      <td><?php echo($maxPassenger) ?></td>
+                      <td><?php echo($row['totalPay']) ?></td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
+                      </td>
+                      <td style="width: 5%;">
+                      <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
+                      </td>
+                    </tr><?php
+                  }
+                ?>
+                <!-- <tr role="row" class="even">
                   <td class="">booking_id2</td>
                   <td>car_id2</td>
                   <td>username2</td>
@@ -514,7 +539,7 @@ desired effect
                   <td style="width: 5%;">
                   <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
                   </td>
-                <tfoot>
+                <tfoot> -->
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
