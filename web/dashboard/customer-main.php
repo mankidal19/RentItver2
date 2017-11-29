@@ -395,7 +395,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Company contact: activate to sort column ascending" style="width: 15%;">Company's Contact</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
                     <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Date</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Status</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
@@ -410,6 +410,14 @@ desired effect
                   $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count = mysqli_num_rows($result);
                   $count = 0;
+
+                  //getting user's username
+                  $sqlName="select * from user where userID='$userID'";
+                  $resultName=mysqli_query($conn,$sqlName) or trigger_error($conn->error."[$sqlName]");
+                  $rowName = mysqli_fetch_array($resultName);
+                  $username = $rowName['username'];
+
+
                   while($row=mysqli_fetch_array($result))
                   {
                     $ownerID=$row['ownerID'];
@@ -423,6 +431,8 @@ desired effect
                     $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
                     $row3=mysqli_fetch_array($result3);
                     $maxPassenger=$row3['maxPassenger'];
+                    $strCompanyName = str_replace(' ', '&nbsp;', $companyName);
+
                     if($count%2!=0)
                     {
                         ?><tr role="row" class="odd"><?php
@@ -454,7 +464,7 @@ desired effect
                     <td><?php echo($maxPassenger); ?></td>
                     <td><?php echo($row['totalPay']) ?></td>
                     <td style="width: 10%;">
-                    <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?>>CONTACT COMPANY</button>
+                    <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?> data-user-id=<?php echo($username) ?> data-company-name=<?php echo($strCompanyName)?>>CONTACT COMPANY</button>
                     </td>
                   </tr><?php
                 } ?>
@@ -468,7 +478,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Company contact: activate to sort column ascending" style="width: 15%;">Company's Contact</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
                     <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Date</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Status</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
@@ -496,15 +506,18 @@ desired effect
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Complete Booking</h4>
+                <h4 class="modal-title">Contact the Rental Company</h4>
               </div>
               <div class="modal-body">
-                 <p>Contact company <input style="color: #000000;" type="text" name="bookingID" readonly="" data-book-id=<?php echo($row['bookID']) ?>>
-                  <br>REDIRECT TO COMPANY'S CONTACT FOR FURTHER COMMUNICATION.</p>
+                 <p>Contact company 
+                  <input style="background-color: transparent; border: none;" type="text" name="companyName" readonly="">
+                  <br>regarding booking #
+                  <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="">
+                  <br><br>REDIRECT TO COMPANY'S WHATSAPP CONTACT FOR FURTHER COMMUNICATION.</p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal"  data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
-                <button type="button" class="btn btn-outline"  data-book-id=<?php echo($row['bookID']) ?>>Proceed</button>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
+                <a href="" role="button" id="contact" class="btn btn-outline">Proceed</a>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -639,6 +652,29 @@ desired effect
   })
 </script>
 <script src="dist/js/extra.js"></script>
+<script>
+    $('#modal-contact').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    var userId = $(e.relatedTarget).data('user-id');
+    var bookingId = $(e.relatedTarget).data('book-id');
+    var companyName = $(e.relatedTarget).data('company-name');
+    var message = "Hi " + companyName + "! I am " + userId +", want to ask about my car rental booking with booking id #"+bookingId+" status made through RentIt website.";
+    var encodeMsj = encodeURIComponent(message);
+
+   // var message = 'Hi%20'+companyName+'%20I%20am%20'+userId+'%20want%20to%20ask%20about%20my%20booking%20with%20id%20'+bookingID+'%20status';
+
+    var url = "https://api.whatsapp.com/send?phone=60135184849&text=" + encodeMsj;
+
+    //populate the textbox
+    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+    $(e.currentTarget).find('input[name="userID"]').val(userId);
+    $(e.currentTarget).find('input[name="companyName"]').val(companyName);
+   //$(e.currentTarget).find('a[name="contact"]').href(url);
+     $("#contact").attr("href",url);
+});
+
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
