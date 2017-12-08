@@ -464,7 +464,14 @@ desired effect
                     <td><?php echo($maxPassenger); ?></td>
                     <td><?php echo($row['totalPay']) ?></td>
                     <td style="width: 10%;">
-                    <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?> data-user-id=<?php echo($username) ?> data-company-name=<?php echo($strCompanyName)?>>CONTACT COMPANY</button>
+                    <button type="button" class="btn btn-block bg-olive btn-md" data-toggle="modal" data-target="#modal-contact" data-book-id=<?php echo($row['bookID']) ?> data-user-id=<?php echo($username) ?> data-company-name=<?php echo($strCompanyName)?>>
+                        <img src="dist/img/whatsapp-logo.png" width="20px">
+                        
+                    </button>
+                    <button type="button" class="btn btn-block bg-yellow btn-md" data-toggle="modal" data-target="#modal-location">
+                        <img src="dist/img/location.png" width="20px">
+                        
+                    </button>
                     </td>
                   </tr><?php
                 } ?>
@@ -519,6 +526,52 @@ desired effect
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
                 <a href="" role="button" id="contact" class="btn btn-outline">Proceed</a>
               </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     
+     <!--view location modal-->   
+     <div class="modal modal-info fade" id="modal-location">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    
+                
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Pickup Location Details</h4>
+              </div>
+              <div class="modal-body">
+                 <div class="form-group">
+                    
+                      <label for="pickupLocation" >Location:    </label>
+                
+                    <input style="border:none; background-color: transparent;" type="text" name="pickupLocation" readonly="">
+                  </div>  
+                  <div class="form-group">
+
+                      <label for="pickupCity" >City:    </label>
+                
+                    <input style="border:none; background-color: transparent;" type="text" name="pickupCity" readonly="">
+                  </div> 
+                  
+                  <div class="form-group">
+
+                      <label for="pickupPostcode" >Postcode:    </label>
+                
+                    <input style="border:none; background-color: transparent;" type="text" name="pickupPostcode" readonly="">
+                  </div> 
+                  
+                  <!--coding for displaying map-->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-dismiss="modal" >OK</button>
+                
+              </div>
+                    </form>
             </div>
             <!-- /.modal-content -->
           </div>
@@ -621,6 +674,8 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
+ <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7CsNY-Lx-oqoJFePf2hBS9DFpLuMpH2k&sensor=false&libraries=places"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -637,6 +692,7 @@ desired effect
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="assets/js/jquery.geocomplete.js"></script>
 <!-- page script -->
 <script>
   $(function () {
@@ -674,6 +730,35 @@ desired effect
      $("#contact").attr("href",url);
 });
 
+$('#modal-location').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+  /*  var carId = $(e.relatedTarget).data('car-id');
+    var carMake = $(e.relatedTarget).data('car-makes');
+    var carModel =$(e.relatedTarget).data('car-models');
+    var ownerName =$(e.relatedTarget).data('owner-name'); 
+    var startDate = $(e.relatedTarget).data('start-date');
+    var returnDate = $(e.relatedTarget).data('return-date');
+    var startTime = $(e.relatedTarget).data('start-time');
+    var returnTime = $(e.relatedTarget).data('return-time');
+    var hourlyRate =parseFloat($(e.relatedTarget).data('hourly-rate')).toFixed(2);
+    var totalPrice =parseFloat($(e.relatedTarget).data('total-price')).toFixed(2);
+    var totalHours =parseFloat($(e.relatedTarget).data('total-hours'));*/
+ 
+
+    //populate the textbox
+   /* $(e.currentTarget).find('input[name="carId"]').val(carId);
+    $(e.currentTarget).find('input[name="carMake"]').val(carMake);
+    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
+    $(e.currentTarget).find('input[name="companyName"]').val(ownerName);
+    $(e.currentTarget).find('input[name="startDate"]').val(startDate);
+    $(e.currentTarget).find('input[name="returnDate"]').val(returnDate);
+    $(e.currentTarget).find('input[name="startTime"]').val(startTime);
+    $(e.currentTarget).find('input[name="returnTime"]').val(returnTime);
+    $(e.currentTarget).find('input[name="hourlyRate"]').val(hourlyRate);
+    $(e.currentTarget).find('input[name="hoursRent"]').val(totalHours);
+    $(e.currentTarget).find('input[name="totalRate"]').val(totalPrice);*/
+});
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

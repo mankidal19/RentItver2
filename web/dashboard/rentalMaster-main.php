@@ -551,6 +551,7 @@ desired effect
                         $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
                         $row2=mysqli_fetch_array($result2);
                         $customerName=$row2['username'];
+                        $strCompanyName = str_replace(' ', '&nbsp;', $_SESSION['username']);
                       ?>
                       <td><?php echo($customerName) ?></td>
                       <td><?php echo($row['startDate']); ?></td>
@@ -568,7 +569,7 @@ desired effect
                       <td><?php echo($maxPassenger) ?></td>
                       <td><?php echo($row['totalPay']) ?></td>
                       <td style="width: 5%;">
-                      <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']) ?>>Approve</button>
+                      <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']); ?> data-customer-id=<?php echo($customerName); ?> data-company-id=<?php echo($strCompanyName); ?> data-start-date=<?php echo($row['startDate']); ?>  data-start-time=<?php echo($row['startTime']); ?>>Approve</button>
                       
                       <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
                       </td>
@@ -615,6 +616,11 @@ desired effect
                   <p>Approve booking: <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" value='adas'>
                     <br>
                    Booking will be moved to CONFIRMED BOOKING LISTS.</p>
+                  <center>
+                  <a target="_blank" href="" role="button" id="contact" class="btn btn-warning btn-outline">
+                      <img src="dist/img/whatsapp-logo.png" width="50px">
+                      SEND CONFIRMATION MESSAGE</a>
+                  </center>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -867,6 +873,27 @@ $('#modal-approve').on('show.bs.modal', function(e) {
 
     //populate the textbox
     $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+    
+    //get data-id attribute of the clicked element
+    var customerId = $(e.relatedTarget).data('customer-id');
+    var companyName = $(e.relatedTarget).data('company-id');
+    var startDate = $(e.relatedTarget).data('start-date');
+    var startTime = $(e.relatedTarget).data('start-time');
+    
+    //make random string
+    var confirmCode = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 5; i++)
+            confirmCode += possible.charAt(Math.floor(Math.random() * possible.length));
+    
+    var message = "Hi " + customerId + "! We are from " + companyName +", would like to note you that your booking #"+bookingId+" is APPROVED.\n\n*Below are details:*\nStart Date: "+startDate+"\nStart Time: "+startTime+"\n*CONFIRMATION CODE: "+confirmCode+"*\n\nMore details on RentIt website.";
+    var encodeMsj = encodeURIComponent(message);
+
+   
+    var url = "https://api.whatsapp.com/send?phone=60135184849&text=" + encodeMsj;
+    
+    $("#contact").attr("href",url);
 });
 
 //triggered when reject modal is about to be shown
