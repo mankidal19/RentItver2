@@ -9,3 +9,9 @@ function notRentalMaster()
 	alert("You are not rental master");
 	window.location.replace("../index.html");
 }
+
+function notAdmin()
+{
+	alert("You are not admin");
+	window.location.replace("../index.html");
+}
