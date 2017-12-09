@@ -448,7 +448,7 @@ desired effect
                       }
                       else
                       {
-                        echo("Approve");
+                        echo("Approve (".$row['confirmCode'].")");
                       }?>
                       <td><?php echo($row['hoursRent']); ?></td>
                       <?php
@@ -614,6 +614,7 @@ desired effect
               </div>
               <div class="modal-body">
                   <p>Approve booking: <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" value='adas'>
+                    <input  type="text" name="confirmationCode" readonly="" value='' hidden>
                     <br>
                    Booking will be moved to CONFIRMED BOOKING LISTS.</p>
                   <center>
@@ -884,12 +885,13 @@ $('#modal-approve').on('show.bs.modal', function(e) {
     var confirmCode = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        for (var i = 0; i < 5; i++)
-            confirmCode += possible.charAt(Math.floor(Math.random() * possible.length));
+    for (var i = 0; i < 5; i++)
+      confirmCode += possible.charAt(Math.floor(Math.random() * possible.length));
     
     var message = "Hi " + customerId + "! We are from " + companyName +", would like to note you that your booking #"+bookingId+" is APPROVED.\n\n*Below are details:*\nStart Date: "+startDate+"\nStart Time: "+startTime+"\n*CONFIRMATION CODE: "+confirmCode+"*\n\nMore details on RentIt website.";
     var encodeMsj = encodeURIComponent(message);
-
+    alert(confirmCode);
+    $(e.currentTarget).find('input[name="confirmationCode"]').val(confirmCode);
    
     var url = "https://api.whatsapp.com/send?phone=60135184849&text=" + encodeMsj;
     

@@ -43,9 +43,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {
     ?><script>window.onload=haventLogin();</script><?php
   }
-  if($_SESSION['LEVEL']!="RentalMaster")
+  if($_SESSION['LEVEL']!="admin")
   {
-    ?><script>window.onload=notRentalMaster();</script><?php
+    ?><script>window.onload=notAdmin();</script><?php
   }
 ?>
 </head>
@@ -323,7 +323,7 @@ desired effect
                 <tbody>
                 <?php 
                   $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status=3";
+                  $sql="select* from booklist";
                   $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
                   while($row=mysqli_fetch_array($result))
@@ -415,7 +415,7 @@ desired effect
                 <tbody>
                 <?php 
                   $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status!=0 and status!=3";
+                  $sql="select* from booklist where status!=0 and status!=3";
                   $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
                   while($row=mysqli_fetch_array($result))
@@ -538,7 +538,7 @@ desired effect
                 <tbody>
                 <?php 
                   $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status=0";
+                  $sql="select* from booklist where status=0";
                   $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   while($row=mysqli_fetch_array($result))
                   { ?>

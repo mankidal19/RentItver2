@@ -432,7 +432,8 @@ desired effect
                     $row3=mysqli_fetch_array($result3);
                     $maxPassenger=$row3['maxPassenger'];
                     $strCompanyName = str_replace(' ', '&nbsp;', $companyName);
-
+                    $location = $row2['address1'].$row2['address2'];
+                    $location = str_replace(' ','&nbsp;',$location);
                     if($count%2!=0)
                     {
                         ?><tr role="row" class="odd"><?php
@@ -468,7 +469,7 @@ desired effect
                         <img src="dist/img/whatsapp-logo.png" width="20px">
                         
                     </button>
-                    <button type="button" class="btn btn-block bg-yellow btn-md" data-toggle="modal" data-target="#modal-location">
+                    <button type="button" class="btn btn-block bg-yellow btn-md" data-toggle="modal" data-location=<?php echo($location); ?> data-postcode=<?php echo($row2['postcode']); ?> data-city=<?php echo($row2['city']); ?> data-book-id=<?php echo($row['bookID']); ?> data-target="#modal-location">
                         <img src="dist/img/location.png" width="20px">
                         
                     </button>
@@ -545,6 +546,7 @@ desired effect
                 <h4 class="modal-title">Pickup Location Details</h4>
               </div>
               <div class="modal-body">
+
                  <div class="form-group">
                     
                       <label for="pickupLocation" >Location:    </label>
@@ -731,7 +733,12 @@ desired effect
 });
 
 $('#modal-location').on('show.bs.modal', function(e) {
-
+    var postcode = $(e.relatedTarget).data('postcode');
+    var city = $(e.relatedTarget).data('city');
+    var location = $(e.relatedTarget).data('location');
+    $(e.currentTarget).find("input[name='pickupLocation']").val(location);
+    $(e.currentTarget).find("input[name='pickupPostcode']").val(postcode);
+    $(e.currentTarget).find("input[name='pickupCity']").val(city);
     //get data-id attribute of the clicked element
   /*  var carId = $(e.relatedTarget).data('car-id');
     var carMake = $(e.relatedTarget).data('car-makes');
