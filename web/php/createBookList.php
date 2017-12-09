@@ -17,6 +17,7 @@ $sql = "CREATE TABLE booklist
 	 		hoursRent int(5) NOT NULL,
 	 		status int(2) NOT NULL DEFAULT '0',
 	 		borrorID int(11) NOT NULL,
+	 		confirmCode varchar(10),
 	 		FOREIGN KEY (ownerID) references rentalmaster(userID) on delete cascade on update cascade,
 	 		FOREIGN KEY (carID) references car(carID) on delete cascade on update cascade,
 	 		FOREIGN KEY (borrorID) references user(userID) on delete cascade on update cascade

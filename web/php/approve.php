@@ -2,8 +2,10 @@
 	session_start();
 	include('config.php');
 	$bookingID=$_POST['bookingID'];
-	$sql="update booklist set status=2 where bookID='$bookingID'";
-	$result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql}");
+	$confirmCode = $_POST['confirmationCode'];
+	$sql="update booklist set status=2,confirmCode='$confirmCode' where bookID='$bookingID'";
+	$result=mysqli_query($conn,$sql);
+
 	if($result)
 	{
 		?><script>

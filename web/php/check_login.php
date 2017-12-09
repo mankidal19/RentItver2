@@ -2,7 +2,7 @@
     function failed()
     {
         alert("Login failed due to incorrect password or email");
-         window.location.replace("../index.html");
+         window.location.replace("../login.html");
     }
 </script>
 
@@ -52,7 +52,7 @@
                 setcookie("userID", $userID, $expire);
                 if($_SESSION["LEVEL"] == "admin")
                 {
-                        header("Location: ../index.html");
+                        header("Location: ../dashboard/admin-main.php");
                 }    
                 else if($_SESSION["LEVEL"] == "user")
                 {
