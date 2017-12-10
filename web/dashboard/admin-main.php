@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rental Master | Dashboard</title>
+  <title>Admin | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -76,7 +76,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="rentalMaster-main.php" class="logo">
+    <a href="../index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -126,7 +126,7 @@ desired effect
               <span class="hidden-xs"><?php
                   include('../php/config.php');    
                   $ownerID=$_SESSION['ID'];
-                  $sql="select * from rentalmaster where userID='$ownerID'";
+                  $sql="select * from user where userID='$ownerID'";
                   $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                   $row=mysqli_fetch_array($result);
                   $_SESSION['username']=$row['username'];
@@ -533,7 +533,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
                     
-                    <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr>
+                 <!--    <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr> -->
                 </thead>
                 <tbody>
                 <?php 
@@ -568,11 +568,11 @@ desired effect
                       ?>
                       <td><?php echo($maxPassenger) ?></td>
                       <td><?php echo($row['totalPay']) ?></td>
-                      <td style="width: 5%;">
+<!--                       <td style="width: 5%;">
                       <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']); ?> data-customer-id=<?php echo($customerName); ?> data-company-id=<?php echo($strCompanyName); ?> data-start-date=<?php echo($row['startDate']); ?>  data-start-time=<?php echo($row['startTime']); ?>>Approve</button>
                       
                       <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
-                      </td>
+                      </td> -->
                     </tr><?php
                   }
                 ?>
@@ -588,7 +588,7 @@ desired effect
                     <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
                     
-                    <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr>
+            <!--         <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr> -->
                 </tfoot>
               </table></div></div><div class="row"><div class="col-sm-5"></div></div></div>
             </div>
