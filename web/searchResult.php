@@ -834,10 +834,10 @@
                                 <td><?php echo("{$row['makes']}"); ?></td>
                                 <td><?php echo("{$row['models']}"); ?></td>
                                 <td><?php echo("{$row['description']}"); ?></td>
-                                <td><?php echo("{$row['hourlyRate']}"); ?></td>
+                                <td><?php echo( number_format((float)$row['hourlyRate'], 2, '.', '')); ?></td>
                                 <td><?php 
                                         $total=$row['hourlyRate']*$diff;
-                                        echo("$total"); ?></td>
+                                        echo( number_format((float)$total, 2, '.', '')); ?></td>
                                 <td>
                                     <button type="button" class="btn btn-block btn-primary btn-md" data-toggle="modal" href="#modal-details" data-car-id=<?php echo($row['carID']); ?> data-start-date=<?php echo($pickupDate); ?> data-start-time=<?php echo($pickupTime); ?> data-return-date=<?php echo($returnDate); ?> data-return-time=<?php echo($returnTime); ?> data-car-makes=<?php echo($row['makes']); ?> data-car-models=<?php echo($row['models']); ?> data-owner-name=<?php echo($strOwner);?> data-total-price=<?php echo($total);?>  data-total-hours=<?php echo($diff);?> data-hourly-rate=<?php echo("{$row['hourlyRate']}");?>>Select</button>
                                 </td>
