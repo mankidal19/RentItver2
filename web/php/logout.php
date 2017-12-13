@@ -2,7 +2,7 @@
 	function logout()
 	{
 		alert("You are currently logout");
-		window.location.replace("../login.html");
+		window.location.replace("../index.html");
 	}
 </script>
 <?php

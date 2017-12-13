@@ -78,9 +78,9 @@ desired effect
     <!-- Logo -->
     <a href="../index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>R</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>RENT</b>IT</span>
     </a>
 
     <!-- Header Navbar -->
@@ -130,7 +130,6 @@ desired effect
                   $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                   $row=mysqli_fetch_array($result);
                   $_SESSION['username']=$row['username'];
-                  $_SESSION['picName'] = $row['firstName']." ".$row['lastName'];
                   echo ($_SESSION['username']);
               ?></span>
             </a>
@@ -232,17 +231,432 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
+        <!--delete car modal-->   
+      <form action="../php/deleteCar.php" method="POST">
+     <div class="modal modal-warning fade" id="modal-delete-car">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete Car</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete car with ID:  <input type="text" style="color:black; background: transparent; border: none;" name="carID" readonly="">
+                  <br>Car details will be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     </form>
+        
+        <!--delete rental master modal-->   
+      <form action="../php/deleteCar.php" method="POST">
+     <div class="modal modal-warning fade" id="modal-delete-RM">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete Booking</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete Rental Master with username:  <input type="text" style="color:black; background: transparent; border: none;" name="username" readonly="">
+                  <br>All related car details will also be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     </form>
+        
+         <!--delete rental master modal-->   
+      <form action="../php/deleteCar.php" method="POST">
+     <div class="modal modal-warning fade" id="modal-delete-user">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Delete User</h4>
+              </div>
+              <div class="modal-body">
+                <p>Delete user with username:  <input type="text" style="color:black; background: transparent; border: none;" name="username" readonly="">
+                  <br>All related details will also be DELETED from the system.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Confirm</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+     </form>
+        
+         <!--edit car modal-->   
+     <div class="modal modal-info fade" id="modal-edit-car">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+              
+              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Edit Car Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  <div class="form-group">
+                      <label for="carID">Car ID</label>
+                
+                    <input type="text" name="carID" readonly="">
+                  </div>  
+                  
+                <div class="form-group">
+                  <label for="carDetails">Car Details: </label>
+                  <select name="car-years" id="car-years" required></select>  
+                    <select name="car-makes" id="car-makes" required></select> 
+                    <select name="car-models" id="car-models" required></select>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="hourlyRate">Hourly Rate (RM): </label>
+                  <input type="number" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
+                  <input type="number" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="carDesc">Car Description: </label>
+                  <textarea class="form-control" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
+                </div>  
+                  
+                <div class="form-group">
+                <label for="exampleInputFile">Add new car's photo:</label>
+                  <input type="file" id="carPhoto" name="carFile">
+                </div> 
+                
+              </div>
+              <!-- /.box-body -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">Update</button>
+              </div>
+            </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+         
+         <!--view more car modal-->   
+     <div class="modal modal-info fade" id="modal-view-car">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+              
+              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+            
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">View Car Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  <div class="form-group">
+                      <label for="carID">Car ID</label>
+                
+                    <input type="text" name="carID" readonly="">
+                  </div>  
+                  
+                <div class="form-group">
+                  <label for="carDetails">Car Details: </label>
+                  <input name="car-years" id="car-years" readonly="">
+                    <input name="car-makes" id="car-makes" readonly="">
+                    <input name="car-models" id="car-models" readonly="">
+                </div>
+                  
+                <div class="form-group">
+                  <label for="hourlyRate">Hourly Rate (RM): </label>
+                  <input type="number" readonly="" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
+                </div>
+                  
+                <div class="form-group">
+                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
+                  <input type="number" readonly=""style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
+                </div>  
+                  
+                <div class="form-group">
+                  <label for="carDesc">Car Description: </label>
+                  <textarea class="form-control" readonly="" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
+                </div>  
+                  
+                <div class="form-group">
+                <label for="exampleInputFile">Car's photo:</label>
+                <input type="image" id="carPhoto" name="carFile" readonly="">
+                </div> 
+                
+              </div>
+              <!-- /.box-body -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline">OK</button>
+              </div>
+            </form>   
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+         
+         <!--view more rental master modal-->   
+     <div class="modal modal-info fade" id="modal-view-RM">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+              
+              
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">View Rental Master Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  
+                                    <form name='rentalMaster' id='form2' action='php/insertRentalMaster.php' method='POST'>
+
+                                        <h3>Company Information</h3>
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='companyName'>* Company Name:</label>
+                                                <input readonly="" type="text" id="companyName_div2" name="companyName_div2" class='form-control' placeholder="Car Rental SDN BHD" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='companyRegNum'>* Company Registration Number:</label>
+                                                <input readonly="" type="text" id="companyRegNum_div2" name="companyRegNum_div2" class='form-control' placeholder="Enter Company Registration Number" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='establishDate'>* Date of Establishment:</label>
+                                                <input readonly="" type="date" id="establishDate_div2" name="establishDate_div2" class='form-control' required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='address1'>Address (line 1):</label>
+                                                <input readonly="" type="text" id="address1_div2" name="address1_div2" class='form-control' placeholder="123, Street ABC" required/>
+
+                                                <label for='address2'>Address (line 2):</label>
+                                                <input readonly="" type="text" id="address2_div2" name="address2_div2" class='form-control' placeholder="off Petaling Street"/>
+
+                                                <label for='postcode' >* Postcode</label>
+                                                <input readonly="" type="text" id="postcode_div2" name="postcode_div2" class='form-control' placeholder="08100" required/>
+
+                                                <input type="hidden" name="country_div2" id="countryId" value="MY"/>
+                                                <label for='state' >* State</label>
+                                                <input readonly="" type="text" id="state" name="state" class='form-control' placeholder="08100" required/>
+
+                                                <label for='city' >* City</label>
+                                                <input readonly="" type="text" id="city" name="city" class='form-control' placeholder="08100" required/>
+
+
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='EMail' >* Company E-mail:</label>
+                                                <input readonly="" type="text" id="EMail_div2" name="EMail_div2" class='form-control' placeholder="rentacar@mail.com" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='Phone' >* Company Contact Number:</label>
+                                                <input readonly="" type="text" id="Phone_div2" name="Phone_div2" class='form-control' placeholder="0123456789" required/>
+                                            </p>
+                                        </div>
+
+                                        <h3>Person in-Charge Information</h3>
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='title' >* Title:</label>
+                                                <input readonly="" type="text" id="title" name="title" class='form-control' placeholder="08100" required/>
+
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='firstName'>* First Name:</label>
+                                                <input readonly="" type="text" id="firstName_div2" name="firstName_div2" class='form-control' placeholder="John" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='lastName' >* Last Name:</label>
+                                                <input readonly="" type="text" id="lastName_div2" name="lastName_div2" class='form-control' placeholder="Doe" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class="btn-group form-group" data-toggle="buttons">
+                                            <label for='gender_div2'>* Gender:</label><br>
+                                            <input readonly="" type="text" id="gender_div2" name="gender_div2" class='form-control' placeholder="08100" required/>
+
+
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='position' >* Position:</label>
+                                                <input readonly="" type="text" id="position_div2" name="position_div2" class='form-control' placeholder="Marketing Officer" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='EMail' >* E-mail:</label>
+                                                <input readonly="" type="text" id="privateEMail_div2" name="privateEMail_div2" class='form-control' placeholder="johndoe@mail.com" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='Phone'>Contact Number:</label>
+                                                <input readonly="" type="text" id="privatePhone_div2" name="privatePhone_div2" class='form-control' placeholder="0123456789" required/>
+                                            </p>
+                                        </div>
+                                        </form>   
+
+                                       
+                
+              </div>
+              <!-- /.box-body -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline">OK</button>
+              </div>
+            
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
+         
+         <!--view more user modal-->   
+     <div class="modal modal-info fade" id="modal-view-user">
+          <div class="modal-dialog">
+              
+            <div class="modal-content">
+              
+              
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">View User Details</h4>
+              </div>
+              <div class="modal-body">
+                <!-- form start -->
+              <div class="box-body">
+                  
+                                    <form name='customer' id='form1' action='php/insertUser.php' method='POST'>
+                                        <h3>User Information</h3>
+
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='EMail_div1'>* E-mail:</label>
+                                                <input readonly="" type="text" id="EMail_div1" name="EMail_div1" class='form-control' placeholder="johndoe@mail.com" required/>
+                                            </p>
+                                        </div>
+
+                                        <div class="btn-group form-group" data-toggle="buttons">
+                                            <label for='gender_div1'>* Gender:</label><br>
+                                             <input readonly="" type="text" id="gender_div1" name="gender_div1" class='form-control' placeholder="johndoe@mail.com" required/>
+                                           
+
+                                        </div>
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='birthDate_div1'>* Date of Birth:</label>
+                                                <input readonly="" type="date" id="birthDate_div1" name="birthDate_div1" class='form-control' required/>
+                                            </p>
+                                        </div>
+
+
+                                        <div class='form-group'>
+                                            <p>
+                                                <label for='Phone_div1'>Contact Number:</label>
+                                                <input readonly="" type="text" id="Phone_div1" name="Phone_div1" class='form-control' placeholder="0123456789" required/>
+                                            </p>
+                                        </div>
+
+                                       </form>
+
+                                       
+                
+              </div>
+              <!-- /.box-body -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline">OK</button>
+              </div>
+            
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div> 
         
     <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>2</h3>
+              <h3>10</h3>
 
-              <p>New Booking <br>Request(s)</p>
+              <p>Total<br>Customers</p>
             </div>
             <div class="icon">
-              <i class="fa fa-plus"></i>
+              <i class="fa fa-users"></i>
             </div>
             <a href="#tab_3-2" data-toggle="tab" aria-expanded="false" class="small-box-footer" onclick="addClass('accordian',2,'active',0,1);">
               More info <i class="fa fa-arrow-circle-right"></i>
@@ -255,10 +669,10 @@ desired effect
             <div class="inner">
               <h3>2</h3>
 
-              <p>Confirmed <br>Booking(s)</p>
+              <p>Total <br>Rental Masters</p>
             </div>
             <div class="icon">
-              <i class="fa fa-car"></i>
+              <i class="fa fa-users"></i>
             </div>
             <a href="#tab_2-2" data-toggle="tab" aria-expanded="false" class="small-box-footer" onclick="addClass('accordian',1,'active',0,2);">
               More info <i class="fa fa-arrow-circle-right"></i>
@@ -272,10 +686,10 @@ desired effect
             <div class="inner">
               <h3>10</h3>
 
-              <p>Completed <br>Booking(s)</p>
+              <p>Cars <br>Registered</p>
             </div>
             <div class="icon">
-              <i class="fa fa-check-circle"></i>
+              <i class="fa fa-car"></i>
             </div>
             <a href="#tab_1-1" data-toggle="tab" aria-expanded="false" class="small-box-footer" onclick="addClass('accordian',0,'active',1,2);">
               More info <i class="fa fa-arrow-circle-right"></i>
@@ -289,35 +703,31 @@ desired effect
           <!-- Custom Tabs (Pulled to the right) -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-              <li class=""><a href="#tab_1-1" data-toggle="tab" aria-expanded="false">Completed Booking(s)</a></li>
-              <li class=""><a href="#tab_2-2" data-toggle="tab" aria-expanded="true">Confirmed Booking(s)</a></li>
-              <li class=""><a href="#tab_3-2" data-toggle="tab" aria-expanded="false">New Booking Request(s)</a></li>
+              <li class=""><a href="#tab_1-1" data-toggle="tab" aria-expanded="false">Registered Cars List</a></li>
+              <li class=""><a href="#tab_2-2" data-toggle="tab" aria-expanded="true">Rental Masters List</a></li>
+              <li class=""><a href="#tab_3-2" data-toggle="tab" aria-expanded="false">Customers List</a></li>
               
               <li class="pull-left header"><i class="fa fa-th"></i><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true">Detailed Overview</a></li>
               
             </ul>
             <div class="tab-content" aria-expanded="false">
               <div class="tab-pane" id="tab_1-1">
-                <b>Completed Booking(s):</b>
+                <b>Cars Registered:</b>
 
                 <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Booking(s) List</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                 <thead>
                 <tr role="row">
-                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
+                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Owner Name</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
-                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 15%;">Remarks</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Car Make</th>
+                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">Car Model</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 20%;">Picture</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 5%;">Action</th>
                     
                 </thead>
                 <tbody>
@@ -336,50 +746,30 @@ desired effect
                     {
                       ?><tr role="row" class="even"><?php
                     }?>
-                      <td class=""><?php echo($row['bookID']) ?></td>
-                      <td><?php echo($row['carID']); ?></td>
-                      <?php 
-                        $userID=$row['borrorID'];
-                        $sql2="select * from user where userID='$userID'";
-                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
-                        $row2=mysqli_fetch_array($result2);
-                        $customerName=$row2['username'];
-                      ?>
-                      <td><?php echo($customerName) ?></td>
-                      <td><?php echo($row['startDate'].' '.$row['startTime']); ?></td>
-                      <td><?php echo($row['returnDate'].' '.$row['returnTime']); ?></td>
-                      <td><?php echo($row['hoursRent']); ?></td>
-                      <?php
-                        $carID=$row['carID'];
-                        $sql3="select * from car where carID='$carID'";
-                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
-                        $row3=mysqli_fetch_array($result3);
-                        $maxPassenger=$row3['maxPassenger'];
-                      ?>
-                      <td><?php echo($maxPassenger) ?></td>
-                      <td><?php echo($row['totalPay']) ?></td>
-                      <td>remark</td>
-                      <!--<td style="width: 5%;">
-                      <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?>>Edit</button>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                            <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-edit-car" >Edit</button>
+                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-car" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-car" >Delete</button>
+                     
                       </td>
-                      <td style="width: 5%;">
-                      <button type="button" class="btn btn-block bg-orange btn-xs" data-toggle="modal" data-target="#modal-delete" data-book-id=<?php echo($row['bookID']) ?>>Delete</button>
-                      </td>-->
+                      
                       </tr><?php
                     $count+=1;
                   }
                 ?>                
                 <tfoot>
                 <tr role="row">
-                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
+                   <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Owner Name</th>
                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
-                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 15%;">Remarks</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Car Make</th>
+                    <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">Car Model</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 20%;">Picture</th>
+                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 5%;">Action</th>
                     </tr>
                 </tfoot>
               </table></div></div></div>
@@ -389,88 +779,42 @@ desired effect
               </div>
               <!-- /.tab-pane confirmed booking-->
               <div class="tab-pane" id="tab_2-2">
-                <b>Confirmed Booking(s):</b>
+                <b>Rental Masters List:</b>
 
                 <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Booking(s) List</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example2_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
                 <thead>
                 <tr role="row">
-                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
-                    <th class="text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Status</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    
-                    <th class=" text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="3" aria-label="Action" style="width: 15%;">Action</th></tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
-                <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where status!=0 and status!=3";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
-                  $count=0;
-                  while($row=mysqli_fetch_array($result))
-                  { 
-                    if($count%2!=0)
-                    {
-                      ?><tr role="row" class="odd"><?php
-                    }
-                    else
-                    {
-                      ?><tr role="row" class="even"><?php
-                    }?>
-                      <td class=""><?php echo($row['bookID']) ?></td>
-                      <td><?php echo($row['carID']); ?></td>
-                      <?php 
-                        $userID=$row['borrorID'];
-                        $sql2="select * from user where userID='$userID'";
-                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
-                        $row2=mysqli_fetch_array($result2);
-                        $customerName=$row2['username'];
-                      ?>
-                      <td><?php echo($customerName) ?></td>
-                      <td><?php echo($row['startDate'].' '.$row['startTime']); ?></td>
-                      <td><?php echo($row['returnDate'].' '.$row['returnTime']); ?></td>
-                      <td>
-                      <?php 
-                      if($row['status']==1)
-                      {
-                        echo('Rejected');
-                      }
-                      else
-                      {
-                        echo("Approve");
-                      }?>
-                      <td><?php echo($row['hoursRent']); ?></td>
-                      <?php
-                        $carID=$row['carID'];
-                        $sql3="select * from car where carID='$carID'";
-                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
-                        $row3=mysqli_fetch_array($result3);
-                        $maxPassenger=$row3['maxPassenger'];
-                      ?>
-                      <td><?php echo($maxPassenger) ?></td>
-                      <td><?php echo($row['totalPay']) ?></td>
+                    <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                       <td style="width: 5%;">
-                      <!--<button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?> data-car-id=<?php echo($row['carID']) ?> data-cust-name=<?php echo($customerName) ?> data-start-date=<?php echo($row['startDate']) ?> data-return-date=<?php echo($row['returnDate']) ?> data-start-time=<?php echo($row['startTime']) ?> data-return-time=<?php echo($row['returnTime']) ?> data-total-pay=<?php echo($row['totalPay']) ?>>Edit</button>-->
+                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-RM" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-RM" >Delete</button>
                      
-                      <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
-                     
-                      <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
-                      </td>
-                    </tr><?php
-                    $count+=1;
-                  }
-                ?>><tr role="row" class="even">
+                       </td>
+                       </tr>
+                    <tr role="row" class="even">
                   <!--  <td class="">booking_id2</td>
                   <td>car_id2</td>
                   <td>username2</td>
@@ -491,17 +835,15 @@ desired effect
                   </td> -->
                 <tfoot>
                 <tr role="row">
-                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Start Date & Time: activate to sort column ascending" style="width: 12.5%;">Start Date & Time</th>
-                    <th class="text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="End Date & Time: activate to sort column ascending" style="width: 12.5%;">End Date & Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Approval Date: activate to sort column ascending" style="width: 10%;">Approval Status</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    
-                    <th class=" text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="3" aria-label="Action" style="width: 15%;">Action</th></tr>
+                   <th>User ID</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Action</th>
+                </tr>
                 </tfoot>
               </table></div></div><div class="row"><div class="col-sm-5"></div></div></div>
             </div>
@@ -522,73 +864,38 @@ desired effect
                           <table id="example3" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example3_info">
                 <thead>
                 <tr role="row">
-                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Start Date: activate to sort column ascending" style="width: 10%;">Start Date</th>
-                    <th class="text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Start Time: activate to sort column ascending" style="width: 10%;">Start Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="End Date: activate to sort column ascending" style="width: 10%;">End Date</th>
-                    <th class="text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="End Time: activate to sort column ascending" style="width: 10%;">End Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    
-                 <!--    <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr> -->
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
-                <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where status=0";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
-                  while($row=mysqli_fetch_array($result))
-                  { ?>
-                    <tr role="row" class="odd">
-                      <td class=""><?php echo($row['bookID']) ?></td>
-                      <td><?php echo($row['carID']); ?></td>
-                      <?php 
-                        $userID=$row['borrorID'];
-                        $sql2="select * from user where userID='$userID'";
-                        $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
-                        $row2=mysqli_fetch_array($result2);
-                        $customerName=$row2['username'];
-                        $strCompanyName = str_replace(' ', '&nbsp;', $_SESSION['username']);
-                      ?>
-                      <td><?php echo($customerName) ?></td>
-                      <td><?php echo($row['startDate']); ?></td>
-                      <td class=""><?php echo($row['startTime']); ?></td>
-                      <td><?php echo($row['returnDate']); ?></td>
-                      <td><?php echo($row['returnTime']); ?></td>
-                      <td><?php echo($row['hoursRent']) ?></td>
-                      <?php 
-                        $carID=$row['carID'];
-                        $sql3="select * from car where carID='$carID'";
-                        $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
-                        $row3=mysqli_fetch_array($result3);
-                        $maxPassenger=$row3['maxPassenger'];
-                      ?>
-                      <td><?php echo($maxPassenger) ?></td>
-                      <td><?php echo($row['totalPay']) ?></td>
-<!--                       <td style="width: 5%;">
-                      <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-approve" data-book-id=<?php echo($row['bookID']); ?> data-customer-id=<?php echo($customerName); ?> data-company-id=<?php echo($strCompanyName); ?> data-start-date=<?php echo($row['startDate']); ?>  data-start-time=<?php echo($row['startTime']); ?>>Approve</button>
-                      
-                      <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-reject" data-book-id=<?php echo($row['bookID']) ?>>Reject</button>
-                      </td> -->
-                    </tr><?php
-                  }
-                ?>
+                    <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                      <td style="width: 5%;">
+                           <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-user" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-user" >Delete</button>
+                     
+                       </td>
+                       </tr>
+                    <tr role="row" class="even">
+                 
+                <tfoot>
                 <tr role="row">
-                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Car ID: activate to sort column ascending" style="width: 10%;">Car ID</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Username: activate to sort column ascending" style="width: 10%;">Username</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Start Date: activate to sort column ascending" style="width: 10%;">Start Date</th>
-                    <th class="text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Start Time: activate to sort column ascending" style="width: 10%;">Start Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="End Date: activate to sort column ascending" style="width: 10%;">End Date</th>
-                    <th class="text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="End Time: activate to sort column ascending" style="width: 10%;">End Time</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Hour(s): activate to sort column ascending" style="width: 5%;">Total Hour(s)</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Num of Passenger(s): activate to sort column ascending" style="width: 5%;">Num of People</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="1" aria-label="Total Price: activate to sort column ascending" style="width: 10%;">TOTAL PRICE (RM)</th>
-                    
-            <!--         <th class=" text-center" tabindex="0" aria-controls="example3" rowspan="1" colspan="2" aria-label="Action" style="width: 10%;">Action</th></tr> -->
+                   <th>User ID</th>
+                    <th>Username</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
                 </tfoot>
               </table></div></div><div class="row"><div class="col-sm-5"></div></div></div>
             </div>
@@ -602,139 +909,6 @@ desired effect
           <!-- nav-tabs-custom -->
         </div>
         
-     <!--approve booking modal-->
-     <form method="POST">
-     <div class="modal modal-success fade" id="modal-approve">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Approve Booking</h4>
-              </div>
-              <div class="modal-body">
-                  <p>Approve booking: <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" value='adas'>
-                    <br>
-                   Booking will be moved to CONFIRMED BOOKING LISTS.</p>
-                  <center>
-                  <a target="_blank" href="" role="button" id="contact" class="btn btn-warning btn-outline">
-                      <img src="dist/img/whatsapp-logo.png" width="50px">
-                      SEND CONFIRMATION MESSAGE</a>
-                  </center>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline" formaction="../php/approve.php">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>   
-      </form>
-     
-     <!--reject booking modal-->   
-     <form method="POST">
-     <div class="modal modal-danger fade" id="modal-reject">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Reject Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Reject booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="">
-                  <br>Booking will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline" formaction="../php/reject.php">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-      </form>
-     
-      <!--delete booking modal-->   
-    <form method='POST'>
-     <div class="modal modal-warning fade" id="modal-delete">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Delete Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Delete booking <p>Approve booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly=""><br>
-                  
-                  <br>
-                Booking will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline" formaction="../php/deleteBooking.php">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-      </form>
-     
-     
-     
-     <!--cancel booking modal-->   
-     <form method="POST">
-     <div class="modal modal-warning fade" id="modal-cancel">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Cancel Booking</h4>
-              </div>
-              <div class="modal-body">
-                <p>Cancel booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="">
-                  <br>Booking will be DELETED from the system.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-outline" formaction="../php/deleteBooking.php">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-     </form> 
-     <!--complete booking modal-->   
-     <form method='POST'>
-     <div class="modal modal-success fade" id="modal-complete">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Complete Booking</h4>
-              </div>
-              <div class="modal-body">
-                 <p>Complete booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" values="asda">
-                  <br>Booking will be moved to COMPLETED BOOKING LISTS.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
-                <button type="submit" class="btn btn-outline" formaction="../php/completeBooking.php">Confirm</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div> 
-      </form>
      
     
     </section>
@@ -864,99 +1038,96 @@ desired effect
   })
 </script>
 <script>
- 
-//triggered when approve modal is about to be shown
-$('#modal-approve').on('show.bs.modal', function(e) {
+ $('#modal-edit-car').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var bookingId = $(e.relatedTarget).data('book-id');
+   // var carId = $(e.relatedTarget).data('car-id');
+  //  var carMake = $(e.relatedTarget).data('car-makes');
+   // var carModel =$(e.relatedTarget).data('car-models');
+   // var carMax =$(e.relatedTarget).data('car-max');
+    //var carDesc =$(e.relatedTarget).data('car-desc');
+    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
 
     //populate the textbox
-    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
-    
-    //get data-id attribute of the clicked element
-    var customerId = $(e.relatedTarget).data('customer-id');
-    var companyName = $(e.relatedTarget).data('company-id');
-    var startDate = $(e.relatedTarget).data('start-date');
-    var startTime = $(e.relatedTarget).data('start-time');
-    
-    //make random string
-    var confirmCode = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < 5; i++)
-            confirmCode += possible.charAt(Math.floor(Math.random() * possible.length));
-    
-    var message = "Hi " + customerId + "! We are from " + companyName +", would like to note you that your booking #"+bookingId+" is APPROVED.\n\n*Below are details:*\nStart Date: "+startDate+"\nStart Time: "+startTime+"\n*CONFIRMATION CODE: "+confirmCode+"*\n\nMore details on RentIt website.";
-    var encodeMsj = encodeURIComponent(message);
-
-   
-    var url = "https://api.whatsapp.com/send?phone=60135184849&text=" + encodeMsj;
-    
-    $("#contact").attr("href",url);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
 });
 
-//triggered when reject modal is about to be shown
-$('#modal-reject').on('show.bs.modal', function(e) {
+ $('#modal-view-car').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var bookingId = $(e.relatedTarget).data('book-id');
+   // var carId = $(e.relatedTarget).data('car-id');
+  //  var carMake = $(e.relatedTarget).data('car-makes');
+   // var carModel =$(e.relatedTarget).data('car-models');
+   // var carMax =$(e.relatedTarget).data('car-max');
+    //var carDesc =$(e.relatedTarget).data('car-desc');
+    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
 
     //populate the textbox
-    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
 });
 
-//triggered when cancel modal is about to be shown
-$('#modal-cancel').on('show.bs.modal', function(e) {
+ $('#modal-view-RM').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var bookingId = $(e.relatedTarget).data('book-id');
+   // var carId = $(e.relatedTarget).data('car-id');
+  //  var carMake = $(e.relatedTarget).data('car-makes');
+   // var carModel =$(e.relatedTarget).data('car-models');
+   // var carMax =$(e.relatedTarget).data('car-max');
+    //var carDesc =$(e.relatedTarget).data('car-desc');
+    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
 
     //populate the textbox
-    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
 });
 
-
-//triggered when complete modal is about to be shown
-$('#modal-complete').on('show.bs.modal', function(e) {
+ $('#modal-view-user').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var bookingId = $(e.relatedTarget).data('book-id');
+   // var carId = $(e.relatedTarget).data('car-id');
+  //  var carMake = $(e.relatedTarget).data('car-makes');
+   // var carModel =$(e.relatedTarget).data('car-models');
+   // var carMax =$(e.relatedTarget).data('car-max');
+    //var carDesc =$(e.relatedTarget).data('car-desc');
+    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
 
     //populate the textbox
-    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
 });
 
-//triggered when complete modal is about to be shown
-$('#modal-delete').on('show.bs.modal', function(e) {
+ $('#modal-delete-car').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var bookingId = $(e.relatedTarget).data('book-id');
-
+    //var carId = $(e.relatedTarget).data('car-id');
     //populate the textbox
-    $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
 });
 
-//booking details modal
-$('#modal-details').on('show.bs.modal', function(e) {
+$('#modal-delete-RM').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
-    var carId = $(e.relatedTarget).data('car-id');
-    var carMake = $(e.relatedTarget).data('car-makes');
-    var carModel =$(e.relatedTarget).data('car-models');
-    var ownerName =$(e.relatedTarget).data('owner-name');
-    var hourlyRate =parseFloat($(e.relatedTarget).data('hourly-rate'));
-    var totalPrice =parseFloat($(e.relatedTarget).data('total-price'));
-    var totalHours =parseInt($(e.relatedTarget).data('total-hours'));
-
+    //var carId = $(e.relatedTarget).data('car-id');
     //populate the textbox
-    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
-    $(e.currentTarget).find('input[name="carModel"]').val(carModel);
-    $(e.currentTarget).find('input[name="companyName"]').val(ownerName);
-    
-    $(e.currentTarget).find('input[name="hourlyRate"]').val(hourlyRate);
-    $(e.currentTarget).find('textarea[name="hoursRent"]').val(totalHours);
-    $(e.currentTarget).find('input[name="totalRate"]').val(totalPrice);
+   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+});
+
+$('#modal-delete-user').on('show.bs.modal', function(e) {
+
+    //get data-id attribute of the clicked element
+    //var carId = $(e.relatedTarget).data('car-id');
+    //populate the textbox
+    //$(e.currentTarget).find('input[name="carID"]').val(carId);
 });
 </script>
 <script src="dist/js/extra.js"></script>

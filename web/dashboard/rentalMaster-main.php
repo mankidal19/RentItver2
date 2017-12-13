@@ -78,9 +78,9 @@ desired effect
     <!-- Logo -->
     <a href="rentalMaster-main.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>R</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>RENT</b>IT</span>
     </a>
 
     <!-- Header Navbar -->
@@ -306,7 +306,7 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+              <div id="completeBookingList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example1_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                 <thead>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -397,7 +397,7 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example2_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
+              <div id="confirmBookingList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example2_length"></div></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
                 <thead>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
@@ -448,7 +448,7 @@ desired effect
                       }
                       else
                       {
-                        echo("Approve (".$row['confirmCode'].")");
+                        echo("Approved<br><br><b>Confirmation Code: <br>".$row['confirmCode']."</b>");
                       }?>
                       <td><?php echo($row['hoursRent']); ?></td>
                       <?php
@@ -457,13 +457,14 @@ desired effect
                         $result3=mysqli_query($conn,$sql3) or trigger_error($conn->error."[$sql3]");
                         $row3=mysqli_fetch_array($result3);
                         $maxPassenger=$row3['maxPassenger'];
+                        $strCompanyName = str_replace(' ', '&nbsp;', $_SESSION['username']);
                       ?>
                       <td><?php echo($maxPassenger) ?></td>
                       <td><?php echo($row['totalPay']) ?></td>
                       <td style="width: 5%;">
                       <!--<button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" data-target="#modal-edit" data-book-id=<?php echo($row['bookID']) ?> data-car-id=<?php echo($row['carID']) ?> data-cust-name=<?php echo($customerName) ?> data-start-date=<?php echo($row['startDate']) ?> data-return-date=<?php echo($row['returnDate']) ?> data-start-time=<?php echo($row['startTime']) ?> data-return-time=<?php echo($row['returnTime']) ?> data-total-pay=<?php echo($row['totalPay']) ?>>Edit</button>-->
                      
-                      <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel" data-book-id=<?php echo($row['bookID']) ?>>Cancel</button>
+                      <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-cancel"  data-book-id=<?php echo($row['bookID']); ?> data-customer-id=<?php echo($customerName); ?> data-company-id=<?php echo($strCompanyName); ?> data-start-date=<?php echo($row['startDate']); ?>  data-start-time=<?php echo($row['startTime']); ?>>Cancel</button>
                      
                       <button type="button" class="btn btn-block bg-olive btn-xs" data-toggle="modal" data-target="#modal-complete" data-book-id=<?php echo($row['bookID']) ?>>Complete</button>
                       </td>
@@ -518,7 +519,7 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div id="carList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example3_length"></div></div></div><div class="row"><div class="col-sm-12">
+              <div id="newBookingList" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="example3_length"></div></div></div><div class="row"><div class="col-sm-12">
                           <table id="example3" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example3_info">
                 <thead>
                 <tr role="row">
@@ -613,9 +614,10 @@ desired effect
                 <h4 class="modal-title">Approve Booking</h4>
               </div>
               <div class="modal-body">
-                  <p>Approve booking: <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" value='adas'>
-                    <input  type="text" name="confirmationCode" readonly="" value='' hidden>
-                    <br>
+                  <p><h3>Approve booking: <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="" value='adas'>
+                    <br>Confirmation code: <input style="background-color: transparent; border: none;"  type="text" name="confirmationCode" readonly="" value=''>
+                    <br></h3>
+                  <br>
                    Booking will be moved to CONFIRMED BOOKING LISTS.</p>
                   <center>
                   <a target="_blank" href="" role="button" id="contact" class="btn btn-warning btn-outline">
@@ -624,7 +626,7 @@ desired effect
                   </center>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
                 <button type="submit" class="btn btn-outline" formaction="../php/approve.php">Confirm</button>
               </div>
             </div>
@@ -699,8 +701,13 @@ desired effect
                 <h4 class="modal-title">Cancel Booking</h4>
               </div>
               <div class="modal-body">
-                <p>Cancel booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="">
-                  <br>Booking will be DELETED from the system.</p>
+                  <p><h4>Cancel booking <input style="background-color: transparent; border: none;" type="text" name="bookingID" readonly="">
+                  </h4><br><br>Booking will be DELETED from the system.</p>
+                <center>
+                  <a target="_blank" href="" role="button" id="contact2" class="btn btn-warning btn-outline">
+                      <img src="dist/img/whatsapp-logo.png" width="50px">
+                      SEND CANCELLATION MESSAGE</a>
+                  </center>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button>
@@ -883,7 +890,7 @@ $('#modal-approve').on('show.bs.modal', function(e) {
     
     //make random string
     var confirmCode = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     for (var i = 0; i < 5; i++)
       confirmCode += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -913,9 +920,22 @@ $('#modal-cancel').on('show.bs.modal', function(e) {
 
     //get data-id attribute of the clicked element
     var bookingId = $(e.relatedTarget).data('book-id');
+    var customerId = $(e.relatedTarget).data('customer-id');
+    var companyName = $(e.relatedTarget).data('company-id');
+    var startDate = $(e.relatedTarget).data('start-date');
+    var startTime = $(e.relatedTarget).data('start-time');
 
     //populate the textbox
     $(e.currentTarget).find('input[name="bookingID"]').val(bookingId);
+    
+    var message = "Hi " + customerId + "! We are from " + companyName +", would like to regrettably inform you that your booking #"+bookingId+" is *CANCELLED* due to unavoidable circumtances.\n\n*Below are details of the CANCELLED BOOKING:*\nStart Date: "+startDate+"\nStart Time: "+startTime+"\n\nKindly immediately consult us for replacement car arrangement if you're still interested.";
+    var encodeMsj = encodeURIComponent(message);
+    //alert(confirmCode);
+   // $(e.currentTarget).find('input[name="confirmationCode"]').val(confirmCode);
+   
+    var url = "https://api.whatsapp.com/send?phone=60135184849&text=" + encodeMsj;
+    
+    $("#contact2").attr("href",url);
 });
 
 

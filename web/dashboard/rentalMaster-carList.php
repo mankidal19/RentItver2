@@ -83,9 +83,9 @@ desired effect
     <!-- Logo -->
     <a href="rentalMaster-main.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>R</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>RENT</b>IT</span>
     </a>
 
     <!-- Header Navbar -->
@@ -233,7 +233,7 @@ desired effect
         | Your Page Content Here |
         -------------------------->
         
-           <!--delete booking modal-->   
+           <!--delete car modal-->   
       <form action="../php/deleteCar.php" method="POST">
      <div class="modal modal-warning fade" id="modal-delete">
           <div class="modal-dialog">

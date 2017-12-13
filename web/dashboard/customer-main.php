@@ -99,9 +99,9 @@ desired effect
     <!-- Logo -->
     <a href="../index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>R</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>RENT</b>IT</span>
     </a>
 
     <!-- Header Navbar -->
@@ -525,7 +525,7 @@ desired effect
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" >Cancel</button>
-                <a href="" role="button" id="contact" class="btn btn-outline">Proceed</a>
+                <a href="" target="_blank" role="button" id="contact" class="btn btn-outline">Proceed</a>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -568,6 +568,9 @@ desired effect
                   </div> 
                   
                   <!--coding for displaying map-->
+                  <h3>Pickup Location</h3>
+                    <div id="map"></div>
+                  
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline" data-dismiss="modal" >OK</button>
