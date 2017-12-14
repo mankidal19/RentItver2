@@ -1,4 +1,15 @@
-<?php session_start() ?>
+<?php session_start(); 
+  include('../php/config.php'); 
+  $sql5="select* from user where level='user'";
+  $result5=mysqli_query($conn,$sql5) or trigger_error($conn->error."[$sql5]");
+  $_SESSION['TOTALUSER']= mysqli_num_rows($result5);
+  $sql6="select* from car";
+  $result6=mysqli_query($conn,$sql6) or trigger_error($conn->error."[$sql6]");
+  $_SESSION['TOTALCAR']= mysqli_num_rows($result6);
+  $sql7="select* from rentalmaster";
+  $result7=mysqli_query($conn,$sql7) or trigger_error($conn->error."[$sql7]");
+  $_SESSION['TOTALRENTALMASTER']= mysqli_num_rows($result7);
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -123,8 +134,7 @@ desired effect
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php
-                  include('../php/config.php');    
+              <span class="hidden-xs"><?php   
                   $ownerID=$_SESSION['ID'];
                   $sql="select * from user where userID='$ownerID'";
                   $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
@@ -232,7 +242,7 @@ desired effect
         | Your Page Content Here |
         -------------------------->
         <!--delete car modal-->   
-      <form action="../php/deleteCar.php" method="POST">
+      <form action="../php/deleteCarAdmin.php" method="POST">
      <div class="modal modal-warning fade" id="modal-delete-car">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -257,7 +267,7 @@ desired effect
      </form>
         
         <!--delete rental master modal-->   
-      <form action="../php/deleteCar.php" method="POST">
+      <form action="../php/deleteRentalMaster.php" method="POST">
      <div class="modal modal-warning fade" id="modal-delete-RM">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -268,6 +278,7 @@ desired effect
               </div>
               <div class="modal-body">
                 <p>Delete Rental Master with username:  <input type="text" style="color:black; background: transparent; border: none;" name="username" readonly="">
+                  <input type="text" style="color:black; background: transparent; border: none;" name="userID" readonly="" hidden>
                   <br>All related car details will also be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
@@ -282,7 +293,7 @@ desired effect
      </form>
         
          <!--delete rental master modal-->   
-      <form action="../php/deleteCar.php" method="POST">
+      <form action="../php/deleteUser.php" method="POST">
      <div class="modal modal-warning fade" id="modal-delete-user">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -293,6 +304,7 @@ desired effect
               </div>
               <div class="modal-body">
                 <p>Delete user with username:  <input type="text" style="color:black; background: transparent; border: none;" name="username" readonly="">
+                  <input type="text" style="color:black; background: transparent; border: none;" name="userID" readonly="" hidden>
                   <br>All related details will also be DELETED from the system.</p>
               </div>
               <div class="modal-footer">
@@ -312,7 +324,7 @@ desired effect
               
             <div class="modal-content">
               
-              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+              <form role="form" action="../php/editCarAdmin.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -376,7 +388,8 @@ desired effect
               
             <div class="modal-content">
               
-              <form role="form" action="../php/editCar.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+              <form role="form" method="" enctype="multipart/form-data" id="edi
+              tCarDetails">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -389,14 +402,14 @@ desired effect
                   <div class="form-group">
                       <label for="carID">Car ID</label>
                 
-                    <input type="text" name="carID" readonly="">
+                    <input type="text" name="carID" readonly=""  style="color:black; border: none;">
                   </div>  
                   
                 <div class="form-group">
                   <label for="carDetails">Car Details: </label>
-                  <input name="car-years" id="car-years" readonly="">
-                    <input name="car-makes" id="car-makes" readonly="">
-                    <input name="car-models" id="car-models" readonly="">
+                  <input name="car-years" id="car-years" readonly=""  style="color:black; border: none;">
+                  <input name="car-makes" id="car-makes" readonly=""  style="color:black;  border: none;">
+                  <input name="car-models" id="car-models" readonly=""  style="color:black;  border: none;">
                 </div>
                   
                 <div class="form-group">
@@ -406,7 +419,7 @@ desired effect
                   
                 <div class="form-group">
                   <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" readonly=""style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
+                  <input type="number" readonly="" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
                 </div>  
                   
                 <div class="form-group">
@@ -414,11 +427,6 @@ desired effect
                   <textarea class="form-control" readonly="" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
                 </div>  
                   
-                <div class="form-group">
-                <label for="exampleInputFile">Car's photo:</label>
-                <input type="image" id="carPhoto" name="carFile" readonly="">
-                </div> 
-                
               </div>
               <!-- /.box-body -->
 
@@ -467,12 +475,12 @@ desired effect
                                             </p>
                                         </div>
 
-                                        <div class='form-group'>
+<!--                                         <div class='form-group'>
                                             <p>
                                                 <label for='establishDate'>* Date of Establishment:</label>
                                                 <input readonly="" type="date" id="establishDate_div2" name="establishDate_div2" class='form-control' required/>
                                             </p>
-                                        </div>
+                                        </div> -->
 
                                         <div class='form-group'>
                                             <p>
@@ -613,12 +621,12 @@ desired effect
 
                                         </div>
 
-                                        <div class='form-group'>
+<!--                                         <div class='form-group'>
                                             <p>
                                                 <label for='birthDate_div1'>* Date of Birth:</label>
                                                 <input readonly="" type="date" id="birthDate_div1" name="birthDate_div1" class='form-control' required/>
                                             </p>
-                                        </div>
+                                        </div> -->
 
 
                                         <div class='form-group'>
@@ -651,7 +659,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>10</h3>
+              <h3><?php echo($_SESSION['TOTALUSER']) ?> </h3>
 
               <p>Total<br>Customers</p>
             </div>
@@ -667,7 +675,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>2</h3>
+              <h3><?php echo($_SESSION['TOTALRENTALMASTER']) ?> </h3>
 
               <p>Total <br>Rental Masters</p>
             </div>
@@ -684,7 +692,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>10</h3>
+              <h3><?php echo($_SESSION['TOTALCAR']) ?> </h3>
 
               <p>Cars <br>Registered</p>
             </div>
@@ -732,11 +740,8 @@ desired effect
                 </thead>
                 <tbody>
                 <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
-                  while($row=mysqli_fetch_array($result))
+                  while($row=mysqli_fetch_array($result6))
                   { 
                     if($count%2!=0)
                     {
@@ -745,19 +750,27 @@ desired effect
                     else
                     {
                       ?><tr role="row" class="even"><?php
-                    }?>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                    }
+                    $sql2="select* from rentalmaster where userID='{$row['ownerID']}'";
+                    $result2=mysqli_query($conn,$sql2) or trigger_error($conn->error."[$sql2]");
+                    $row2=mysqli_fetch_array($result2);
+                    ?><td><?php echo ("{$row2['username']}"); ?></td><?php 
+                    ?><td><?php echo ("{$row['carID']}"); ?></td><?php 
+                    ?><td><?php echo ("{$row['makes']}"); ?></td><?php 
+                    ?><td><?php echo ("{$row['models']}"); ?></td><?php 
+                    ?><td><?php 
+                            $carID="{$row['carID']}";
+                            $et="jpg";
+                            $carPhoto= "profile".$carID.".".$et;
+                            $path="../images/uploadCar/".$carPhoto;
+                            echo("<img src='$path' height='130' width='400'>"); ?></td>
                       <td>
-                            <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-edit-car" >Edit</button>
-                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-car" >View More</button>
-                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-car" >Delete</button>
+                            <?php $description=str_replace(' ','&nbsp;',$row['description']); ?>
+                            <button type="button" class="btn btn-block btn-warning btn-xs" data-toggle="modal" data-target="#modal-edit-car" data-carid=<?php echo($row['carID']); ?> data-year=<?php echo($row['year']); ?> data-makes=<?php echo($row['makes']); ?> data-models=<?php echo($row['models']); ?> data-hourlyrate=<?php echo($row['hourlyRate']); ?> data-maxpassenger=<?php echo($row['maxPassenger']); ?> data-description=<?php echo($description); ?>>Edit</button>
+                            <button type="button" class="btn btn-block btn-success btn-xs" data-carid=<?php echo($row['carID']); ?> data-year=<?php echo($row['year']); ?> data-makes=<?php echo($row['makes']); ?> data-models=<?php echo($row['models']); ?> data-hourlyrate=<?php echo($row['hourlyRate']); ?> data-maxpassenger=<?php echo($row['maxPassenger']); ?> data-description=<?php echo($description); ?> data-toggle="modal" data-target="#modal-view-car" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-car" data-carid=<?php echo($row['carID']); ?> >Delete</button>
                      
                       </td>
-                      
                       </tr><?php
                     $count+=1;
                   }
@@ -801,18 +814,34 @@ desired effect
                 </thead>
                 <tbody>
                     <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                 <?php 
+                  $count=0;
+                  while($row=mysqli_fetch_array($result7))
+                  { 
+                    if($count%2!=0)
+                    {
+                      ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                      ?><tr role="row" class="even"><?php
+                    }
+                      ?><td><?php echo("{$row['userID']}") ?></td><?php
+                      ?><td><?php echo("{$row['username']}") ?></td><?php
+                      ?><td><?php echo("{$row['firstName']}") ?></td><?php
+                      ?><td><?php echo("{$row['lastName']}") ?></td><?php
+                      ?><td><?php echo("{$row['email']}") ?></td><?php
+                      ?><td><?php echo("{$row['city']}") ?></td><?php
+                      ?><td><?php echo("{$row['state']}") ?></td>
                       <td style="width: 5%;">
-                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-RM" >View More</button>
-                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-RM" >Delete</button>
+                            <?php $address1 = str_replace(' ','&nbsp;',$row['address1']); ?> 
+                            <?php $address2 = str_replace(' ','&nbsp;',$row['address2']); ?> 
+                            <?php $city = str_replace(' ','&nbsp;',$row['city']); ?> 
+                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($row['username']); ?> data-companyregistrationnumber=<?php echo($row['businessId']); ?> data-address1=<?php echo($address1); ?> data-address2=<?php echo($address2); ?> data-postcode=<?php echo($row['postcode']); ?> data-state=<?php echo($row['state']); ?> data-city=<?php echo($city); ?> data-companyemail=<?php echo($row['cemail']); ?> data-companycontactnumber=<?php echo($row['cphone']); ?> data-title=<?php echo($row['title']); ?> data-firstname=<?php echo($row['firstName']); ?> data-lastname=<?php echo($row['lastName']); ?> data-gender=<?php echo($row['gender']); ?> data-position=<?php echo($row['position']); ?> data-email=<?php echo($row['email']); ?> data-contactnumber=<?php echo($row['phone']); ?> data-target="#modal-view-RM" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($row['username']); ?> data-target="#modal-delete-RM" >Delete</button>
                      
-                       </td>
+                       </td><?php
+                  } ?>
                        </tr>
                     <tr role="row" class="even">
                   <!--  <td class="">booking_id2</td>
@@ -872,18 +901,28 @@ desired effect
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                 <?php 
+                  $count=0;
+                  while($row=mysqli_fetch_array($result5))
+                  { 
+                    if($count%2!=0)
+                    {
+                      ?><tr role="row" class="odd"><?php
+                    }
+                    else
+                    {
+                      ?><tr role="row" class="even"><?php
+                    }
+                      ?><td><?php echo("{$row['userID']}") ?></td><?php
+                      ?><td><?php echo("{$row['username']}") ?></td><?php
+                      ?><td><?php echo("{$row['gender']}") ?></td><?php
+                      ?><td><?php echo("{$row['email']}") ?></td><?php
+                      ?><td><?php echo("{$row['phone']}") ?></td>
                       <td style="width: 5%;">
-                           <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-target="#modal-view-user" >View More</button>
-                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-target="#modal-delete-user" >Delete</button>
-                     
-                       </td>
+                           <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-email=<?php echo($row['email']); ?> data-gender=<?php echo($row['gender']); ?> data-phone=<?php echo($row['phone']); ?> data-birthDate=<?php echo($row['birthDate']); ?> data-target="#modal-view-user" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-username=<?php echo($row['username']); ?> data-target="#modal-delete-user" >Delete</button>
+                       </td><?php
+                    } ?>
                        </tr>
                     <tr role="row" class="even">
                  
@@ -1040,94 +1079,110 @@ desired effect
 <script>
  $('#modal-edit-car').on('show.bs.modal', function(e) {
 
-    //get data-id attribute of the clicked element
-   // var carId = $(e.relatedTarget).data('car-id');
-  //  var carMake = $(e.relatedTarget).data('car-makes');
-   // var carModel =$(e.relatedTarget).data('car-models');
-   // var carMax =$(e.relatedTarget).data('car-max');
-    //var carDesc =$(e.relatedTarget).data('car-desc');
-    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
+   var carId = $(e.relatedTarget).data('carid');
+   var carMake = $(e.relatedTarget).data('makes');
+   var year = $(e.relatedTarget).data('year');
+   var carModel =$(e.relatedTarget).data('models');
+   var carMax =$(e.relatedTarget).data('maxpassenger');
+   var carDesc =$(e.relatedTarget).data('description');
+   var carRate =$(e.relatedTarget).data('hourlyrate');
 
-    //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
-   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
-   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
-   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+   $(e.currentTarget).find('input[name="carID"]').val(carId);
+   $(e.currentTarget).find('select[name="car-years"]').val(year);
+   $(e.currentTarget).find('select[name="car-makes"]').val(carMake);
+   $(e.currentTarget).find('select[name="car-models"]').val(carModel);
+   $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+   $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
 });
 
  $('#modal-view-car').on('show.bs.modal', function(e) {
+   var carId = $(e.relatedTarget).data('carid');
+   var carMake = $(e.relatedTarget).data('makes');
+   var year = $(e.relatedTarget).data('year');
+   var carModel =$(e.relatedTarget).data('models');
+   var carMax =$(e.relatedTarget).data('maxpassenger');
+   var carDesc =$(e.relatedTarget).data('description');
+   var carRate =$(e.relatedTarget).data('hourlyrate');
 
-    //get data-id attribute of the clicked element
-   // var carId = $(e.relatedTarget).data('car-id');
-  //  var carMake = $(e.relatedTarget).data('car-makes');
-   // var carModel =$(e.relatedTarget).data('car-models');
-   // var carMax =$(e.relatedTarget).data('car-max');
-    //var carDesc =$(e.relatedTarget).data('car-desc');
-    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
-
-    //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
-   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
-   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
-   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+   $(e.currentTarget).find('input[name="carID"]').val(carId);
+   $(e.currentTarget).find('input[name="car-years"]').val(year);
+   $(e.currentTarget).find('input[name="car-makes"]').val(carMake);
+   $(e.currentTarget).find('input[name="car-models"]').val(carModel);
+   $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+   $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
+   $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
 });
 
  $('#modal-view-RM').on('show.bs.modal', function(e) {
-
-    //get data-id attribute of the clicked element
-   // var carId = $(e.relatedTarget).data('car-id');
-  //  var carMake = $(e.relatedTarget).data('car-makes');
-   // var carModel =$(e.relatedTarget).data('car-models');
-   // var carMax =$(e.relatedTarget).data('car-max');
-    //var carDesc =$(e.relatedTarget).data('car-desc');
-    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
-
+    var companyName=$(e.relatedTarget).data('companyname');
+    var companyRegistrationNumber=$(e.relatedTarget).data('companyregistrationnumber');
+    var address1=$(e.relatedTarget).data('address1');
+    var address2=$(e.relatedTarget).data('address2');
+    var postcode=$(e.relatedTarget).data('postcode');
+    var state=$(e.relatedTarget).data('state');
+    var city=$(e.relatedTarget).data('city');
+    var companyEmail=$(e.relatedTarget).data('companyemail');
+    var companyContactNumber=$(e.relatedTarget).data('companycontactnumber');
+    var title=$(e.relatedTarget).data('title');
+    var firstName=$(e.relatedTarget).data('firstname');
+    var lastName=$(e.relatedTarget).data('lastname');
+    var gender=$(e.relatedTarget).data('gender');
+    var position=$(e.relatedTarget).data('position');
+    var email=$(e.relatedTarget).data('email');
+    var phone=$(e.relatedTarget).data('contactnumber');
     //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
-   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
-   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
-   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+    $(e.currentTarget).find('input[name="companyName_div2"]').val(companyName);
+    $(e.currentTarget).find('input[name="companyRegNum_div2"]').val(companyRegistrationNumber);
+    $(e.currentTarget).find('input[name="address1_div2"]').val(address1);
+    $(e.currentTarget).find('input[name="address2_div2"]').val(address2);
+    $(e.currentTarget).find('input[name="postcode_div2"]').val(postcode);
+    $(e.currentTarget).find('input[name="state"]').val(state);
+    $(e.currentTarget).find('input[name="city"]').val(city);
+    $(e.currentTarget).find('input[name="EMail_div2"]').val(companyEmail);
+    $(e.currentTarget).find('input[name="Phone_div2"]').val(companyContactNumber);
+    $(e.currentTarget).find('input[name="title"]').val(title);
+    $(e.currentTarget).find('input[name="firstName_div2"]').val(firstName);
+    $(e.currentTarget).find('input[name="lastName_div2"]').val(lastName);
+    $(e.currentTarget).find('input[name="gender_div2"]').val(gender);
+    $(e.currentTarget).find('input[name="position_div2"]').val(position);
+    $(e.currentTarget).find('input[name="privateEMail_div2"]').val(email);
+    $(e.currentTarget).find('input[name="privatePhone_div2"]').val(phone);
+
 });
 
  $('#modal-view-user').on('show.bs.modal', function(e) {
 
-    //get data-id attribute of the clicked element
-   // var carId = $(e.relatedTarget).data('car-id');
-  //  var carMake = $(e.relatedTarget).data('car-makes');
-   // var carModel =$(e.relatedTarget).data('car-models');
-   // var carMax =$(e.relatedTarget).data('car-max');
-    //var carDesc =$(e.relatedTarget).data('car-desc');
-    //var carRate =parseFloat($(e.relatedTarget).data('car-rate'));
-
-    //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
-   // $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
-   // $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
-   // $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
+   var email = $(e.relatedTarget).data('email');
+   var gender = $(e.relatedTarget).data('gender');
+   var phone =$(e.relatedTarget).data('phone');
+   // var birthDate =$(e.relatedTarget).data('birthDate');
+   // alert(birthDate);
+   $(e.currentTarget).find('input[name="EMail_div1"]').val(email);
+   $(e.currentTarget).find('input[name="gender_div1"]').val(gender);
+   $(e.currentTarget).find('input[name="Phone_div1"]').val(phone);
+   // $(e.currentTarget).find('input[name="birthDate_div1"]').val(birthDate);
 });
 
  $('#modal-delete-car').on('show.bs.modal', function(e) {
 
-    //get data-id attribute of the clicked element
-    //var carId = $(e.relatedTarget).data('car-id');
-    //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
+   var carId = $(e.relatedTarget).data('carid');
+   $(e.currentTarget).find('input[name="carID"]').val(carId);
 });
 
 $('#modal-delete-RM').on('show.bs.modal', function(e) {
+    var companyName=$(e.relatedTarget).data('companyname');
+    var companyID=$(e.relatedTarget).data('userid');
+    $(e.currentTarget).find('input[name="username"]').val(companyName);
+    $(e.currentTarget).find('input[name="userID"]').val(companyID);
 
-    //get data-id attribute of the clicked element
-    //var carId = $(e.relatedTarget).data('car-id');
-    //populate the textbox
-   // $(e.currentTarget).find('input[name="carID"]').val(carId);
 });
 
 $('#modal-delete-user').on('show.bs.modal', function(e) {
-
-    //get data-id attribute of the clicked element
-    //var carId = $(e.relatedTarget).data('car-id');
-    //populate the textbox
-    //$(e.currentTarget).find('input[name="carID"]').val(carId);
+    var userID = $(e.relatedTarget).data('userid');
+    var username = $(e.relatedTarget).data('username');
+    $(e.currentTarget).find('input[name="userID"]').val(userID);
+    $(e.currentTarget).find('input[name="username"]').val(username);
 });
 </script>
 <script src="dist/js/extra.js"></script>

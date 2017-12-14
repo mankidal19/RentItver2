@@ -1,4 +1,17 @@
-<?php session_start() ?>
+<?php 
+  session_start();
+  include('../php/config.php');
+  $userID=$_SESSION['ID'];
+  $sql10="select* from booklist where ownerID='$userID' and status=0";
+  $result10=mysqli_query($conn,$sql10) or trigger_error($conn->error."[$sql]");
+  $_SESSION['NEWBOOKING']=mysqli_num_rows($result10);
+  $sql11="select* from booklist where ownerID='$userID' and status=3";
+  $result11=mysqli_query($conn,$sql11) or trigger_error($conn->error."[$sql11]");
+  $_SESSION['COMPLETEDBOOKING']=mysqli_num_rows($result11);
+  $sql12="select* from booklist where ownerID='$userID' and status!=0 and status!=3";
+  $result12=mysqli_query($conn,$sql12) or trigger_error($conn->error."[$sql]");
+  $_SESSION['CONFIRMEDBOOKING']=mysqli_num_rows($result12);
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -124,7 +137,6 @@ desired effect
               <!-- The user image in the navbar-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><?php
-                  include('../php/config.php');    
                   $ownerID=$_SESSION['ID'];
                   $sql="select * from rentalmaster where userID='$ownerID'";
                   $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
@@ -237,7 +249,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>2</h3>
+              <h3><?php echo($_SESSION['NEWBOOKING']); ?></h3>
 
               <p>New Booking <br>Request(s)</p>
             </div>
@@ -253,7 +265,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>2</h3>
+              <h3><?php echo($_SESSION['CONFIRMEDBOOKING']); ?></h3>
 
               <p>Confirmed <br>Booking(s)</p>
             </div>
@@ -270,7 +282,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>10</h3>
+              <h3><?php echo($_SESSION['COMPLETEDBOOKING']); ?></h3>
 
               <p>Completed <br>Booking(s)</p>
             </div>
@@ -322,11 +334,8 @@ desired effect
                 </thead>
                 <tbody>
                 <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status=3";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
-                  while($row=mysqli_fetch_array($result))
+                  while($row=mysqli_fetch_array($result11))
                   { 
                     if($count%2!=0)
                     {
@@ -414,11 +423,8 @@ desired effect
                 </thead>
                 <tbody>
                 <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status!=0 and status!=3";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
-                  while($row=mysqli_fetch_array($result))
+                  while($row=mysqli_fetch_array($result12))
                   { 
                     if($count%2!=0)
                     {
@@ -538,10 +544,7 @@ desired effect
                 </thead>
                 <tbody>
                 <?php 
-                  $userID=$_SESSION['ID'];
-                  $sql="select* from booklist where ownerID='$userID' and status=0";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
-                  while($row=mysqli_fetch_array($result))
+                  while($row=mysqli_fetch_array($result10))
                   { ?>
                     <tr role="row" class="odd">
                       <td class=""><?php echo($row['bookID']) ?></td>

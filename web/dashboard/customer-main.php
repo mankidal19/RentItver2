@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php 
+  session_start(); 
+  include('../php/config.php');
+  $userID=$_SESSION['ID']; 
+  $sql10="select * from booklist where borrorID='$userID' and status=3";
+  $result10=mysqli_query($conn,$sql10) or trigger_error($conn->error."[$sql10]");
+  $_SESSION['CUSTOMERCOMPLETED'] = mysqli_num_rows($result10);
+  $userID=$_SESSION['ID']; 
+  $sql15="select * from booklist where borrorID='$userID' and status!=3";
+  $result15=mysqli_query($conn,$sql15) or trigger_error($conn->error."[$sql15]");
+  $_SESSION['CUSTOMERBOOKING'] = mysqli_num_rows($result15);
+?>
 <?php 
   if($_SESSION['LOGIN']!="YES")
   {
@@ -144,14 +155,12 @@ desired effect
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php
-                  include('../php/config.php');    
+              <span class="hidden-xs"><?php 
                   $ownerID=$_SESSION['ID'];
-                  $sql="select * from rentalmaster where userID='$ownerID'";
+                  $sql="select * from user where userID='$ownerID'";
                   $result=mysqli_query($conn,$sql)or trigger_error($conn->error."[$sql]");
                   $row=mysqli_fetch_array($result);
                   $_SESSION['username']=$row['username'];
-                  $_SESSION['picName'] = $row['firstName']." ".$row['lastName'];
                   echo ($_SESSION['username']);
               ?></span>
             </a>
@@ -248,7 +257,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>2</h3>
+              <h3><?php echo($_SESSION['CUSTOMERBOOKING']); ?></h3>
 
               <p>Future <br>Booking(s)</p>
             </div>
@@ -265,7 +274,7 @@ desired effect
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>10</h3>
+              <h3><?php echo($_SESSION['CUSTOMERCOMPLETED']); ?></h3>
 
               <p>Completed <br>Booking(s)</p>
             </div>
@@ -321,12 +330,8 @@ desired effect
                 </thead>
                 <tbody>
                   <?php
-                  $userID=$_SESSION['ID']; 
-                  $sql="select * from booklist where borrorID='$userID' and status=3";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
-                  $count = mysqli_num_rows($result);
-                  $count = 0;
-                  while($row=mysqli_fetch_array($result))
+                  $count=0;
+                  while($row=mysqli_fetch_array($result10))
                   {
                     $ownerID=$row['ownerID'];
                     $sql2="select * from rentalmaster where userID='$ownerID'";
@@ -405,10 +410,6 @@ desired effect
                 <tbody>
                 
                 <?php
-                  $userID=$_SESSION['ID']; 
-                  $sql="select * from booklist where borrorID='$userID' and status!=3";
-                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
-                  $count = mysqli_num_rows($result);
                   $count = 0;
 
                   //getting user's username
@@ -418,7 +419,7 @@ desired effect
                   $username = $rowName['username'];
 
 
-                  while($row=mysqli_fetch_array($result))
+                  while($row=mysqli_fetch_array($result15))
                   {
                     $ownerID=$row['ownerID'];
                     $sql2="select * from rentalmaster where userID='$ownerID'";
