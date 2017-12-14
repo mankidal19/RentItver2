@@ -2,12 +2,12 @@
 	function success()
 	{
 		alert("Update Success");
-		window.location.replace("../dashboard/rentalMaster-carList.php");
+		window.location.replace("../dashboard/admin-main.php");
 	}
 	function failed()
 	{
 		alert("Update Failed");
-		window.location.replace("../dashboard/rentalMaster-carList.php");
+		window.location.replace("../dashboard/admin-main.php");
 	}
 
 </script>
@@ -15,9 +15,9 @@
 	session_start();
 	include('config.php');
 
-	$carID=$_POST['carID'];
-	$sql="delete from car where carID='$carID'";
-	$result=mysqli_query($conn,$sql);
+	$userID=$_POST['userID'];
+	$sql="delete from user where userID='$userID'";
+	$result=mysqli_query($conn,$sql) ;
 	if($result)
 	{
 		

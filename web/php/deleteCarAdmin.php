@@ -2,12 +2,12 @@
 	function success()
 	{
 		alert("Update Success");
-		window.location.replace("../dashboard/rentalMaster-carList.php");
+		window.location.replace("../dashboard/admin-main.php");
 	}
 	function failed()
 	{
 		alert("Update Failed");
-		window.location.replace("../dashboard/rentalMaster-carList.php");
+		window.location.replace("../dashboard/admin-main.php");
 	}
 
 </script>
