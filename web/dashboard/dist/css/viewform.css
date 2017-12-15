@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 15, 2017, 7:37:48 AM
+    Author     : NURUL AIMAN
+*/
+
+
+.formview input,textarea{
+    color: white;
+    background: transparent;
+    border: none;
+}
+
+.formedit input{
+    color: black;
+}
+
+.formedit select{
+    color: black;
+}

@@ -29,13 +29,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+    <script type="text/javascript" src="dist/js/carquery.js"></script>
+    
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-
+  <link href="dist/css/viewform.css" rel="stylesheet" type="text/css"/>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -151,7 +156,7 @@ desired effect
                   <?php echo ($_SESSION['username']);?>
                   <br>
                   Person incharge:<br>
-                  <?php echo ($_SESSION['picName']);?>
+                  <?php echo ($_SESSION['username']);?>
                   <small>Member since Nov. 2017</small>
                 </p>
               </li>
@@ -200,21 +205,10 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="rentalMaster-main.php"><i class="fa fa-link"></i> <span>Overview</span></a></li>
-        <li><a href="rentalMaster-profile.php"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
-       <li><a href="rentalMaster-calendar.php"><i class="fa fa-link"></i> <span>Booking Calendar</span></a></li>
+        <li class="active"><a href="admin-main.php"><i class="fa fa-link"></i> <span>Overview</span></a></li>
+       <li><a href="admin-booking-review.php"><i class="fa fa-link"></i> <span>Booking Review</span></a></li>
        
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>My Cars</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="rentalMaster-carList.php">View Car List</a></li>
-            <li ><a href="rentalMaster-addCar.php">Add New Car</a></li>
-          </ul>
-        </li>
+        
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -324,7 +318,7 @@ desired effect
               
             <div class="modal-content">
               
-              <form role="form" action="../php/editCarAdmin.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
+              <form class="formedit" role="form" action="../php/editCarAdmin.php" method="POST" enctype="multipart/form-data" id="editCarDetails">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -335,16 +329,16 @@ desired effect
                 <!-- form start -->
               <div class="box-body">
                   <div class="form-group">
-                      <label for="carID">Car ID</label>
+                      <label for="carID">Car ID: </label>
                 
-                    <input type="text" name="carID" readonly="">
+                      <input type="text" name="carID" readonly="" style="color: black; background: transparent; border: none;">
                   </div>  
                   
                 <div class="form-group">
                   <label for="carDetails">Car Details: </label>
-                  <select name="car-years" id="car-years" required></select>  
-                    <select name="car-makes" id="car-makes" required></select> 
-                    <select name="car-models" id="car-models" required></select>
+                  <select style="color: black;" name="car-years" id="car-years" required></select>  
+                    <select style="color: black;" name="car-makes" id="car-makes" required></select> 
+                    <select style="color: black;" name="car-models" id="car-models" required></select>
                 </div>
                   
                 <div class="form-group">
@@ -388,8 +382,7 @@ desired effect
               
             <div class="modal-content">
               
-              <form role="form" method="" enctype="multipart/form-data" id="edi
-              tCarDetails">
+              <form role="form" method="" enctype="multipart/form-data" id="editCarDetails" class="formview">
             
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -400,31 +393,31 @@ desired effect
                 <!-- form start -->
               <div class="box-body">
                   <div class="form-group">
-                      <label for="carID">Car ID</label>
+                      <label for="carID">Car ID:&nbsp;</label>
                 
-                    <input type="text" name="carID" readonly=""  style="color:black; border: none;">
+                    <input type="text" name="carID" readonly="">
                   </div>  
                   
                 <div class="form-group">
-                  <label for="carDetails">Car Details: </label>
-                  <input name="car-years" id="car-years" readonly=""  style="color:black; border: none;">
-                  <input name="car-makes" id="car-makes" readonly=""  style="color:black;  border: none;">
-                  <input name="car-models" id="car-models" readonly=""  style="color:black;  border: none;">
+                  <label for="carDetails">Car Details:&nbsp;</label>
+                  <input name="car-years" id="car-years" readonly=""  style="width: 30px;">
+                  <input name="car-makes" id="car-makes" readonly=""  style="width: 50px;">
+                  <input name="car-models" id="car-models" readonly="" >
                 </div>
                   
                 <div class="form-group">
-                  <label for="hourlyRate">Hourly Rate (RM): </label>
-                  <input type="number" readonly="" style="width: 10em;" min="1" max="100" step="0.10" class="form-control" id="hourlyRate" name='hourlyRate' placeholder="Enter rate" required>
+                  <label for="hourlyRate">Hourly Rate (RM):&nbsp;</label>
+                  <input name="hourlyRate" type="number" readonly="" style="width: 10em;" >
                 </div>
                   
                 <div class="form-group">
-                  <label for="maxPassenger">Maximum Passenger (including Driver): </label>
-                  <input type="number" readonly="" style="width: 10em;" min="1" max="10" step="1" class="form-control" id="maxPassenger" name='maxPassenger' placeholder="Enter maximum passenger allowed" required>
+                  <label for="maxPassenger">Maximum Passenger (including Driver):&nbsp;</label>
+                  <input type="number" readonly="" style="width: 10em;" id="maxPassenger" name='maxPassenger'>
                 </div>  
                   
                 <div class="form-group">
                   <label for="carDesc">Car Description: </label>
-                  <textarea class="form-control" readonly="" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' placeholder="Descibe your car & more details about the car rental" required></textarea>
+                  <input readonly="" rows="10" cols="50" style="width: 50%;" id="carDesc" name='carDesc' >
                 </div>  
                   
               </div>
@@ -443,7 +436,7 @@ desired effect
         </div> 
          
          <!--view more rental master modal-->   
-     <div class="modal modal-info fade" id="modal-view-RM">
+     <div class="modal modal-info fade formview" id="modal-view-RM">
           <div class="modal-dialog">
               
             <div class="modal-content">
@@ -458,20 +451,20 @@ desired effect
                 <!-- form start -->
               <div class="box-body">
                   
-                                    <form name='rentalMaster' id='form2' action='php/insertRentalMaster.php' method='POST'>
+                                    <form class="formview" name='rentalMaster' id='form2' action='php/insertRentalMaster.php' method='POST'>
 
                                         <h3>Company Information</h3>
                                         <div class='form-group'>
                                             <p>
-                                                <label for='companyName'>* Company Name:</label>
-                                                <input readonly="" type="text" id="companyName_div2" name="companyName_div2" class='form-control' placeholder="Car Rental SDN BHD" required/>
+                                                <label for='companyName'>Company Name:</label>
+                                                <input readonly="" type="text" id="companyName_div2" name="companyName_div2"/>
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='companyRegNum'>* Company Registration Number:</label>
-                                                <input readonly="" type="text" id="companyRegNum_div2" name="companyRegNum_div2" class='form-control' placeholder="Enter Company Registration Number" required/>
+                                                <label for='companyRegNum'>Company Registration Number:</label>
+                                                <input readonly="" type="text" id="companyRegNum_div2" name="companyRegNum_div2"/>
                                             </p>
                                         </div>
 
@@ -485,87 +478,87 @@ desired effect
                                         <div class='form-group'>
                                             <p>
                                                 <label for='address1'>Address (line 1):</label>
-                                                <input readonly="" type="text" id="address1_div2" name="address1_div2" class='form-control' placeholder="123, Street ABC" required/>
-
+                                                <input readonly="" type="text" id="address1_div2" name="address1_div2"/>
+                                                <br>
                                                 <label for='address2'>Address (line 2):</label>
-                                                <input readonly="" type="text" id="address2_div2" name="address2_div2" class='form-control' placeholder="off Petaling Street"/>
-
-                                                <label for='postcode' >* Postcode</label>
-                                                <input readonly="" type="text" id="postcode_div2" name="postcode_div2" class='form-control' placeholder="08100" required/>
-
+                                                <input readonly="" type="text" id="address2_div2" name="address2_div2"/>
+<br>
+                                                <label for='postcode' >Postcode: </label>
+                                                <input readonly="" type="text" id="postcode_div2" name="postcode_div2"/>
+                                                    <br>
                                                 <input type="hidden" name="country_div2" id="countryId" value="MY"/>
-                                                <label for='state' >* State</label>
-                                                <input readonly="" type="text" id="state" name="state" class='form-control' placeholder="08100" required/>
-
-                                                <label for='city' >* City</label>
-                                                <input readonly="" type="text" id="city" name="city" class='form-control' placeholder="08100" required/>
-
+                                                <label for='state' >State: </label>
+                                                <input readonly="" type="text" id="state" name="state"/>
+                                                        <br>
+                                                <label for='city' >City: </label>
+                                                <input readonly="" type="text" id="city" name="city" />
+                                                        <br>
 
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='EMail' >* Company E-mail:</label>
-                                                <input readonly="" type="text" id="EMail_div2" name="EMail_div2" class='form-control' placeholder="rentacar@mail.com" required/>
+                                                <label for='EMail' >Company E-mail: </label>
+                                                <input readonly="" type="text" id="EMail_div2" name="EMail_div2" />
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='Phone' >* Company Contact Number:</label>
-                                                <input readonly="" type="text" id="Phone_div2" name="Phone_div2" class='form-control' placeholder="0123456789" required/>
+                                                <label for='Phone' >Company Contact Number: </label>
+                                                <input readonly="" type="text" id="Phone_div2" name="Phone_div2" />
                                             </p>
                                         </div>
 
                                         <h3>Person in-Charge Information</h3>
                                         <div class='form-group'>
                                             <p>
-                                                <label for='title' >* Title:</label>
-                                                <input readonly="" type="text" id="title" name="title" class='form-control' placeholder="08100" required/>
+                                                <label for='title' >Title: </label>
+                                                <input readonly="" type="text" id="title" name="title" />
 
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='firstName'>* First Name:</label>
-                                                <input readonly="" type="text" id="firstName_div2" name="firstName_div2" class='form-control' placeholder="John" required/>
+                                                <label for='firstName'>First Name: </label>
+                                                <input readonly="" type="text" id="firstName_div2" name="firstName_div2" />
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='lastName' >* Last Name:</label>
-                                                <input readonly="" type="text" id="lastName_div2" name="lastName_div2" class='form-control' placeholder="Doe" required/>
+                                                <label for='lastName' >Last Name: </label>
+                                                <input readonly="" type="text" id="lastName_div2" name="lastName_div2" />
                                             </p>
                                         </div>
 
                                         <div class="btn-group form-group" data-toggle="buttons">
-                                            <label for='gender_div2'>* Gender:</label><br>
-                                            <input readonly="" type="text" id="gender_div2" name="gender_div2" class='form-control' placeholder="08100" required/>
+                                            <label for='gender_div2'>Gender: </label><br>
+                                            <input readonly="" type="text" id="gender_div2" name="gender_div2"/>
 
 
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='position' >* Position:</label>
-                                                <input readonly="" type="text" id="position_div2" name="position_div2" class='form-control' placeholder="Marketing Officer" required/>
+                                                <label for='position' >Position: </label>
+                                                <input readonly="" type="text" id="position_div2" name="position_div2"/>
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='EMail' >* E-mail:</label>
-                                                <input readonly="" type="text" id="privateEMail_div2" name="privateEMail_div2" class='form-control' placeholder="johndoe@mail.com" required/>
+                                                <label for='EMail' >E-mail: </label>
+                                                <input readonly="" type="text" id="privateEMail_div2" name="privateEMail_div2"/>
                                             </p>
                                         </div>
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='Phone'>Contact Number:</label>
-                                                <input readonly="" type="text" id="privatePhone_div2" name="privatePhone_div2" class='form-control' placeholder="0123456789" required/>
+                                                <label for='Phone'>Contact Number: </label>
+                                                <input readonly="" type="text" id="privatePhone_div2" name="privatePhone_div2"/>
                                             </p>
                                         </div>
                                         </form>   
@@ -588,7 +581,7 @@ desired effect
         </div> 
          
          <!--view more user modal-->   
-     <div class="modal modal-info fade" id="modal-view-user">
+     <div class="modal modal-info fade formview" id="modal-view-user">
           <div class="modal-dialog">
               
             <div class="modal-content">
@@ -603,20 +596,20 @@ desired effect
                 <!-- form start -->
               <div class="box-body">
                   
-                                    <form name='customer' id='form1' action='php/insertUser.php' method='POST'>
+                                    <form class="formview" name='customer' id='form1' action='php/insertUser.php' method='POST'>
                                         <h3>User Information</h3>
 
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='EMail_div1'>* E-mail:</label>
-                                                <input readonly="" type="text" id="EMail_div1" name="EMail_div1" class='form-control' placeholder="johndoe@mail.com" required/>
+                                                <label for='EMail_div1'>E-mail: </label>
+                                                <input readonly="" type="text" id="EMail_div1" name="EMail_div1" />
                                             </p>
                                         </div>
 
                                         <div class="btn-group form-group" data-toggle="buttons">
-                                            <label for='gender_div1'>* Gender:</label><br>
-                                             <input readonly="" type="text" id="gender_div1" name="gender_div1" class='form-control' placeholder="johndoe@mail.com" required/>
+                                            <label for='gender_div1'>Gender: </label><br>
+                                             <input readonly="" type="text" id="gender_div1" name="gender_div1" />
                                            
 
                                         </div>
@@ -631,8 +624,8 @@ desired effect
 
                                         <div class='form-group'>
                                             <p>
-                                                <label for='Phone_div1'>Contact Number:</label>
-                                                <input readonly="" type="text" id="Phone_div1" name="Phone_div1" class='form-control' placeholder="0123456789" required/>
+                                                <label for='Phone_div1'>Contact Number: </label>
+                                                <input readonly="" type="text" id="Phone_div1" name="Phone_div1" />
                                             </p>
                                         </div>
 
@@ -837,8 +830,9 @@ desired effect
                             <?php $address1 = str_replace(' ','&nbsp;',$row['address1']); ?> 
                             <?php $address2 = str_replace(' ','&nbsp;',$row['address2']); ?> 
                             <?php $city = str_replace(' ','&nbsp;',$row['city']); ?> 
-                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($row['username']); ?> data-companyregistrationnumber=<?php echo($row['businessId']); ?> data-address1=<?php echo($address1); ?> data-address2=<?php echo($address2); ?> data-postcode=<?php echo($row['postcode']); ?> data-state=<?php echo($row['state']); ?> data-city=<?php echo($city); ?> data-companyemail=<?php echo($row['cemail']); ?> data-companycontactnumber=<?php echo($row['cphone']); ?> data-title=<?php echo($row['title']); ?> data-firstname=<?php echo($row['firstName']); ?> data-lastname=<?php echo($row['lastName']); ?> data-gender=<?php echo($row['gender']); ?> data-position=<?php echo($row['position']); ?> data-email=<?php echo($row['email']); ?> data-contactnumber=<?php echo($row['phone']); ?> data-target="#modal-view-RM" >View More</button>
-                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($row['username']); ?> data-target="#modal-delete-RM" >Delete</button>
+                          <?php $companyName = str_replace(' ','&nbsp;',$row['username']); ?> 
+                            <button type="button" class="btn btn-block btn-success btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($companyName); ?> data-companyregistrationnumber=<?php echo($row['businessId']); ?> data-address1=<?php echo($address1); ?> data-address2=<?php echo($address2); ?> data-postcode=<?php echo($row['postcode']); ?> data-state=<?php echo($row['state']); ?> data-city=<?php echo($city); ?> data-companyemail=<?php echo($row['cemail']); ?> data-companycontactnumber=<?php echo($row['cphone']); ?> data-title=<?php echo($row['title']); ?> data-firstname=<?php echo($row['firstName']); ?> data-lastname=<?php echo($row['lastName']); ?> data-gender=<?php echo($row['gender']); ?> data-position=<?php echo($row['position']); ?> data-email=<?php echo($row['email']); ?> data-contactnumber=<?php echo($row['phone']); ?> data-target="#modal-view-RM" >View More</button>
+                            <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" data-userid=<?php echo($row['userID']); ?> data-companyname=<?php echo($companyName); ?> data-target="#modal-delete-RM" >Delete</button>
                      
                        </td><?php
                   } ?>
@@ -881,11 +875,10 @@ desired effect
               </div>
               <!-- /.tab-pane new booking-->
               <div class="tab-pane" id="tab_3-2">
-                <b>New Booking Request(s):</b>
+                <b>Customers List:</b>
 
                 <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Booking(s) List</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -1111,7 +1104,7 @@ desired effect
    $(e.currentTarget).find('input[name="car-models"]').val(carModel);
    $(e.currentTarget).find('input[name="maxPassenger"]').val(carMax);
    $(e.currentTarget).find('input[name="hourlyRate"]').val(carRate);
-   $(e.currentTarget).find('textarea[name="carDesc"]').val(carDesc);
+   $(e.currentTarget).find('input[name="carDesc"]').val(carDesc);
 });
 
  $('#modal-view-RM').on('show.bs.modal', function(e) {
