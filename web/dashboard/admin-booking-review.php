@@ -1,4 +1,7 @@
-<?php session_start() ?> <!--
+<?php 
+  session_start();
+  include('../php/config.php'); 
+?> <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
@@ -46,9 +49,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {
     ?><script>window.onload=haventLogin();</script><?php
   }
-  if($_SESSION['LEVEL']!="RentalMaster")
+  if($_SESSION['LEVEL']!="admin")
   {
-    ?><script>window.onload=notRentalMaster();</script><?php
+    ?><script>window.onload=notAdmin();</script><?php
   }
 ?>
 
@@ -246,8 +249,11 @@ desired effect
                 </thead>
                 <tbody>
                 <?php 
+                  $userID=$_SESSION['ID'];
+                  $sql="select* from booklist";
+                  $result=mysqli_query($conn,$sql) or trigger_error($conn->error."[$sql]");
                   $count=0;
-                  while($row=mysqli_fetch_array($result11))
+                  while($row=mysqli_fetch_array($result))
                   { 
                     if($count%2!=0)
                     {
@@ -289,7 +295,7 @@ desired effect
                       </tr><?php
                     $count+=1;
                   }
-                ?>                
+                ?>                 
                 <tfoot>
                 <tr role="row">
                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Booking ID: activate to sort column descending" style="width: 10%;">Booking ID</th>
