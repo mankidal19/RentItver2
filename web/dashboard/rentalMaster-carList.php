@@ -351,8 +351,11 @@ desired effect
                         <td><?php echo("{$row['makes']}") ?></td>
                         <td><?php echo("{$row['models']}") ?></td>
                         <td><?php echo("{$row['maxPassenger']}")?></td>
+                        <?php
+                        $description = str_replace(' ', '&nbsp;', $row['description']);
+                        ?>
                         <td style="width: 12.5%;">
-                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?>  data-car-makes=<?php echo($row['makes']) ?> data-car-model=<?php echo($row['models']) ?> data-car-max=<?php echo($row['maxPassenger']) ?>  data-car-desc=<?php echo($row['description']) ?>   data-car-rate=<?php echo($row['hourlyRate']) ?>     name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
+                        <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal" href="#modal-edit" data-car-id=<?php echo($row['carID']) ?>  data-car-makes=<?php echo($row['makes']) ?> data-car-model=<?php echo($row['models']) ?> data-car-max=<?php echo($row['maxPassenger']) ?>  data-car-desc=<?php echo($description) ?>   data-car-rate=<?php echo($row['hourlyRate']) ?>     name='carID' value=<?php echo($row['carID']) ?>>Edit</button></td>
                         <td>
                         <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal" href="#modal-delete" data-car-id=<?php echo($row['carID']) ?> name='carID' value=<?php echo($row['carID']) ?>>Delete</button></td>
                       </tr>
