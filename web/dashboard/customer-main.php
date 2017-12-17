@@ -455,7 +455,7 @@ desired effect
                       }
                       else if($row['status']==2)
                       {
-                        echo('Approved');
+                        echo("Approved<br><br><b>Confirmation Code: <br>".$row['confirmCode']."</b>");
                       }
                       else
                       {
